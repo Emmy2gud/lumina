@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('section_id')->constrained()->onDelete('cascade');
             $table->string('title');
-            $table->string('content')->nullable();
+            $table->longText('content')->nullable();
             $table->string('file_upload')->nullable();
             $table->string('duration')->nullable();
             $table->integer('order')->nullable();

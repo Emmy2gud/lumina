@@ -102,11 +102,11 @@ const StudentDashboard = () => {
   const maxHours = Math.max(...activityData.map(day => day.hours));
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <Navbar />
+    <div className="min-h-screen bg-gray-50 mt-10">
+      {/* <Navbar /> */}
 
       <div className="pt-16 md:pt-0 flex">
-        {/* Sidebar */}
+
         <Sidebar isTeacher={false} />
 
         {/* Main Content */}

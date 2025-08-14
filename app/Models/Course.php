@@ -2,10 +2,12 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Course extends Model
 {
+     use HasFactory;
     protected $fillable = [
         'title',
         'description',
@@ -14,6 +16,10 @@ class Course extends Model
         'requirements',
         'benefits',
         'features',
+        'user_id',
+
+
+
     ];
 
     protected $casts = [
@@ -33,6 +39,19 @@ class Course extends Model
      {
          return $this->hasMany(Section::class);
      }
+
+public function lessons()
+{
+    return $this->hasManyThrough(
+        Lesson::class,
+        Section::class,
+        'course_id',   // FK on sections table
+        'section_id',  // FK on lessons table
+        'id',          // PK on courses table
+        'id'           // PK on sections table
+    );
+}
+
 
      // A course has many materials
      public function materials()

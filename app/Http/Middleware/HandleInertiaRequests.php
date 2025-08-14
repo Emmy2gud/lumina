@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\Course;
 use Illuminate\Http\Request;
 use Inertia\Middleware;
 
@@ -42,13 +43,18 @@ class HandleInertiaRequests extends Middleware
                     'role' => $request->user()->role,
                     'email' => $request->user()->email,
                     'fullname'=>$request->user()->name,
-                    
+
                 ] : null,
             ],
             'flash' => [
                 'success' => fn () => $request->session()->get('success'),
                 'error' => fn () => $request->session()->get('error'),
             ],
+
+        'categories' => fn () => Course::select('category')->distinct()->pluck('category'),
+    
         ]);
     }
+
+
 }

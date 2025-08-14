@@ -3,7 +3,9 @@
 use App\Http\Controllers\AIChatController;
 use App\Http\Controllers\AIChatSessionController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\CourseController;
+use App\Http\Controllers\ExploreController;
 use App\Http\Controllers\LessonController;
 use App\Http\Controllers\MaterialController;
 use App\Http\Controllers\ProfileController;
@@ -40,6 +42,7 @@ Route::get('/dashboard', function () {
 
     return back();
 })->middleware('auth');
+
 Route::get('/courses/{course}/sections/create', [SectionController::class, 'create'])
     ->name('sections.create');
 Route::get('/sections/view', [SectionController::class, 'index']);
@@ -69,8 +72,10 @@ Route::post('/sections/{section}/quizzes', [QuizController::class, 'store'])
 
 
 Route::resource('/courses',CourseController::class);
+
 Route::get('/coursespage', [CourseController::class, 'home']);
 Route::get('/course/{course}/view', [CourseController::class, 'show']);
+Route::get('/course/{category}', [CourseController::class, 'category'])->name('courses.category');
 
 // Route::get('/openai', [App\Http\Controllers\AiChatController::class, 'testai']);
 Route::post('/ai/messages', [AIChatController::class, 'store']);
@@ -81,7 +86,9 @@ Route::delete('/ai/{aIChatSession}', [AIChatSessionController::class, 'destroy']
 
 Route::get('/ai/sessions/{id}', [AIChatSessionController::class, 'show']);
 
-
+Route::get('/cart', function () {
+    return inertia('cart/Cart');
+});
 
 // Route::get('/materials', function () {
 //     return inertia('materials/MaterialsPage');
@@ -98,3 +105,11 @@ Route::get('/quiztable', function () {
 Route::get('/quizform', function () {
     return inertia('quizdashboard/CreateQuizPage');
 });
+
+Route::get('/explore', [ExploreController::class, 'index']);;
+Route::get('/checkout', function () {
+    return inertia('checkout/Checkout');
+});
+
+
+Route::post('/add-to-cart/{id}',[CartController::class,'addtoCart']) ->name('add-to-cart.addtoCart');

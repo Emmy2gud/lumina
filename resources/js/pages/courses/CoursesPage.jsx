@@ -4,6 +4,7 @@ import { Search, Filter, SlidersHorizontal, BookOpen, Clock } from 'lucide-react
 import Navbar from '../../components/common/Navbar';
 import Footer from '../../components/common/Footer';
 import CourseCard from '../../components/course/CourseCard';
+import { Link } from '@inertiajs/react';
 
 const CoursesPage = ({courses}) => {
     console.log(courses)
@@ -37,7 +38,7 @@ const CoursesPage = ({courses}) => {
 
   // Filter and sort courses
   useEffect(() => {
-    let result = [...courses];
+    let result = [...courses.data];
 
     // Filter by search term
     if (searchTerm) {
@@ -335,9 +336,9 @@ const CoursesPage = ({courses}) => {
               </div>
 
               {/* Courses */}
-              {courses.length > 0 ? (
+              {courses.data.length > 0 ? (
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                  {courses.map((course) => (
+                  {courses.data.map((course) => (
                     <CourseCard key={course.id} course={course} />
                   ))}
                 </div>
@@ -361,27 +362,37 @@ const CoursesPage = ({courses}) => {
               )}
 
               {/* Pagination */}
-              {filteredCourses.length > 0 && (
+
+
                 <div className="mt-12 flex justify-center">
                   <nav className="flex items-center space-x-1">
-                    <button className="px-3 py-1 rounded-md bg-white border border-gray-300 text-gray-500 hover:bg-soft-purple hover:text-primary">
-                      Previous
+                    {/* <button className="px-3 py-1 rounded-md bg-white border border-gray-300 text-gray-500 hover:bg-soft-purple hover:text-primary">
+                    Prev
                     </button>
                     <button className="px-3 py-1 rounded-md bg-primary text-white">
-                      1
-                    </button>
-                    <button className="px-3 py-1 rounded-md bg-white border border-gray-300 text-gray-500 hover:bg-soft-purple hover:text-primary">
-                      2
-                    </button>
-                    <button className="px-3 py-1 rounded-md bg-white border border-gray-300 text-gray-500 hover:bg-soft-purple hover:text-primary">
-                      3
+                       {courses.from}
+                    </button> */}
+
+                     {courses.links.map((link)=>(
+                        <Link prefetch key={link.label } preserveScroll={true} href={link.url ?? ''} className={`px-3 py-1 rounded-md  border border-gray-300 text-gray-500 hover:bg-soft-purple hover:text-white ${link.active?"bg-primary text-white":null}`} dangerouslySetInnerHTML={{__html:link.label}} />
+
+
+
+                     ))
+
+                     }
+
+                    {/* <button className="px-3 py-1 rounded-md bg-white border border-gray-300 text-gray-500 hover:bg-soft-purple hover:text-primary">
+                      {courses.last_page}
                     </button>
                     <button className="px-3 py-1 rounded-md bg-white border border-gray-300 text-gray-500 hover:bg-soft-purple hover:text-primary">
                       Next
-                    </button>
+                    </button> */}
                   </nav>
                 </div>
-              )}
+
+
+
             </div>
           </div>
         </div>

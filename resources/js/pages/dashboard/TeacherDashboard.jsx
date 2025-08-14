@@ -97,7 +97,7 @@ const TeacherDashboard = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50 mt-10">
 
 
       <div className="pt-16 md:pt-0 flex">

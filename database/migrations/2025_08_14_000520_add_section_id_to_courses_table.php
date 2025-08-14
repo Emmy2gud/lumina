@@ -11,8 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('new', function (Blueprint $table) {
-            Schema::rename('ai_chatmessages', 'a_i_chat_messages');
+        Schema::table('courses', function (Blueprint $table) {
+          $table->foreignId('section_id')->after('id')->constrained()->cascadeOnDelete();
         });
     }
 
@@ -21,8 +21,9 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('new', function (Blueprint $table) {
-            Schema::rename('a_i_chat_messages', 'ai_chatmessages');
+        Schema::table('courses', function (Blueprint $table) {
+         $table->dropForeign(['section_id']);
+        $table->dropColumn('section_id');
         });
     }
 };

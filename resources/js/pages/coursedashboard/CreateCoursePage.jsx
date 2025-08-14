@@ -29,7 +29,16 @@ const CreateCoursePage = () => {
         setIsSubmitting(false);
     }, 1000);
 }
-
+    const courseCategories = [
+        { title: "Web Development" },
+        { title: "Data Science" },
+        { title: "Machine Learning"},
+        { title: "Mobile Development" },
+        { title: "Cloud Computing"},
+        { title: "Cyber Security"},
+        { title: "AI & ML"},
+        { title: "Game Development" },
+    ];
   return (
     <div className="min-h-screen bg-gray-50">
       <div className="pt-16 md:pt-0 flex">
@@ -55,7 +64,7 @@ const CreateCoursePage = () => {
                     placeholder="Enter course title"
                   />
                   {errors.title && (
-                    <p className="text-sm text-red-500 font-medium text-destructive">{errors.title}</p>
+                    <p className="text-sm text-red-500 font-medium ">{errors.title}</p>
                   )}
                   {/* <p className="text-sm text-gray-400">
                     Give your course a clear and descriptive title.
@@ -72,7 +81,7 @@ const CreateCoursePage = () => {
                     className="block min-h-2 border border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary"
                   />
                   {errors.description && (
-                    <p className="text-sm text-red-500 font-medium text-destructive">{errors.description}</p>
+                    <p className="text-sm text-red-500 font-medium ">{errors.description}</p>
                   )}
 
 
@@ -92,12 +101,10 @@ const CreateCoursePage = () => {
                   {errors.benefits && (
                     <p className="text-sm text-red-500 font-medium text-destructive">{errors.benefits}</p>
                   )}
-                  {/* <p className="text-sm text-gray-400">
-                    Describe what students will learn from this course.
-                  </p> */}
+
                 </div>
 
-                {/* <div className="space-y-2">
+                <div className="space-y-2">
                   <Label htmlFor="category">Category</Label>
                   <Select
                     value={data.category}
@@ -107,16 +114,15 @@ const CreateCoursePage = () => {
                       <SelectValue placeholder="Select a category" />
                     </SelectTrigger>
                     <SelectContent className="bg-soft-purple border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary">
-                      <SelectItem className='hover:bg-primary' value="programming">Programming</SelectItem>
-                      <SelectItem className='hover:bg-primary' value="design">Design</SelectItem>
-                      <SelectItem className='hover:bg-primary' value="business">Business</SelectItem>
-                      <SelectItem className='hover:bg-primary' value="marketing">Marketing</SelectItem>
-                      <SelectItem className='hover:bg-primary' value="personal-development">Personal Development</SelectItem>
-                        <SelectItem className='hover:bg-primary' value="photography">Photography</SelectItem>
-                        <SelectItem className='hover:bg-primary' value="music">Music</SelectItem>
-                        <SelectItem className='hover:bg-primary' value="health">Health & Fitness</SelectItem>
+                 {
+    courseCategories.map((category) => (
+        <SelectItem key={category.id} className=" text-white" value={category.title}>
+            {category.title}
+        </SelectItem>
+    ))
+}
 
-                        <SelectItem className='hover:bg-primary' value="other">Other</SelectItem>
+
                     </SelectContent>
                   </Select>
                   {errors.category && (
@@ -125,7 +131,7 @@ const CreateCoursePage = () => {
                   <p className="text-sm text-gray-400">
                     Choose the category that best fits your course.
                   </p>
-                </div> */}
+                </div>
 
 <div className="space-y-2">
   <Label htmlFor="thumbnailImage">Thumbnail Image</Label>

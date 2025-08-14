@@ -171,17 +171,17 @@ const HomePage = () => {
 
   // Categories with more attractive icons
   const categories = [
-    { name: "Web Development", count: 845, icon: BookOpen, color: "bg-purple-100 text-purple-600" },
+    { name: "Web Development", count: 845, icon: BookOpen, color: "bg-purple-100 gradient-text" },
     { name: "Data Science", count: 621, icon: BrainCircuit, color: "bg-indigo-100 text-indigo-600" },
     { name: "Mobile Development", count: 532, icon: BookOpenCheck, color: "bg-blue-100 text-blue-600" },
     { name: "Design", count: 498, icon: BookOpen, color: "bg-pink-100 text-pink-600" },
     { name: "Business", count: 712, icon: BarChart3, color: "bg-orange-100 text-orange-600" },
     { name: "Marketing", count: 453, icon: Users, color: "bg-green-100 text-green-600" },
-    { name: "AI & Machine Learning", count: 386, icon: BrainCircuit, color: "bg-purple-100 text-purple-600" },
+    { name: "AI & Machine Learning", count: 386, icon: BrainCircuit, color: "bg-purple-100 gradient-text" },
     { name: "IT & Software", count: 925, icon: BookOpen, color: "bg-blue-100 text-blue-600" }
   ];
 
-  // Testimonial data
+
   const testimonials = [
     {
       id: 1,
@@ -213,7 +213,7 @@ const HomePage = () => {
     }
   ];
 
-  // Platform features with enhanced descriptions
+
   const platformFeatures = [
     {
       title: "AI-Powered Tutoring",
@@ -244,7 +244,7 @@ const HomePage = () => {
           <div className="flex flex-col md:flex-row items-center">
             <div className="md:w-1/2 mb-12 md:mb-0 md:pr-10">
               <div className="bg-white bg-opacity-80 backdrop-blur-sm p-8 rounded-xl shadow-xl border border-purple-100 animate-fade-in">
-                <div className="inline-block px-3 py-1 bg-purple-100 text-purple-600 rounded-full text-sm font-medium mb-4">
+                <div className="inline-block px-3 py-1 bg-purple-100 text-primary rounded-full text-sm font-medium mb-4">
                   AI-Powered Education
                 </div>
 
@@ -259,13 +259,13 @@ const HomePage = () => {
                 <div className="flex flex-col sm:flex-row gap-4">
                   <Link
                     to="/signup"
-                    className="inline-flex items-center justify-center rounded-md bg-purple-600 hover:bg-purple-700 px-6 py-3 text-base font-medium text-white transition-colors shadow-lg hover:shadow-xl transform hover:-translate-y-1"
+                    className="inline-flex items-center justify-center rounded-md bg-gradient-to-tr from-primary to bg-violet-600  hover:bg-purple-700 px-6 py-3 text-base font-medium text-white transition-colors shadow-lg hover:shadow-xl transform hover:-translate-y-1"
                   >
                     Get Started Free
                   </Link>
                   <Link
                     to="/courses"
-                    className="inline-flex items-center justify-center rounded-md border-2 border-purple-600 bg-white hover:bg-purple-50 px-6 py-3 text-base font-medium text-purple-600 transition-colors"
+                    className="inline-flex text-primary items-center justify-center rounded-md border-2 border-purple-600 bg-white hover:bg-purple-50 px-6 py-3 text-base font-medium gradient-text transition-colors"
                   >
                     Explore Courses
                   </Link>
@@ -277,7 +277,7 @@ const HomePage = () => {
                       key={index}
                       onClick={() => setCurrentHeroSlide(index)}
                       className={`w-3 h-3 rounded-full transition-all ${
-                        currentHeroSlide === index ? 'bg-purple-600 w-6' : 'bg-purple-300'
+                        currentHeroSlide === index ? 'bg-gradient-to-tr from-primary to bg-violet-600  w-6' : 'bg-purple-300'
                       }`}
                       aria-label={`Go to slide ${index + 1}`}
                     />
@@ -304,19 +304,19 @@ const HomePage = () => {
         <div className="container mb-8 mx-auto px-4 md:px-6 -mt-16 relative z-20">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6 bg-white p-6 rounded-xl shadow-xl border border-purple-100 transform hover:shadow-2xl transition-all">
             <div className="text-center p-4 hover:bg-purple-50 rounded-lg transition-colors">
-              <p className="text-3xl font-bold text-purple-600">1.2M+</p>
+              <p className="text-3xl font-bold text-primary">1.2M+</p>
               <p className="text-gray-600">Active Students</p>
             </div>
             <div className="text-center p-4 hover:bg-purple-50 rounded-lg transition-colors">
-              <p className="text-3xl font-bold text-purple-600">5,400+</p>
+              <p className="text-3xl font-bold text-primary">5,400+</p>
               <p className="text-gray-600">Courses Available</p>
             </div>
             <div className="text-center p-4 hover:bg-purple-50 rounded-lg transition-colors">
-              <p className="text-3xl font-bold text-purple-600">480+</p>
+              <p className="text-3xl font-bold text-primary">480+</p>
               <p className="text-gray-600">Expert Instructors</p>
             </div>
             <div className="text-center p-4 hover:bg-purple-50 rounded-lg transition-colors">
-              <p className="text-3xl font-bold text-purple-600">4.8/5</p>
+              <p className="text-3xl font-bold text-primary">4.8/5</p>
               <p className="text-gray-600">Average Rating</p>
             </div>
           </div>
@@ -355,7 +355,7 @@ const HomePage = () => {
           <div className="mt-12 text-center">
             <Link
               to="/courses"
-              className="inline-flex items-center px-6 py-3 bg-purple-100 text-purple-600 hover:bg-purple-200 rounded-full font-medium transition-colors"
+              className="inline-flex items-center px-6 py-3 bg-purple-100 gradient-text hover:bg-purple-200 rounded-full font-medium transition-colors"
             >
               View All Categories
               <ChevronRight className="h-4 w-4 ml-1" />
@@ -376,7 +376,7 @@ const HomePage = () => {
             </div>
             <Link
               to="/courses"
-              className="text-purple-600 hover:text-purple-700 font-medium hidden md:flex items-center mt-4 md:mt-0"
+              className="text-primary hover:text-purple-700 font-medium hidden md:flex items-center mt-4 md:mt-0"
             >
               View All Courses
               <ChevronRight className="h-4 w-4 ml-1" />
@@ -386,7 +386,7 @@ const HomePage = () => {
           <Carousel className="w-full">
             <CarouselContent className="-ml-4">
               {featuredCourses.map((course) => (
-                <CarouselItem key={course.id} className="pl-4 md:basis-1/2 lg:basis-1/3">
+                <CarouselItem key={course.id} className="pl-4 md:basis-1/2 lg:basis-1/4">
                   <CourseCard course={course} />
                 </CarouselItem>
               ))}
@@ -400,7 +400,7 @@ const HomePage = () => {
           <div className="mt-8 text-center md:hidden">
             <Link
               to="/courses"
-              className="inline-flex items-center justify-center rounded-md border border-purple-600 px-6 py-3 text-base font-medium text-purple-600 hover:bg-purple-50 transition-colors"
+              className="inline-flex items-center justify-center rounded-md border border-purple-600 px-6 py-3 text-base font-medium gradient-text hover:bg-purple-50 transition-colors"
             >
               View All Courses
             </Link>
@@ -424,7 +424,7 @@ const HomePage = () => {
             {platformFeatures.map((feature, index) => (
               <div key={index} className="bg-white p-8 rounded-xl shadow-lg border border-purple-100 hover:border-purple-300 transition-all hover:shadow-xl hover:-translate-y-2">
                 <div className="w-16 h-16 rounded-full bg-purple-100 flex items-center justify-center mb-6">
-                  <feature.icon className="h-8 w-8 text-purple-600" />
+                  <feature.icon className="h-8 w-8 gradient-text" />
                 </div>
                 <h3 className="font-bold text-xl mb-4 text-gray-900">{feature.title}</h3>
                 <p className="text-gray-600 leading-relaxed">
@@ -448,7 +448,7 @@ const HomePage = () => {
             </div>
             <Link
               to="/courses"
-              className="text-purple-600 hover:text-purple-700 font-medium hidden md:flex items-center mt-4 md:mt-0"
+              className="gradient-text hover:text-purple-700 font-medium hidden md:flex items-center mt-4 md:mt-0"
             >
               View All
               <ChevronRight className="h-4 w-4 ml-1" />
@@ -464,7 +464,7 @@ const HomePage = () => {
           <div className="mt-12 text-center md:hidden">
             <Link
               to="/courses"
-              className="inline-flex items-center justify-center rounded-md border border-purple-600 px-6 py-3 text-base font-medium text-purple-600 hover:bg-purple-50 transition-colors"
+              className="inline-flex items-center justify-center rounded-md border border-purple-600 px-6 py-3 text-base font-medium gradient-text hover:bg-purple-50 transition-colors"
             >
               View All Courses
             </Link>
@@ -534,7 +534,7 @@ const HomePage = () => {
             <div className="flex flex-col sm:flex-row justify-center gap-4">
               <Link
                 to="/signup"
-                className="inline-flex items-center justify-center rounded-md bg-white px-6 py-4 text-base font-bold text-purple-600 hover:bg-opacity-90 transition-colors shadow-lg hover:shadow-xl transform hover:-translate-y-1"
+                className="inline-flex items-center justify-center rounded-md bg-white px-6 py-4 text-base font-bold text-primary hover:bg-opacity-90 transition-colors shadow-lg hover:shadow-xl transform hover:-translate-y-1"
               >
                 Sign Up For Free
               </Link>
@@ -580,7 +580,7 @@ const HomePage = () => {
                 }}
               >
                 <span className="font-medium text-gray-900">How do courses work on Learnify?</span>
-                <ChevronDown className="h-5 w-5 text-purple-600 transform transition-transform duration-200" />
+                <ChevronDown className="h-5 w-5 gradient-text transform transition-transform duration-200" />
               </button>
               <div className="content max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
                 <div className="px-6 pb-4 text-gray-600">
@@ -607,7 +607,7 @@ const HomePage = () => {
                 }}
               >
                 <span className="font-medium text-gray-900">Are the certificates recognized by employers?</span>
-                <ChevronDown className="h-5 w-5 text-purple-600 transform transition-transform duration-200" />
+                <ChevronDown className="h-5 w-5 gradient-text transform transition-transform duration-200" />
               </button>
               <div className="content max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
                 <div className="px-6 pb-4 text-gray-600">
@@ -634,7 +634,7 @@ const HomePage = () => {
                 }}
               >
                 <span className="font-medium text-gray-900">How do I become an instructor?</span>
-                <ChevronDown className="h-5 w-5 text-purple-600 transform transition-transform duration-200" />
+                <ChevronDown className="h-5 w-5 gradient-text transform transition-transform duration-200" />
               </button>
               <div className="content max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
                 <div className="px-6 pb-4 text-gray-600">
@@ -661,7 +661,7 @@ const HomePage = () => {
                 }}
               >
                 <span className="font-medium text-gray-900">What is the refund policy?</span>
-                <ChevronDown className="h-5 w-5 text-purple-600 transform transition-transform duration-200" />
+                <ChevronDown className="h-5 w-5 gradient-text transform transition-transform duration-200" />
               </button>
               <div className="content max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
                 <div className="px-6 pb-4 text-gray-600">

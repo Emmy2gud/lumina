@@ -233,7 +233,7 @@ const AIAssistantPage = ({ sessions, activeSession, messages = [] }) => {
 
 
 
-        <div className="pt-4 pb-4 w-full   ">
+        <div className="pt-4 pb-4 w-full   mt-10">
             <div className="w-auto mx-auto px-0 md:px-6  ">
                 <div className="flex flex-col md:flex-row h-[calc(100vh-96px)]">
 

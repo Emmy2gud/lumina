@@ -4,13 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Models\Course;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class CourseController extends Controller
 {
 // Add this new method to your existing controller
 public function home()
 {
-    $courses = Course::all();
+    $courses = Course::paginate(20);
 
     return inertia('courses/CoursesPage', [
         'courses' => $courses
@@ -103,5 +104,19 @@ public function home()
         // Course::destroy($id);
 
         return redirect()->route('courses.index')->with('success', 'Course deleted successfully.');
+    }
+
+    public function category($category)
+    {
+     $courses = Course::with('user')
+                ->where('category', $category)
+                ->get();
+        $categories = Course::select('category')->distinct()->pluck('category');
+
+        return Inertia::render('category/Category', [
+            'courses' => $courses,
+            'categories' => $categories,
+            'activeCategory' => $category
+        ]);
     }
 }

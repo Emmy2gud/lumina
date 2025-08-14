@@ -11,7 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        DB::statement('ALTER TABLE a_i_chat_messages MODIFY COLUMN metadata TEXT');
+        Schema::table('courses', function (Blueprint $table) {
+         $table->text('description')->change();
+        });
     }
 
     /**
@@ -19,6 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        DB::statement('ALTER TABLE a_i_chat_messages MODIFY COLUMN metadata VARCHAR(255)');
+        Schema::table('courses', function (Blueprint $table) {
+            //
+        });
     }
 };

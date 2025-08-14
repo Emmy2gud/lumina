@@ -1,18 +1,21 @@
 <?php
 
 namespace App\Models;
-
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Lesson extends Model
 {
+        use HasFactory;
     protected $fillable = [
         'title',
+        'section_id',
         'content',
         'file_upload',
-        'file_type',
-        'file_size',
         'duration',
+        'order',
+        'is_free',
+
     ];
 
     public function section()
@@ -28,5 +31,10 @@ class Lesson extends Model
     public function quizzes()
     {
         return $this->hasMany(Quiz::class);
+    }
+
+        public function course()
+    {
+        return $this->belongsTo(Course::class);
     }
 }

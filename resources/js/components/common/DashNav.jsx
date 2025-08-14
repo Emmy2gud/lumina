@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
-import { Link, router, usePage } from "@inertiajs/react";
+import { Link, usePage } from "@inertiajs/react";
 import {
     Menu,
     X,
@@ -15,9 +15,8 @@ import {
 
 import useEmblaCarousel from "embla-carousel-react";
 
-const Navbar = () => {
-    const { auth,categories  } = usePage().props;
-
+const DashNav = () => {
+    const { auth } = usePage().props;
     const [emblaRef, emblaApi] = useEmblaCarousel();
     const [isOpen, setIsOpen] = useState(false);
     const [isScrolled, setIsScrolled] = useState(false);
@@ -405,56 +404,9 @@ const Navbar = () => {
                     </div>
                 </div>
             </div>
-            {/* category nav */}
-            {auth.user ? (
-                <div className="bg-gray-50 border-t border-gray-100 py-2 relative  ">
-                    <div className="container mx-auto px-4 md:px-8">
-                        <div className="relative">
-                            <div className="pointer-events-none absolute inset-y-0 left-0 w-20 z-10 bg-gradient-to-r from-gray-50 to-transparent" />
-                            <div className="pointer-events-none absolute inset-y-0 right-0 w-20 z-10 bg-gradient-to-l from-gray-50 to-transparent" />
-                            {/* Embla carousel */}
-                            <div className="embla overflow-hidden ">
-                                <div className="embla__viewport" ref={emblaRef}>
-                                    <div className="flex gap-2 embla__container">
-                                         {categories.map((category, index) => (
-                                            <Link
-                                                key={index}
-                                                href={`/course/${category}`}
-                                                className={`px-4 py-2 rounded-full text-purple-600 text-sm font-medium whitespace-nowrap transition embla__slide ${
-                                                    isActive( category)
-                                                        ? "bg-primary/10 text-primary"
-                                                        : "text-gray-600 hover:bg-gray-200"
-                                                }`}
-                                            >
-                                                {category}
-                                            </Link>
-                                        ))}
-                                    </div>
-                                </div>
-                            </div>
-
-                            {/* <button
-                                className="embla__prev absolute left-0 top-1/2 -translate-y-1/2 z-20 bg-white shadow p-1 rounded-full border border-gray-200 hover:bg-primary/10 transition"
-                                onClick={scrollPrev}
-                                aria-label="Previous"
-                                type="button"
-                            >
-                                <ChevronLeft />
-                            </button>
-                            <button
-                                className="embla__next absolute right-0 top-1/2 -translate-y-1/2 z-20 bg-white shadow p-1 rounded-full border border-gray-200 hover:bg-primary/10 transition"
-                                onClick={scrollNext}
-                                aria-label="Next"
-                                type="button"
-                            >
-                                <ChevronRight />
-                            </button> */}
-                        </div>
-                    </div>
-                </div>
-            ) : null}
+       
         </nav>
     );
 };
 
-export default Navbar;
+export default DashNav;
