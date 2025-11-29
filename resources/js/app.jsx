@@ -13,6 +13,7 @@ createInertiaApp({
     // Try these path patterns
     const paths = [
       `./Pages/${normalized}.jsx`,
+      
       `./Pages/**/${normalized}.jsx`,
       `./Pages/${name.replace(/\./g, '/')}.jsx`, // original case
     ]

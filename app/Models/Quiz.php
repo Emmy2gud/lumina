@@ -13,7 +13,7 @@ class Quiz extends Model
         'duration',
         'passing_score',
         'section_id',
-        'course_id',
+  
 
 
 
@@ -26,6 +26,21 @@ class Quiz extends Model
     public function questions()
     {
         return $this->hasMany(Question::class);
+    }
+
+    public function section()
+    {
+        return $this->belongsTo(Section::class);
+    }
+
+    public function lesson()
+    {
+        return $this->belongsTo(Lesson::class);
+    }
+
+    public function course()
+    {
+        return $this->belongsTo(Course::class);
     }
 
 }

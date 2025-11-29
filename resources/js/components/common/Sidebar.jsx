@@ -1,13 +1,10 @@
-
 import { useState } from 'react';
-import { Link,usePage} from "@inertiajs/react";
 import {
   ChevronLeft,
   Home,
   BookOpen,
   LayoutDashboard,
   FileText,
-  Upload,
   FilePlus,
   FileCheck,
   TrendingUp,
@@ -16,30 +13,50 @@ import {
   ChevronRight,
   PlusCircle,
   Edit,
-  FolderPlus,
   BookPlus,
   FileQuestion,
   ClipboardCheck,
-  ChevronDown
+  ChevronDown,
+  Package,
+  MessageCircle,
+  Sparkles,
+  Bot,
+  Menu,
+  X
 } from 'lucide-react';
 
 const Sidebar = () => {
-    const { auth } = usePage().props;
   const [collapsed, setCollapsed] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
   const [openMenuPath, setOpenMenuPath] = useState(null);
 
+  // Mock auth for demo
+  const auth = {
+    user: {
+      role: 'teacher',
+      name: 'John Smith',
+      email: 'john.smith@example.com'
+    }
+  };
 
+  const isActive = (path) => {
+    if (typeof window !== 'undefined') {
+      return window.location.pathname === path;
+    }
+    return false;
+  };
 
-  const isActive = (path) => location.pathname === path;
-
-  // Navigation items based on user role
   const teacherNavItems = [
-    {id:1, title: 'Dashboard', path: '/dashboard/teacher', icon: Home, dropicon:null },
-    {id:2, title: 'My Courses', path: '/courses/my-courses', icon: BookOpen, dropicon:null },
     {
-        id:3,
+      id: 1,
+      title: 'Dashboard',
+      path: '/dashboard',
+      icon: Home,
+      dropicon: null
+    },
+    {
+      id: 3,
       title: 'Course Management',
-
       icon: LayoutDashboard,
       subItems: [
         { title: 'Create Course', path: '/courses/create', icon: PlusCircle },
@@ -50,160 +67,237 @@ const Sidebar = () => {
       ],
       dropicon: ChevronDown
     },
-
     {
-        id:4,
+      id: 4,
       title: 'Materials',
       icon: FileText,
       subItems: [
-
         { title: 'View Materials', path: '/materials', icon: BookPlus },
       ],
       dropicon: ChevronDown
     },
     {
-        id:5,
+      id: 5,
       title: 'Quizzes & Assessments',
-
       icon: FileQuestion,
       subItems: [
-
         { title: 'View Submissions', path: '/quiz/submissions', icon: FileCheck },
-      ]
-      ,
+      ],
       dropicon: ChevronDown
     },
-    { id:6,title: 'Analytics', path: '/analytics', icon: TrendingUp, dropicon:null },
+    {
+      id: 13,
+      title: 'Q&A / Discussions',
+      path: '/discussions',
+      icon: MessageCircle,
+      dropicon: null
+    },
+    {
+      id: 6,
+      title: 'Analytics',
+      path: '/analytics',
+      icon: TrendingUp,
+      dropicon: null
+    },
   ];
 
   const studentNavItems = [
-    {id:7, title: 'Dashboard', path: '/dashboard/student', icon: Home},
-    {id:8, title: 'My Courses', path: '/courses/enrolled', icon: BookOpen },
-    {id:9, title: 'Materials', path: '/materials/view', icon: FileText },
-    {id:10, title: 'Take Quiz', path: '/quiz/take', icon: ClipboardCheck },
+    { id: 7, title: 'Dashboard', path: '/dashboard/student', icon: Home },
+    { id: 8, title: 'My Courses', path: '/courses/enrolled', icon: BookOpen },
+    { id: 9, title: 'Materials', path: '/materials/view', icon: FileText },
+    { id: 12, title: 'Assignments', path: '/assignments', icon: Package },
+    { id: 10, title: 'Take Quiz', path: '/quiz/take', icon: ClipboardCheck },
+    { id: 13, title: 'Q&A / Discussions', path: '/discussions', icon: MessageCircle },
+    { id: 11, title: 'My Progress', path: '/analytics/progress', icon: TrendingUp },
+  ];
 
-    {id:11, title: 'My Progress', path: '/analytics/progress', icon: TrendingUp },
+  const aiToolsSection = [
+    {
+      id: 14,
+      title: 'AI Teaching Assistant',
+      path: '/ai/assistant',
+      icon: Sparkles,
+      gradient: 'from-purple-500 to-pink-500'
+    },
+    {
+      id: 15,
+      title: 'AI Content Generator',
+      path: '/ai/generator',
+      icon: Bot,
+      gradient: 'from-blue-500 to-cyan-500'
+    },
   ];
 
   const navItems = auth.user.role === 'teacher' ? teacherNavItems : studentNavItems;
 
-  // Bottom navigation items for all users
   const bottomNavItems = [
-
     { title: 'Settings', path: '/settings', icon: Settings },
     { title: 'Logout', path: '/logout', icon: LogOut },
   ];
 
-
-
-  function handleDropdownClick(path) {
-    setOpenMenuPath(prev => prev === path ? null : path);
-
+  function handleDropdownClick(e, itemId) {
+    e.preventDefault();
+    e.stopPropagation();
+    setOpenMenuPath(prev => prev === itemId ? null : itemId);
   }
 
+  const handleNavClick = () => {
+    if (window.innerWidth < 1024) {
+      setMobileOpen(false);
+    }
+  };
 
-
-  return (
-    <div
-      className={`sidebar-container h-screen bg-white fixed top-0 left-0 z-40 transition-all duration-300 shadow-md overflow-auto ${
-        collapsed ? 'w-20' : 'w-70'
-      }`}
-    >
-      <div className="flex flex-col h-full">
-        {/* Sidebar header with logo */}
-        <div className="flex items-center justify-between p-6 ">
-
-          <button
-            onClick={() => setCollapsed(!collapsed)}
-            className="p-2 rounded-full hover:bg-sidebar-accent text-gray-500 hover:text-primary"
-          >
-            {collapsed ? <ChevronRight size={20} /> : <ChevronLeft size={20} />}
-          </button>
-        </div>
-
-        {/* Navigation links */}
-        <div className="flex-1  py-4">
-        <div className="text-xl px-6 pb-2 font-normal">Overview</div>
-          <nav className="px-4 space-y-1.5">
-            {navItems.map((item) => (
-              <div key={item.title} className="space-y-1">
-                <Link
-                 href={item.path}
-                  className={`flex items-center p-3 rounded-lg ${
-                    isActive(item.path)
-                      ? 'bg-soft-purple text-white font-normal'
-                      : 'text-gray-600 hover:bg-sidebar-accent hover:text-primary'
-                  } ${collapsed ? 'justify-center' : 'space-x-3'}`}
-                >
-                  <item.icon className={`${collapsed ? 'w-6 h-6 text-gray-500' : 'w-5 h-5 '}`} />
-                  <div className='flex justify-between '>
-                  {!collapsed && <span className='text-sm'>{item.title}</span>}
-
-                  <button onClick={() => handleDropdownClick(item.id)}>
-                  {item.dropicon && <item.dropicon className="h-4 w-4 ml-auto" />}
-                  </button>
-
-                  </div>
-
-                </Link>
-
-                {openMenuPath === item.id && item.subItems && (
-                  <div className="ml-8 space-y-1">
-                    {item.subItems.map((subItem) => (
-                      <Link
-                    key={subItem.title}
-                    href={subItem.path}
-                    className={`flex items-center p-2 rounded-lg ${
-                      isActive(subItem.path)
-                        ? 'bg-soft-purple text-white font-medium'
-                        : 'text-gray-500 hover:bg-sidebar-accent hover:text-primary'
-                    } space-x-2`}
-                      >
-                    <subItem.icon className="w-4 h-4 " />
-                    <span className="text-xs ">{subItem.title}</span>
-                      </Link>
-                    ))}
-                  </div>
-                )}
-                  </div>
-                ))}
-              </nav>
+  const SidebarContent = () => (
+    <div className="flex flex-col h-full bg-gradient-to-b from-slate-50 to-white">
+      {/* Header */}
+      <div className="flex items-center justify-between p-4 border-b border-slate-200">
+        {!collapsed && (
+          <div className="flex items-center space-x-2">
+            <div className="w-8 h-8 bg-gradient-to-br from-indigo-600 to-purple-600 rounded-lg flex items-center justify-center">
+              <span className=" font-bold text-sm text-white ">L</span>
             </div>
+            <span className="font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-500 text-lg ">Lumina</span>
+          </div>
+        )}
+        <button
+          onClick={() => setCollapsed(!collapsed)}
+          className="p-2 rounded-lg hover:bg-slate-200 text-slate-600 hover:text-indigo-600 transition-all duration-200 hidden lg:block"
+        >
+          {collapsed ? <ChevronRight size={20} /> : <ChevronLeft size={20} />}
+        </button>
+        <button
+          onClick={() => setMobileOpen(false)}
+          className="p-2 rounded-lg hover:bg-slate-200 text-slate-600 lg:hidden"
+        >
+          <X size={20} />
+        </button>
+      </div>
 
+      {/* Main Navigation */}
+      <div className="flex-1 overflow-y-auto py-4 px-3">
+        {!collapsed && <div className="text-xs font-semibold text-slate-400 uppercase tracking-wider px-3 mb-3">Main Menu</div>}
 
-        <div className="p-1 ">
-            {/* <div className="text-xl px-6 pb-2 font-normal">Settings</div> */}
-          <div className="space-y-1 px-4">
-            {bottomNavItems.map((item) => (
-              <Link
-                key={item.title}
-                href={item.path}
-                className={`flex items-center p-3 rounded-lg ${
+        <nav className="space-y-1">
+          {navItems.map((item) => (
+            <div key={item.id} className="space-y-1">
+              <a
+                href={item.path || '#'}
+                onClick={item.subItems ? (e) => handleDropdownClick(e, item.id) : handleNavClick}
+                className={`flex items-center p-3 rounded-xl transition-all duration-200 group ${
                   isActive(item.path)
-                    ? 'bg-soft-purple text-primary font-medium'
-                    : 'text-gray-600 hover:bg-sidebar-accent hover:text-primary'
+                    ? 'bg-gradient-to-r from-indigo-600 to-purple-600 text-white shadow-lg shadow-indigo-500/50'
+                    : 'text-slate-700 hover:bg-slate-100'
+                } ${collapsed ? 'justify-center' : 'justify-between'}`}
+              >
+                <div className="flex items-center space-x-3">
+                  <item.icon className={`${
+                    isActive(item.path) ? 'text-white' : 'text-slate-500 group-hover:text-indigo-600'
+                  } ${collapsed ? 'w-6 h-6' : 'w-5 h-5'} transition-colors`} />
+                  {!collapsed && <span className="text-sm font-medium">{item.title}</span>}
+                </div>
+                {!collapsed && item.dropicon && (
+                  <item.dropicon className={`h-4 w-4 transition-transform duration-200 ${
+                    openMenuPath === item.id ? 'rotate-180' : ''
+                  }`} />
+                )}
+              </a>
+
+              {openMenuPath === item.id && item.subItems && !collapsed && (
+                <div className="ml-4 pl-4 border-l-2 border-slate-200 space-y-1 mt-1">
+                  {item.subItems.map((subItem) => (
+                    <a
+                      key={subItem.title}
+                      href={subItem.path}
+                      onClick={handleNavClick}
+                      className={`flex items-center p-2.5 rounded-lg transition-all duration-200 ${
+                        isActive(subItem.path)
+                          ? 'bg-indigo-50 text-indigo-600 font-medium'
+                          : 'text-slate-600 hover:bg-slate-50 hover:text-indigo-600'
+                      }`}
+                    >
+                      <subItem.icon className="w-4 h-4 mr-2" />
+                      <span className="text-xs">{subItem.title}</span>
+                    </a>
+                  ))}
+                </div>
+              )}
+            </div>
+          ))}
+        </nav>
+
+        {/* AI Tools Section */}
+        <div className="mt-6">
+          {!collapsed && (
+            <div className="text-xs font-semibold text-slate-400 uppercase tracking-wider px-3 mb-3">
+              AI Powered
+            </div>
+          )}
+          <div className="space-y-2">
+            {aiToolsSection.map((item) => (
+              <a
+                key={item.id}
+                href={item.path}
+                onClick={handleNavClick}
+                className={`flex items-center p-3 rounded-xl transition-all duration-200 group relative overflow-hidden ${
+                  isActive(item.path)
+                    ? `bg-gradient-to-r ${item.gradient} text-white shadow-lg`
+                    : 'bg-white border-2 border-slate-200 hover:border-transparent hover:shadow-md'
                 } ${collapsed ? 'justify-center' : 'space-x-3'}`}
               >
-                <item.icon className={`${collapsed ? 'w-6 h-6' : 'w-5 h-5'}`} />
-                {!collapsed && <span>{item.title}</span>}
-              </Link>
+                {!isActive(item.path) && (
+                  <div className={`absolute inset-0 bg-gradient-to-r ${item.gradient} opacity-0 group-hover:opacity-10 transition-opacity`}></div>
+                )}
+                <item.icon className={`${
+                  isActive(item.path) ? 'text-white' : `text-slate-600 group-hover:text-${item.gradient.split('-')[1]}-600`
+                } ${collapsed ? 'w-6 h-6' : 'w-5 h-5'} transition-colors z-10`} />
+                {!collapsed && (
+                  <span className={`text-sm font-medium z-10 ${
+                    isActive(item.path) ? 'text-white' : 'text-slate-700'
+                  }`}>
+                    {item.title}
+                  </span>
+                )}
+              </a>
             ))}
           </div>
         </div>
+      </div>
 
-        {/* User info at bottom */}
+      {/* Bottom Section */}
+      <div className="border-t border-slate-200 p-3">
+        <div className="space-y-1 mb-3">
+          {bottomNavItems.map((item) => (
+            <a
+              key={item.title}
+              href={item.path}
+              onClick={handleNavClick}
+              className={`flex items-center p-3 rounded-xl transition-all duration-200 ${
+                isActive(item.path)
+                  ? 'bg-slate-200 text-slate-900 font-medium'
+                  : 'text-slate-600 hover:bg-slate-100'
+              } ${collapsed ? 'justify-center' : 'space-x-3'}`}
+            >
+              <item.icon className={`${collapsed ? 'w-6 h-6' : 'w-5 h-5'}`} />
+              {!collapsed && <span className="text-sm">{item.title}</span>}
+            </a>
+          ))}
+        </div>
+
+        {/* User Profile */}
         {!collapsed && (
-          <div className="p-4 border-t border-primary">
+          <div className="bg-gradient-to-r from-indigo-50 to-purple-50 rounded-xl p-3 border border-indigo-100">
             <div className="flex items-center space-x-3">
-              <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center">
-                <span className="text-white font-bold">JS</span>
+              <div className="w-10 h-10 rounded-full bg-gradient-to-br from-indigo-600 to-purple-600 flex items-center justify-center shadow-md">
+                <span className="text-white font-bold text-sm">
+                  {auth.user.name.split(' ').map(n => n[0]).join('')}
+                </span>
               </div>
               <div className="flex-1 min-w-0">
-                <p className="text-sm font-medium text-gray-900 truncate">
-                  John Smith
+                <p className="text-sm font-semibold text-slate-900 truncate">
+                  {auth.user.name}
                 </p>
-                <p className="text-xs text-gray-500 truncate">
-                  {auth.user.role === 'teacher' ? 'Teacher' : 'Student'}
+                <p className="text-xs text-slate-500 truncate">
+                  {auth.user.role === 'teacher' ? '👨‍🏫 Teacher' : '👨‍🎓 Student'}
                 </p>
               </div>
             </div>
@@ -211,6 +305,38 @@ const Sidebar = () => {
         )}
       </div>
     </div>
+  );
+
+  return (
+    <>
+      {/* Mobile Menu Button */}
+      <button
+        onClick={() => setMobileOpen(true)}
+        className="lg:hidden fixed top-4 left-4 z-50 p-2 bg-white rounded-lg shadow-lg hover:bg-slate-50"
+      >
+        <Menu size={24} className="text-slate-700" />
+      </button>
+
+      {/* Mobile Overlay */}
+      {mobileOpen && (
+        <div
+          className="lg:hidden fixed inset-0 bg-black/50 z-40"
+          onClick={() => setMobileOpen(false)}
+        />
+      )}
+
+      {/* Sidebar */}
+      <div
+        className={`fixed top-0 left-0 h-screen bg-white shadow-2xl z-50 transition-all duration-300 ${
+          collapsed ? 'w-20' : 'w-72'
+        } ${
+          mobileOpen ? 'translate-x-0' : '-translate-x-full'
+        } lg:translate-x-0`}
+      >
+        <SidebarContent />
+      </div>
+
+    </>
   );
 };
 

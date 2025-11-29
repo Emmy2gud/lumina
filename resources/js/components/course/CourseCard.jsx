@@ -5,7 +5,7 @@ import { Star, Clock, Users, BookOpen } from 'lucide-react';
 
 const CourseCard = ({ course }) => {
   const [isHovered, setIsHovered] = useState(false);
-console.log(course)
+
   // Default values if props are not provided
 
   return (
@@ -62,7 +62,7 @@ course.thumbnail}
         </div>
 
         <div className="flex items-center justify-between">
-          <span className="font-bold text-lg text-primary">${course.price}</span>
+          <span className="font-bold text-lg text-primary">{course.price}</span>
           <Link
             href={`/course/${course.id}/view`}
             className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-white hover:bg-secondary transition-colors"

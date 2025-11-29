@@ -10,9 +10,9 @@ use Illuminate\Http\Request;
 class LessonController extends Controller
 {
     public function index(){
-
+ $lessons = Lesson::paginate(10);
         return inertia('coursedashboard/LessonViewPage',[
-               'lessons'=>Lesson::all(),
+               'lessons'=> $lessons,
 
 
         ]

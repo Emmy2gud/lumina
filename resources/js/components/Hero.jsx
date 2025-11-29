@@ -2,6 +2,7 @@ import { useRef } from "react";
 import { Button } from "@headlessui/react";
 
 const Hero = () => {
+    
 const ref = useRef(null);
   const onMouseMove = () => {
     const el = ref.current;

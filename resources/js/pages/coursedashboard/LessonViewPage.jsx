@@ -1,9 +1,17 @@
 import { useState } from 'react';
 
 import { Search, Filter, Edit, Trash2, Share2, ArrowLeft, Eye } from 'lucide-react';
-
+import { Button } from "@/components/ui/button"
 import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
-
+import {
+  DropdownMenu,
+  DropdownMenuCheckboxItem,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
 import {
     MoreHorizontal,
     MoreVertical,
@@ -88,7 +96,7 @@ console.log(lessons)
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-200">
-{lessons.map((lesson) => (
+{lessons.data.map((lesson) => (
                   <tr  className="hover:bg-gray-50 transition-colors">
 
                   <td className="px-6 py-4 text-sm text-gray-600">{lesson.title}</td>
@@ -96,54 +104,42 @@ console.log(lessons)
 
 
                   <td className="px-6 py-4 text-right">
+                       <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+        <Button variant="ghost" className="p-1 h-auto">
+          <MoreVertical className="size-5 text-gray-500" />
+        </Button>
+      </DropdownMenuTrigger>
 
-                    <div className="flex justify-end space-x-3  ">
-                        <Menu
-                              as="div"
-                              className={"absolute top-100 md:top-86 mb-2 md:mt-0 z-10 inline-block  "}
-                          >
-                              <div>
-                                  <MenuButton className="inline-flex w-full   justify-center border-0 gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900  hover:bg-gray-50">
-                                      <MoreVertical
-                                          aria-hidden="true"
-                                          className="-mr-1 size-5 text-gray-400 md:text-primary"
-                                      />
-                                  </MenuButton>
-                              </div>
+      <DropdownMenuContent className="w-48">
 
-                              <MenuItems
-                                  transition
-                                  className=" md:absolute md:right-0  mt-2 w-40 origin-top-right rounded-md bg-white ring-1 shadow-lg ring-black/5 transition focus:outline-hidden data-closed:scale-95 data-closed:transform data-closed:opacity-0 data-enter:duration-100 data-enter:ease-out data-leave:duration-75 data-leave:ease-in"
-                              >
-                                  <div className="py-1 ">
-                                      <MenuItem>
-                                          <Link
-                                              href={``}
-                                              className="flex px-4 py-2 text-sm font-semibold text-primary-500 data-focus:bg-gray-100  data-focus:outline-hidden  hover:bg-primary-300 hover:text-primary-500"
-                                          >
-                                              <PenBox className="h-5 w-5 mr-1 opacity-80" /> Edit
-                                          </Link>
-                                      </MenuItem>
-
-                                      <form onSubmit={submit}>
-                                          <MenuItem>
-                                              <button className="flex w-full px-4 py-2 text-sm text-red-600 text-left font-semibold   data-focus:outline-hidden hover:bg-red-300 hover:text-red-900">
-                                                  <Trash className="h-5 w-5 mr-1 opacity-80" />{" "}
-                                                  Delete
-                                              </button>
-                                          </MenuItem>
-                                      </form>
+        <DropdownMenuItem asChild>
+          <Link
+            href={``}
+            className="flex items-center gap-2 font-medium"
+          >
+            <PenBox className="h-4 w-4 opacity-80" />
+            Edit
+          </Link>
+        </DropdownMenuItem>
 
 
+        <DropdownMenuItem asChild>
+          <form onSubmit={submit} className="w-full">
+            <button className="flex w-full items-center gap-2 text-red-600 font-semibold">
+              <Trash className="h-4 w-4 opacity-80" />
+              Delete
+            </button>
+          </form>
+        </DropdownMenuItem>
+
+        <DropdownMenuSeparator />
 
 
+      </DropdownMenuContent>
+    </DropdownMenu>
 
 
-                                  </div>
-                              </MenuItems>
-                          </Menu>
-
-                    </div>
 
                   </td>
                 </tr>

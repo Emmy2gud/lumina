@@ -9,6 +9,8 @@ class AIChatSession extends Model
     protected $fillable = [
         'user_id',
         'title',
+        'context_id',
+        'context_type',
         'created_at',
         'updated_at',
     ];

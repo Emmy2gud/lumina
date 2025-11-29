@@ -1,3 +1,4 @@
+import React, { useState, useEffect } from 'react';
 import { useForm } from '@inertiajs/react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -18,17 +19,28 @@ const CreateCoursePage = () => {
 
   });
 
+  // local UI state
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [previewUrl, setPreviewUrl] = useState(null);
+
+  useEffect(() => {
+    if (data.thumbnail) {
+      const url = URL.createObjectURL(data.thumbnail);
+      setPreviewUrl(url);
+      return () => URL.revokeObjectURL(url);
+    } else {
+      setPreviewUrl(null);
+    }
+  }, [data.thumbnail]);
+
   function submit(e) {
     e.preventDefault();
-    post('/courses', {
-        forceFormData: true,
-      });
-
     setIsSubmitting(true);
-    setTimeout(() => {
-        setIsSubmitting(false);
-    }, 1000);
-}
+    post('/courses', {
+      forceFormData: true,
+      onFinish: () => setIsSubmitting(false),
+    });
+  }
     const courseCategories = [
         { title: "Web Development" },
         { title: "Data Science" },
@@ -40,162 +52,118 @@ const CreateCoursePage = () => {
         { title: "Game Development" },
     ];
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50 py-12">
       <div className="pt-16 md:pt-0 flex">
-        <div className="flex-1 p-4 md:p-8 ml-0 md:ml-20 lg:ml-64">
-          <div className="max-w-3xl mx-auto">
-            <div className="mb-8">
-              <h1 className="text-2xl md:text-3xl font-bold text-gray-900">Create New Course</h1>
-              <p className="text-gray-600">
-                Fill in the details below to create your new course
-              </p>
-            </div>
+        <div className="max-w-6xl mx-auto ml-75 ">
+        <div className="mb-8 text-center">
+          <h1 className="text-3xl md:text-4xl font-extrabold text-gray-900">Create New Course</h1>
+          <p className="text-gray-600 mt-2 max-w-2xl mx-auto">Fill in the details below to create your new course. Make it clear and descriptive so students know what to expect.</p>
+        </div>
 
-            <div className="bg-white p-6 rounded-lg shadow-sm">
+        <div className="grid md:grid-cols-12 gap-8 items-start">
+          {/* Main form column */}
+          <div className="md:col-span-8">
+            <div className="bg-white p-8 rounded-2xl shadow-md border border-gray-100">
               <form onSubmit={submit} className="space-y-6" encType='multipart/form-data'>
-                <div className="space-y-2">
-                  {/* <Label htmlFor="title">Course Title</Label> */}
-
+                <div>
+                  <Label htmlFor="title" className="text-sm font-medium text-gray-700">Course Title</Label>
                   <Input
                     id="title"
                     value={data.title}
                     onChange={(e) => setData('title', e.target.value)}
-                    className="block border border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary"
-                    placeholder="Enter course title"
+                    className="mt-2 w-full px-4 py-3 rounded-xl border-gray-200 shadow-sm bg-white text-base"
+                    placeholder="e.g. Complete React Developer Course"
                   />
                   {errors.title && (
-                    <p className="text-sm text-red-500 font-medium ">{errors.title}</p>
+                    <p className="text-sm text-red-500 font-medium mt-2">{errors.title}</p>
                   )}
-                  {/* <p className="text-sm text-gray-400">
-                    Give your course a clear and descriptive title.
-                  </p> */}
                 </div>
 
-                <div className="space-y-2">
-                  <Label htmlFor="description">Description</Label>
+                <div>
+                  <Label htmlFor="description" className="text-sm font-medium text-gray-700">Course Description</Label>
                   <Textarea
                     id="description"
                     value={data.description}
                     onChange={(e) => setData('description', e.target.value)}
-                    placeholder="Provide a detailed description of your course"
-                    className="block min-h-2 border border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary"
+                    placeholder="Write a compelling summary of what students will learn"
+                    className="mt-2 w-full min-h-[160px] px-4 py-3 rounded-xl border-gray-200 shadow-sm bg-white text-base"
                   />
                   {errors.description && (
-                    <p className="text-sm text-red-500 font-medium ">{errors.description}</p>
+                    <p className="text-sm text-red-500 font-medium mt-2">{errors.description}</p>
                   )}
-
-
-                  {/* <p className="text-sm text-gray-400">
-                    Describe what students will learn from this course.
-                  </p> */}
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="description">Benefits</Label>
-                  <Textarea
-                    id="description"
-                    value={data.benefits}
-                    onChange={(e) => setData('benefits', e.target.value)}
-                    placeholder="Provide a detailed description of your course"
-                    className="block border border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary"
-                  />
-                  {errors.benefits && (
-                    <p className="text-sm text-red-500 font-medium text-destructive">{errors.benefits}</p>
-                  )}
-
                 </div>
 
-                <div className="space-y-2">
-                  <Label htmlFor="category">Category</Label>
-                  <Select
-                    value={data.category}
-                    onValueChange={(value) => setData('category', value)}
-                  >
-                    <SelectTrigger className="border border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary">
-                      <SelectValue placeholder="Select a category" />
-                    </SelectTrigger>
-                    <SelectContent className="bg-soft-purple border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary">
-                 {
-    courseCategories.map((category) => (
-        <SelectItem key={category.id} className=" text-white" value={category.title}>
-            {category.title}
-        </SelectItem>
-    ))
-}
+                <div className="grid md:grid-cols-2 gap-4">
+                  <div>
+                    <Label htmlFor="benefits" className="text-sm font-medium text-gray-700">Benefits</Label>
+                    <Textarea
+                      id="benefits"
+                      value={data.benefits}
+                      onChange={(e) => setData('benefits', e.target.value)}
+                      placeholder="What will students gain?"
+                      className="mt-2 w-full min-h-[120px] px-4 py-3 rounded-xl border-gray-200 shadow-sm bg-white text-base"
+                    />
+                    {errors.benefits && (
+                      <p className="text-sm text-red-500 font-medium mt-2">{errors.benefits}</p>
+                    )}
+                  </div>
 
-
-                    </SelectContent>
-                  </Select>
-                  {errors.category && (
-                    <p className="text-sm font-medium text-destructive">{errors.category}</p>
-                  )}
-                  <p className="text-sm text-gray-400">
-                    Choose the category that best fits your course.
-                  </p>
+                  <div>
+                    <Label htmlFor="features" className="text-sm font-medium text-gray-700">Features (comma separated)</Label>
+                    <Input
+                      id="Features"
+                      value={data.features}
+                      onChange={(e) => setData('features', e.target.value)}
+                      className="mt-2 w-full px-4 py-3 rounded-xl border-gray-200 shadow-sm bg-white text-base"
+                      placeholder="e.g. 12 hours, quizzes, projects"
+                    />
+                    {errors.features && (
+                      <p className="text-sm text-red-500 font-medium mt-2">{errors.features}</p>
+                    )}
+                  </div>
                 </div>
 
-<div className="space-y-2">
-  <Label htmlFor="thumbnailImage">Thumbnail Image</Label>
-  <div className="relative">
+                <div className="grid md:grid-cols-2 gap-4">
+                  <div>
+                    <Label htmlFor="requirements" className="text-sm font-medium text-gray-700">Requirements</Label>
+                    <Input
+                      id="requirements"
+                      value={data.requirements}
+                      onChange={(e) => setData('requirements', e.target.value)}
+                      className="mt-2 w-full px-4 py-3 rounded-xl border-gray-200 shadow-sm bg-white text-base"
+                      placeholder="e.g. Basic JavaScript knowledge"
+                    />
+                    {errors.requirements && (
+                      <p className="text-sm text-red-500 font-medium mt-2">{errors.requirements}</p>
+                    )}
+                  </div>
 
-    <input
-      id="thumbnailImage"
-      type="file"
-      accept="image/*"
-      onChange={(e) => setData('thumbnail', e.target.files[0])}
-      className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
-    />
-
-    {/* Visible styled element */}
-    <div className="flex items-center gap-3 px-4 py-3 border border-gray-300 rounded-md shadow-sm hover:border-primary transition-colors">
-      <UploadIcon className="w-5 h-5 text-gray-400" />
-      <span className="text-sm text-gray-500">
-        {data.thumbnail ? data.thumbnail.name : 'Click to upload thumbnail'}
-      </span>
-    </div>
-  </div>
-  {errors.thumbnail && (
-    <p className="text-sm text-red-500 font-medium">{errors.thumbnail}</p>
-  )}
-</div>
-
-                <div className="space-y-2">
-                  <Label htmlFor="videoUrl">Requirements</Label>
-                  <Input
-                    id="videoUrl"
-                    value={data.requirements}
-                    onChange={(e) => setData('requirements', e.target.value)}
-                    className="block border border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary"
-                    placeholder="Enter intro video URL"
-                  />
-                  {errors.requirements && (
-                    <p className="text-sm text-red-500 font-medium text-destructive">{errors.requirements}</p>
-                  )}
-                  {/* <p className="text-sm text-gray-400">
-                    Add an optional introduction video for your course.
-                  </p> */}
+                  <div>
+                    <Label htmlFor="category" className="text-sm font-medium text-gray-700">Category</Label>
+                    <Select
+                      value={data.category}
+                      onValueChange={(value) => setData('category', value)}
+                    >
+                      <SelectTrigger className="mt-2 w-full rounded-xl border-gray-200 shadow-sm bg-white">
+                        <SelectValue placeholder="Select a category" />
+                      </SelectTrigger>
+                      <SelectContent className="rounded-xl border-gray-100 shadow-sm">
+                        {courseCategories.map((category) => (
+                          <SelectItem key={category.title} value={category.title} className="text-sm">
+                            {category.title}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                    {errors.category && (
+                      <p className="text-sm font-medium text-red-500 mt-2">{errors.category}</p>
+                    )}
+                  </div>
                 </div>
 
-                <div className="space-y-2">
-                  <Label htmlFor="Features">Features</Label>
-                  <Input
-                    id="Features"
-                    value={data.features}
-                    onChange={(e) => setData('features', e.target.value)}
-                    className="block border border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary"
-                    placeholder="Enter features"
-                  />
-                  {errors.features && (
-                    <p className="text-sm text-red-500 font-medium text-destructive">{errors.features}</p>
-                  )}
-                  {/* <p className="text-sm text-gray-400">
-                    Add courses features that will be covered in the course.
-
-                  </p> */}
-                </div>
-
-                <div className="flex justify-end space-x-4 pt-4">
+                <div className="flex justify-end gap-4 pt-4">
                   <Button
-                    className="border-primary text-primary"
+                    className="border border-gray-200 text-gray-700 bg-white"
                     type="button"
                     variant="outline"
                     onClick={() => window.history.back()}
@@ -203,19 +171,68 @@ const CreateCoursePage = () => {
                     Cancel
                   </Button>
                   <Button
-                    className="bg-primary text-white"
+                    className="bg-primary text-white px-6"
                     type="submit"
-                    disabled={processing}
+                    disabled={processing || isSubmitting}
                   >
-                    {processing ? 'Creating...' : 'Create Course'}
+                    {processing || isSubmitting ? 'Creating...' : 'Create Course'}
                   </Button>
                 </div>
               </form>
             </div>
           </div>
+
+          {/* Right column - thumbnail + preview + tips */}
+          <aside className="md:col-span-4">
+            <div className="sticky top-24 space-y-6">
+              <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+                <h3 className="text-lg font-medium mb-3">Course Thumbnail</h3>
+                <div className="relative">
+                  <input
+                    id="thumbnailImage"
+                    type="file"
+                    accept="image/*"
+                    onChange={(e) => setData('thumbnail', e.target.files[0])}
+                    className="absolute inset-0 w-full h-full opacity-0 cursor-pointer rounded-2xl"
+                  />
+
+                  <div className="flex items-center justify-between gap-3 px-4 py-4 rounded-xl border border-dashed border-gray-200 hover:border-primary transition-colors">
+                    <div className="flex items-center gap-3">
+                      <UploadIcon className="w-6 h-6 text-gray-400" />
+                      <div>
+                        <div className="text-sm font-medium">Upload thumbnail</div>
+                        <div className="text-xs text-gray-500">PNG or JPG, recommended 1280×720</div>
+                      </div>
+                    </div>
+                    <div className="text-sm text-gray-500">Browse</div>
+                  </div>
+
+                  {previewUrl && (
+                    <div className="mt-4">
+                      <img src={previewUrl} alt="preview" className="w-full rounded-xl object-cover h-40" />
+                    </div>
+                  )}
+
+                  {errors.thumbnail && (
+                    <p className="text-sm text-red-500 font-medium mt-2">{errors.thumbnail}</p>
+                  )}
+                </div>
+              </div>
+
+              <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 text-sm text-gray-600">
+                <h4 className="font-medium mb-2">Tips for a great course</h4>
+                <ul className="list-disc list-inside space-y-2">
+                  <li>Write a clear, outcome-focused description.</li>
+                  <li>Use an eye-catching thumbnail image.</li>
+                  <li>Break content into short lessons and include exercises.</li>
+                </ul>
+              </div>
+            </div>
+          </aside>
         </div>
       </div>
     </div>
+     </div>
   );
 };
 

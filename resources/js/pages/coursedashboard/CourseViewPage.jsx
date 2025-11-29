@@ -112,7 +112,7 @@ const CourseViewPage = ({ courses }) => {
                                 </tr>
                             </thead>
                             <tbody className="divide-y divide-gray-200">
-                                {courses.map((course) => (
+                                {courses.data.map((course) => (
                                     <tr
                                         key={course.id}
                                         className="hover:bg-gray-50 transition-colors"
@@ -130,10 +130,10 @@ const CourseViewPage = ({ courses }) => {
                                             {/* {JSON.parse(course.features).map((feature, i) => (
           <li key={i}>{feature}</li>
         ))} */}
-                                            John Doe
+                                        {course.user.fullname}
                                         </td>
                                         <td className="px-6 py-4 text-sm text-gray-600">
-                                            Programming
+                                          {course.category}
                                         </td>
 
                                         <td className="px-6 py-4">

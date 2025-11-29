@@ -14,7 +14,7 @@ const Flashcard = ({ flashcard }) => {
     >
       <div className={`relative w-full h-full transition-transform duration-500 [transform-style:preserve-3d] ${isFlipped ? 'rotate-y-180' : ''}`}>
         {/* Front of card */}
-        <div className="absolute w-full h-full [backface-visibility:hidden] bg-gradient-to-br from-soft-purple to-white rounded-xl shadow-lg p-8 flex flex-col justify-center">
+        <div className="absolute w-full h-full [backface-visibility:hidden] bg-gradient-to-br from-purple-600 to-white rounded-xl shadow-lg p-8 flex flex-col justify-center">
           <h3 className="text-xl font-semibold text-center text-dark mb-2">Question</h3>
           <p className="text-center text-lg">{flashcard.question}</p>
           <div className="absolute bottom-4 left-0 right-0 text-center text-sm text-gray-400">

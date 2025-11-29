@@ -1,22 +1,25 @@
 import { useState, useEffect, useCallback } from "react";
-import { Link, usePage } from "@inertiajs/react";
+import { Link, router, usePage } from "@inertiajs/react";
 import {
     Menu,
     X,
     Search,
-    Bell,
-    MessageSquare,
+
     User,
     Bot,
     ChevronLeft,
     ChevronRight,
     ShoppingBagIcon,
+    WandSparklesIcon,
 } from "lucide-react";
 
 import useEmblaCarousel from "embla-carousel-react";
+import NotificationsDropdown from "./NotificationsDropdown";
+import { Badge } from "@mui/material";
 
 const DashNav = () => {
-    const { auth } = usePage().props;
+    const { auth, categories, cartCount, cart } = usePage().props;
+    console.log(cart);
     const [emblaRef, emblaApi] = useEmblaCarousel();
     const [isOpen, setIsOpen] = useState(false);
     const [isScrolled, setIsScrolled] = useState(false);
@@ -47,75 +50,12 @@ const DashNav = () => {
     const navItems = [
         { title: "Home", path: "/" },
         { title: "Explore", path: "/explore" },
-        { title: "Courses", path: "/coursespage" },
-        { title: "Ai learning", path: "/ai", icon: Bot },
-        { title: "Flashcard", path: "/flashcard" },
+        { title: "Ai learning", path: "/ai", icon: WandSparklesIcon },
+
     ];
 
-    const courseCategories = [
-        { title: "Web Development", path: "/courses/web-development" },
-        { title: "Data Science", path: "/courses/data-science" },
-        { title: "Machine Learning", path: "/courses/machine-learning" },
-        { title: "Mobile Development", path: "/courses/mobile-development" },
-        { title: "Cloud Computing", path: "/courses/cloud-computing" },
-        { title: "Cyber Security", path: "/courses/cyber-security" },
-        { title: "AI & ML", path: "/courses/ai-ml" },
-        { title: "Game Development", path: "/courses/game-development" },
-    ];
-    const cartitems = [
-        {
-            id: "1",
-            title: "Modern JavaScript Mastery: ES6+ Deep Dive",
-            instructor: "Ethan Miles",
-            rating: 4.7,
-            reviews: 12873,
-            hours: 12,
-            lessons: 96,
-            price: 14.99,
-            image: "https://images.unsplash.com/photo-1518773553398-650c184e0bb3",
-            badge: "Bestseller",
-            category: "Development",
-        },
-        {
-            id: "2",
-            title: "UI/UX Design Foundations: From Wireframe to Prototype",
-            instructor: "Hannah Lee",
-            rating: 4.8,
-            reviews: 9876,
-            hours: 10.5,
-            lessons: 80,
-            price: 13.99,
-            image: "https://images.unsplash.com/photo-1503602642458-232111445657",
-            badge: "Hot",
-            category: "Design",
-        },
-        {
-            id: "3",
-            title: "Data Science with Python: Build Real Dashboards",
-            instructor: "Arjun Patel",
-            rating: 4.7,
-            reviews: 15642,
-            hours: 14,
-            lessons: 110,
-            price: 16.99,
-            image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71",
-            category: "Data Science",
-        },
-        {
-            id: "4",
-            title: "Python for Beginners: Your First 10 Projects",
-            instructor: "Maya Chen",
-            rating: 4.6,
-            reviews: 20345,
-            hours: 8,
-            lessons: 62,
-            price: 11.99,
-            image: "https://images.unsplash.com/photo-1515879218367-8466d910aaa4",
-            category: "Development",
-        },
-    ];
     return (
-        <nav
+     <nav
             className={`fixed top-0 w-full z-50 transition-all duration-300  ${
                 isScrolled
                     ? "bg-white shadow-lg backdrop-blur-md py-2"
@@ -143,7 +83,7 @@ const DashNav = () => {
                                 className={`flex items-center gap-1 px-3 py-2 rounded-md transition-colors duration-200 hover-scale   ${
                                     isActive(item.path)
                                         ? "bg-primary/10 text-primary font-semibold"
-                                        : "text-gray-600 hover:text-primary "
+                                        : "text-violet-600 font-medium hover:text-primary "
                                 }`}
                             >
                                 {item.icon && <item.icon className="w-4 h-4" />}
@@ -162,9 +102,7 @@ const DashNav = () => {
                             />
                             <Search className="absolute right-3 top-2.5 w-4 h-4 text-primary" />
                         </div>
-                        <button className="p-2 rounded-full hover:bg-primary/10 transition-colors">
-                            <Bell className="w-5 h-5 text-gray-600" />
-                        </button>
+                        <NotificationsDropdown />
                         {auth.user ? (
                             <Link
                                 href={`/profiles/${auth.user.id}`}
@@ -204,9 +142,13 @@ const DashNav = () => {
 
                                 <Link
                                     href="/cart"
-                                    className="ml-1 relative overflow-hidden  group hover:overflow-visible focus-visible:outline-none  text-sm text-primary cursor-pointer px-4 py-2 rounded-full font-medium hover:bg-primary hover:text-white transition"
+                                    className=" h-15 w-15 py-4 px-4 relative overflow-hidden  group hover:overflow-visible focus-visible:outline-none  text-sm text-primary cursor-pointer  rounded-full font-medium hover:bg-primary hover:text-white transition"
+                                    aria-describedby="tooltip-02"
                                 >
-                                    <ShoppingBagIcon />
+                                    <ShoppingBagIcon className="" />
+                                    <Badge className="absolute -top-8 -right-3 h-5 w-5 flex items-center rounded-full justify-center p-0 text-xs bg-purple-600 text-white">
+                                        {cartCount}
+                                    </Badge>
                                     <span
                                         role="tooltip"
                                         id="tooltip-02"
@@ -217,48 +159,60 @@ const DashNav = () => {
                                                 Your Cart
                                             </h3>
 
-                                            {cartitems.length === 0 ? (
+                                            {Object.keys(cart).length === 0 ? (
                                                 <p className="py-4 text-center text-gray-500">
                                                     Your cart is empty
                                                 </p>
                                             ) : (
-                                                <div className="max-h-96 overflow-y-auto">
-                                                    {cartitems.map((item) => (
-                                                        <div
-                                                            key={item.id}
-                                                            className="flex items-start gap-3 py-3 border-b border-gray-100 last:border-0"
-                                                        >
-                                                            <div className="flex-shrink-0 h-16 w-16 overflow-hidden rounded-md border border-gray-200">
-                                                                <img
-                                                                    src={
-                                                                        item.image
-                                                                    }
-                                                                    alt={`${item.title} thumbnail`}
-                                                                    loading="lazy"
-                                                                    className="h-full w-full object-cover transition-transform hover:scale-105"
-                                                                />
-                                                            </div>
+                                                <div className="max-h-96 overflow-y-auto ">
+                                                    {Object.entries(cart).map(
+                                                        ([id, item]) => (
+                                                            <div
+                                                                key={id}
+                                                                className="flex items-start gap-3 py-3 border-b border-gray-100 last:border-0"
+                                                            >
+                                                                <div className="flex-shrink-0 h-16 w-16 overflow-hidden rounded-md border border-gray-200">
+                                                                    <img
+                                                                        src={
+                                                                            item.image
+                                                                        }
+                                                                        alt={`${item.title} thumbnail`}
+                                                                        loading="lazy"
+                                                                        className="h-full w-full object-cover transition-transform hover:scale-105"
+                                                                    />
+                                                                </div>
 
-                                                            <div className="flex-1 min-w-0">
-                                                                <h4 className="text-sm font-medium text-gray-900 truncate">
-                                                                    {item.title}
-                                                                </h4>
-                                                                <p className="text-xs text-gray-500 mt-0.5">
-                                                                    {
-                                                                        item.instructor
-                                                                    }
-                                                                </p>
-                                                                <p className="text-sm font-semibold text-purple-600 mt-1">
-                                                                    $
-                                                                    {item.price}
-                                                                </p>
+                                                                <div className="flex-1 min-w-0">
+                                                                    <h4 className="text-sm font-medium text-gray-900 truncate">
+                                                                        {
+                                                                            item.name
+                                                                        }
+                                                                    </h4>
+                                                                    <p className="text-xs text-gray-500 mt-0.5">
+                                                                        {
+                                                                            item.instructor
+                                                                        }
+                                                                    </p>
+                                                                    <p className="text-sm text-gray-500 mt-0.5">
+                                                                        Quantity:{" "}
+                                                                        {
+                                                                            item.quantity
+                                                                        }
+                                                                    </p>
+                                                                    <p className="text-sm font-semibold text-purple-600 mt-1">
+                                                                        $
+                                                                        {
+                                                                            item.price
+                                                                        }
+                                                                    </p>
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                    ))}
+                                                        )
+                                                    )}
                                                 </div>
                                             )}
 
-                                            {cartitems.length > 0 && (
+                                            {Object.keys(cart).length > 0 && (
                                                 <div className="pt-2 border-t border-gray-100">
                                                     <div className="flex justify-between items-center mb-3">
                                                         <span className="text-sm font-medium text-gray-700">
@@ -266,14 +220,15 @@ const DashNav = () => {
                                                         </span>
                                                         <span className="text-lg font-bold text-gray-900">
                                                             $
-                                                            {cartitems
+                                                            {Object.values(cart)
                                                                 .reduce(
                                                                     (
                                                                         sum,
                                                                         item
                                                                     ) =>
                                                                         sum +
-                                                                        item.price,
+                                                                        item.price *
+                                                                            item.quantity,
                                                                     0
                                                                 )
                                                                 .toFixed(2)}
@@ -404,7 +359,8 @@ const DashNav = () => {
                     </div>
                 </div>
             </div>
-       
+            {/* category nav */}
+      
         </nav>
     );
 };

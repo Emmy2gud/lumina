@@ -171,7 +171,7 @@ console.log(questions)
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-              <Card>
+              <Card className='bg-white border-0 shadow-lg'>
                 <CardHeader className="pb-2">
                   <CardTitle className="text-lg">Total Submissions</CardTitle>
                   <CardDescription>All quizzes</CardDescription>
@@ -184,7 +184,7 @@ console.log(questions)
                 </CardContent>
               </Card>
 
-              <Card>
+              <Card className='bg-white border-0 shadow-lg'>
                 <CardHeader className="pb-2">
                   <CardTitle className="text-lg">Pass Rate</CardTitle>
                   <CardDescription>Average across all quizzes</CardDescription>
@@ -199,7 +199,7 @@ console.log(questions)
                 </CardContent>
               </Card>
 
-              <Card>
+              <Card className='bg-white border-0 shadow-lg'>
                 <CardHeader className="pb-2">
                   <CardTitle className="text-lg">Last Submission</CardTitle>
                   <CardDescription>Most recent quiz attempt</CardDescription>
@@ -222,7 +222,7 @@ console.log(questions)
                     <Search className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
                     <Input
                       placeholder="Search students..."
-                      className="pl-9"
+                      className="pl-9 bg-gray-100 border-0 focus:ring-2 focus:ring-purple-500"
                       value={searchTerm}
                       onChange={(e) => setSearchTerm(e.target.value)}
                     />
@@ -233,7 +233,7 @@ console.log(questions)
                       value={selectedQuiz}
                       onValueChange={setSelectedQuiz}
                     >
-                      <SelectTrigger>
+                      <SelectTrigger className="pl-9 bg-gray-100 border-0 focus:ring-2 focus:ring-purple-500">
                         <SelectValue placeholder="Filter by quiz" />
                       </SelectTrigger>
                       <SelectContent>
@@ -252,7 +252,7 @@ console.log(questions)
               <div className="overflow-x-auto">
                 <Table>
                   <TableHeader>
-                    <TableRow>
+                    <TableRow className='border-gray-100'>
                       <TableHead>Student</TableHead>
                       <TableHead>Quiz</TableHead>
                       <TableHead className="text-center">Score</TableHead>
@@ -263,7 +263,7 @@ console.log(questions)
                   </TableHeader>
                   <TableBody>
                     {isLoading ? (
-                      <TableRow>
+                      <TableRow className='border-0'>
                         <TableCell colSpan={6} className="text-center py-8">
                           <p className="text-gray-500">Loading submissions...</p>
                         </TableCell>
@@ -276,7 +276,7 @@ console.log(questions)
                       </TableRow>
                     ) : (
                       submissions.map((submission) => (
-                        <TableRow key={submission.id}>
+                        <TableRow key={submission.id} className='border-gray-100'>
                           <TableCell className="font-medium">
                             {submission.studentName}
                           </TableCell>
@@ -313,7 +313,7 @@ console.log(questions)
                 <p className="text-sm text-gray-500">
                   Showing {submissions.length} of {mockSubmissions.length} submissions
                 </p>
-                <Button variant="outline" size="sm">
+                <Button variant="outline" size="sm" className='border-0 bg-primary text-white'>
                   <Download className="h-4 w-4 mr-2" />
                   Export CSV
                 </Button>

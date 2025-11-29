@@ -3,6 +3,7 @@ import { usePage } from '@inertiajs/react';
 
 const FlashMessage = () => {
     const { flash } = usePage().props;
+  
     const [visible, setVisible] = useState(false);
 
     useEffect(() => {

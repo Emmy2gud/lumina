@@ -9,9 +9,9 @@ use Illuminate\Http\Request;
 class QuizController extends Controller
 {
   public function index(){
-
-    return inertia('quizdashboard/QuizSubmissionsPage',[
-           'quizz'=>Quiz::all(),
+   $quizs = Quiz::with(['questions.options'])->latest()->paginate(10);
+    return inertia('quiz/QuizPage',[
+           'quiz'=>$quizs,
 
     ]);
 }

@@ -75,4 +75,10 @@ class User extends Authenticatable
      {
          return $this->hasMany(ActivityLog::class);
      }
+
+public function cartItems()
+{
+    return $this->hasMany(CartItem::class);
+
+}
 }

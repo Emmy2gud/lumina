@@ -1,11 +1,13 @@
 
 import { useState } from 'react';
 
-import { ChevronDown, ChevronUp, Play, File, Clock, Lock, CheckCircle } from 'lucide-react';
+import { ChevronDown, ChevronUp, Play, File, Clock, Lock, CheckCircle, BookOpen, ArrowRightCircle } from 'lucide-react';
 import { Link } from '@inertiajs/react';
 
-const CourseSections = ({ sections }) => {
-  const [expandedSections, setExpandedSections] = useState([0]); // First section expanded by default
+const CourseSections = ({ sections}) => {
+  const [expandedSections, setExpandedSections] = useState([0]);
+  const[quizzes,setQuizzes]=useState([sections.quizzes]);
+  console.log('sections'+sections.quizzes);
 
   // Toggle section expand/collapse
   const toggleSection = (index) => {
@@ -17,37 +19,37 @@ const CourseSections = ({ sections }) => {
   };
 
   // Default sections if not provided
-  const defaultSections = [
-    {
-      title: "Getting Started with React",
-      lessons: [
-        { title: "Welcome to the Course", duration: "5:20", type: "video", isCompleted: true, isLocked: false },
-        { title: "Setting Up Your Environment", duration: "12:45", type: "video", isCompleted: true, isLocked: false },
-        { title: "Creating Your First Component", duration: "8:33", type: "video", isCompleted: false, isLocked: false },
-        { title: "React Basics Quiz", duration: "10 questions", type: "quiz", isCompleted: false, isLocked: false }
-      ]
-    },
-    {
-      title: "React State and Props",
-      lessons: [
-        { title: "Understanding Component State", duration: "14:15", type: "video", isCompleted: false, isLocked: false },
-        { title: "Working with Props", duration: "10:22", type: "video", isCompleted: false, isLocked: false },
-        { title: "State Management Exercise", duration: "15 mins", type: "exercise", isCompleted: false, isLocked: false },
-        { title: "State vs Props Quiz", duration: "5 questions", type: "quiz", isCompleted: false, isLocked: true }
-      ]
-    },
-    {
-      title: "Hooks and Advanced Concepts",
-      lessons: [
-        { title: "Introduction to Hooks", duration: "11:55", type: "video", isCompleted: false, isLocked: true },
-        { title: "useState and useEffect", duration: "18:30", type: "video", isCompleted: false, isLocked: true },
-        { title: "Custom Hooks", duration: "14:45", type: "video", isCompleted: false, isLocked: true },
-        { title: "Final Project", duration: "1 hour", type: "project", isCompleted: false, isLocked: true }
-      ]
-    }
-  ];
+//   const defaultSections = [
+//     {
+//       title: "Getting Started with React",
+//       lessons: [
+//         { title: "Welcome to the Course", duration: "5:20", type: "video", isCompleted: true, isLocked: false },
+//         { title: "Setting Up Your Environment", duration: "12:45", type: "video", isCompleted: true, isLocked: false },
+//         { title: "Creating Your First Component", duration: "8:33", type: "video", isCompleted: false, isLocked: false },
+//         { title: "React Basics Quiz", duration: "10 questions", type: "quiz", isCompleted: false, isLocked: false }
+//       ]
+//     },
+//     {
+//       title: "React State and Props",
+//       lessons: [
+//         { title: "Understanding Component State", duration: "14:15", type: "video", isCompleted: false, isLocked: false },
+//         { title: "Working with Props", duration: "10:22", type: "video", isCompleted: false, isLocked: false },
+//         { title: "State Management Exercise", duration: "15 mins", type: "exercise", isCompleted: false, isLocked: false },
+//         { title: "State vs Props Quiz", duration: "5 questions", type: "quiz", isCompleted: false, isLocked: true }
+//       ]
+//     },
+//     {
+//       title: "Hooks and Advanced Concepts",
+//       lessons: [
+//         { title: "Introduction to Hooks", duration: "11:55", type: "video", isCompleted: false, isLocked: true },
+//         { title: "useState and useEffect", duration: "18:30", type: "video", isCompleted: false, isLocked: true },
+//         { title: "Custom Hooks", duration: "14:45", type: "video", isCompleted: false, isLocked: true },
+//         { title: "Final Project", duration: "1 hour", type: "project", isCompleted: false, isLocked: true }
+//       ]
+//     }
+//   ];
 
-  const courseSections = sections || defaultSections;
+  const courseSections = sections || '';
 
 
   const getLessonIcon = (type) => {
@@ -134,14 +136,44 @@ const CourseSections = ({ sections }) => {
                         )}
                       </div>
                     </div>
-                    {/* <p className="text-xs text-gray-500 mt-1">
-                      {lesson.type.charAt(0).toUpperCase() + lesson.type.slice(1)}
-                    </p> */}
+
+
+
                   </div>
                 </div>
               ))}
+             <div className="space-y-3 mt-4">
+{section.quizzes.map((quiz) => (
+<Link
+key={quiz.id}
+href={`/sections/${quiz.id}/quizzes`}
+className="group block p-4 bg-white border border-gray-200 rounded-2xl shadow-sm hover:shadow-md transition duration-200 hover:border-purple-400 cursor-pointer"
+>
+<div className="flex items-center justify-between">
+
+<div className="flex items-center gap-3">
+<div className="w-10 h-10 flex items-center justify-center bg-purple-100 text-purple-600 rounded-xl">
+<BookOpen className="w-5 h-5" />
+</div>
+
+
+<div>
+<h3 className="font-semibold text-gray-800 group-hover:text-purple-600 transition">
+{quiz.title}
+</h3>
+<p className="text-xs text-gray-500">Quiz • {quiz.duration || 10} mins</p>
+</div>
+</div>
+
+
+<ArrowRightCircle className="w-6 h-6 text-gray-400 group-hover:text-purple-600 transition" />
+</div>
+</Link>
+))}
+</div>
             </div>
           )}
+
         </div>
       ))}
     </div>

@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use App\Models\Course;
@@ -9,20 +8,22 @@ use Inertia\Inertia;
 class CourseController extends Controller
 {
 // Add this new method to your existing controller
-public function home()
-{
-    $courses = Course::paginate(20);
+    public function home()
+    {
+        $courses = Course::latest()->paginate(20);
 
-    return inertia('courses/CoursesPage', [
-        'courses' => $courses
-    ]);
-}
+        return inertia('courses/CoursesPage', [
+            'courses' => $courses,
+        ]);
+    }
     // this controller handles the course dashboard
     public function index()
     {
+        $courses = Course::with(['user'])->latest()->paginate(10);
 
         return inertia('coursedashboard/CourseViewPage', [
-            'courses' => Course::all()
+            'courses' => $courses,
+
         ]);
     }
 
@@ -35,31 +36,29 @@ public function home()
     //this handles the creation of the course
     public function store(Request $request)
     {
-
+        $user = auth()->user();
 
         $validated = $request->validate([
-            'title' => 'required|string|max:255',
-            'description' => 'required|string',
-            'category' => 'nullable|string|max:255',
-            'thumbnail' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'title'        => 'required|string|max:255',
+            'description'  => 'required|string',
+            'category'     => 'nullable|string|max:255',
+            'thumbnail'    => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
             'requirements' => 'required|string',
-            'benefits' => 'required|string',
-            'features' => 'required|string',
-
+            'benefits'     => 'required|string',
+            'features'     => 'required|string',
 
         ]);
+        $course = $user->courses()->create([
+            'title'        => $validated['title'],
+            'description'  => $validated['description'],
+            'category'     => $validated['category'],
 
-        $course = Course::create([
-            'title' => $validated['title'],
-            'description' => $validated['description'],
-
-            'thumbnail' => $request->hasFile('thumbnail')
-            ? $request->file('thumbnail')->store('thumbnails', 'public')
-            : null,
+            'thumbnail'    => $request->hasFile('thumbnail')
+                ? $request->file('thumbnail')->store('thumbnails', 'public')
+                : null,
             'requirements' => json_encode(array_map('trim', explode(',', $validated['requirements']))),
-            'benefits' => json_encode(array_map('trim', explode(',', $validated['benefits']))),
-            'features' => json_encode(array_map('trim', explode(',', $validated['features']))),
-
+            'benefits'     => json_encode(array_map('trim', explode(',', $validated['benefits']))),
+            'features'     => json_encode(array_map('trim', explode(',', $validated['features']))),
 
         ]);
 
@@ -72,7 +71,11 @@ public function home()
     public function show(Course $course)
     {
         return inertia('courses/CourseDetailsPage', [
-            'course' => $course->load('sections.lessons')
+            'course'     => $course->load([
+    'sections.lessons',
+    'sections.quizzes',
+]),
+            'instructor' => $course->user,
         ]);
     }
 
@@ -108,15 +111,16 @@ public function home()
 
     public function category($category)
     {
-     $courses = Course::with('user')
-                ->where('category', $category)
-                ->get();
+        $courses = Course::with('user')
+            ->where('category', $category)
+            ->latest()
+            ->get();
         $categories = Course::select('category')->distinct()->pluck('category');
 
         return Inertia::render('category/Category', [
-            'courses' => $courses,
-            'categories' => $categories,
-            'activeCategory' => $category
+            'courses'        => $courses,
+            'categories'     => $categories,
+            'activeCategory' => $category,
         ]);
     }
 }

@@ -4,6 +4,8 @@ namespace App\Http\Middleware;
 
 use App\Models\Course;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Inertia\Inertia;
 use Inertia\Middleware;
 
 class HandleInertiaRequests extends Middleware
@@ -42,17 +44,46 @@ class HandleInertiaRequests extends Middleware
                     'id' => $request->user()->id,
                     'role' => $request->user()->role,
                     'email' => $request->user()->email,
-                    'fullname'=>$request->user()->name,
+                    'fullname' => $request->user()->name,
 
                 ] : null,
             ],
             'flash' => [
-                'success' => fn () => $request->session()->get('success'),
-                'error' => fn () => $request->session()->get('error'),
+                'success' => fn() => $request->session()->get('success'),
+                'error' => fn() => $request->session()->get('error'),
             ],
 
-        'categories' => fn () => Course::select('category')->distinct()->pluck('category'),
-    
+            'categories' => fn() => Course::select('category')->distinct()->pluck('category'),
+            'cartCount' => function () {
+                if (Auth::check()) {
+                    return Auth::user()->cartItems()->count();
+                }
+                return count(session('cart', []));
+            },
+'cart' => function () {
+    if (Auth::check()) {
+        $cartItems = Auth::user()->cartItems()->with('course.user')->get();
+
+     return $cartItems->mapWithKeys(function ($cartItem) {
+                        return [
+                            $cartItem->course_id => [
+                                "id" => $cartItem->course_id,
+                                "name" => $cartItem->course->title,
+                                "price" => $cartItem->course->price,
+                                "quantity" => $cartItem->quantity,
+                                "image" => $cartItem->course->thumbnail,
+                                "description" => $cartItem->course->description,
+                                "instructor" => $cartItem->course->user->name
+                            ]
+                        ];
+                    })->toArray();
+
+
+    } else {
+       return session()->get('cart', []);
+    }
+}
+
         ]);
     }
 

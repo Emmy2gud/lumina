@@ -16,7 +16,7 @@ const Layout = ({ children}) => {
       <DashNav/>
       <div className="flex pt-16">
         <Sidebar/>
-        <main className="flex-1  ">
+        <main className="flex-1 ">
           {children}
         </main>
 

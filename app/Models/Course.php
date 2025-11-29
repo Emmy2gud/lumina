@@ -29,10 +29,11 @@ class Course extends Model
     ];
 
      // A user can create many courses (if they're a tutor)
-     public function user()
-     {
-         return $this->belongsTo(related: User::class);
-     }
+// Course.php
+public function user()
+{
+    return $this->belongsTo(User::class, 'user_id');
+}
 
      // A course has many sections
      public function sections()
@@ -53,17 +54,19 @@ public function lessons()
 }
 
 
-     // A course has many materials
+
      public function materials()
      {
          return $this->hasMany(Material::class);
      }
 
-     // A course has many quizzes
+
      public function quizzes()
      {
          return $this->hasMany(Quiz::class);
      }
+
+
 
 
 
