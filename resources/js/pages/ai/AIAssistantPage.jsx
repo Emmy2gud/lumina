@@ -1,13 +1,13 @@
 
 import { useState, useRef, useEffect, use } from 'react';
-import { useForm, usePage, router } from '@inertiajs/react';
+import { useForm, usePage, router, usePoll } from '@inertiajs/react';
+import ReactMarkdown from 'react-markdown';
 
 import { Send, Upload, DownloadCloud, FileText, Trash2, Bot, User, Plus, Loader, Search, ThumbsUp, Book, ThumbsDown, SparklesIcon, MessageCircle, Zap, Brain, Star } from 'lucide-react';
 
 
 const AIAssistantPage = ({ sessions, activeSession, messages = [] }) => {
     const page = usePage();
-
     const [currentSession, setCurrentSession] = useState(activeSession);
     const [input, setInput] = useState('');
     const [isLoading, setIsLoading] = useState(false);
@@ -21,7 +21,6 @@ const AIAssistantPage = ({ sessions, activeSession, messages = [] }) => {
         session_id: currentSession ? currentSession.id : null,
         file: null,
     });
-
 
     const submit = (e) => {
         e.preventDefault();
@@ -80,159 +79,7 @@ const AIAssistantPage = ({ sessions, activeSession, messages = [] }) => {
     };
 
 
-    const formatAIContent = (content) => {
-      // Remove extra newlines at start and end
-      content = content.trim();
 
-      // Split content into segments (text vs code blocks)
-      const segments = content.split(/(```[\s\S]*?```)/g);
-
-      return (
-        <div className="space-y-6">
-          {segments.map((segment, index) => {
-            // Handle code blocks
-            if (segment.startsWith('```') && segment.endsWith('```')) {
-              // Extract language if specified
-              const firstLineEnd = segment.indexOf('\n');
-              const firstLine = segment.slice(3, firstLineEnd).trim();
-
-              // Determine if there's a language specified
-              let language = '';
-              let codeContent = '';
-
-              if (firstLine && !firstLine.includes(' ')) {
-                // Language specified
-                language = firstLine;
-                codeContent = segment.slice(firstLineEnd + 1, -3).trim();
-              } else {
-                // No language specified
-                codeContent = segment.slice(3, -3).trim();
-              }
-
-              return (
-                <div key={`code-${index}`} className="bg-neutral-800 p-4 rounded-md overflow-x-auto">
-                  {language && (
-                    <div className="text-xs text-text-muted mb-2 font-mono">{language}</div>
-                  )}
-                  <pre className="text-sm font-mono text-neutral-200">{codeContent}</pre>
-                </div>
-              );
-            }
-
-            // Handle regular text
-            const cleanText = segment.trim();
-            if (!cleanText) return null;
-
-            // Process the text to handle markdown formatting
-            const processedText = processText(cleanText);
-
-            return (
-              <div key={`text-${index}`} className="text-text-secondary leading-relaxed">
-                {processedText}
-              </div>
-            );
-          })}
-        </div>
-      );
-    };
-
-
-    const processText = (text) => {
-      // Split by paragraphs
-      const paragraphs = text.split(/\n{2,}/);
-
-      return paragraphs.map((paragraph, pIndex) => {
-        // Skip empty paragraphs
-        if (!paragraph.trim()) return null;
-
-        // Check if it's a heading
-        if (paragraph.startsWith('# ')) {
-          return <h1 key={`h1-${pIndex}`} className="text-2xl font-bold mt-6 mb-4">{cleanMarkdown(paragraph.substring(2))}</h1>;
-        } else if (paragraph.startsWith('## ')) {
-          return <h2 key={`h2-${pIndex}`} className="text-xl font-bold mt-5 mb-3">{cleanMarkdown(paragraph.substring(3))}</h2>;
-        } else if (paragraph.startsWith('### ')) {
-          return <h3 key={`h3-${pIndex}`} className="text-lg font-bold mt-4 mb-2">{cleanMarkdown(paragraph.substring(4))}</h3>;
-        }
-
-        // Check if it's a numbered list
-        if (/^\d+\.\s/.test(paragraph)) {
-          const lines = paragraph.split('\n');
-          const listItems = lines.map((line, lIndex) => {
-            // Extract the list item content (remove the number and dot)
-            const match = line.match(/^\d+\.\s(.+)$/);
-            if (match) {
-              return <li key={`li-${pIndex}-${lIndex}`} className="ml-5 mb-1">{cleanMarkdown(match[1])}</li>;
-            }
-            return <li key={`li-${pIndex}-${lIndex}`} className="ml-5 mb-1">{cleanMarkdown(line)}</li>;
-          });
-
-          return <ol key={`ol-${pIndex}`} className="list-decimal my-4">{listItems}</ol>;
-        }
-
-        // Check if it's a bullet list
-        if (paragraph.startsWith('- ') || paragraph.startsWith('* ')) {
-          const lines = paragraph.split('\n');
-          const listItems = lines.map((line, lIndex) => {
-            // Extract the list item content (remove the bullet)
-            const match = line.match(/^[-*]\s(.+)$/);
-            if (match) {
-              return <li key={`li-${pIndex}-${lIndex}`} className="ml-5 mb-1">{cleanMarkdown(match[1])}</li>;
-            }
-            return <li key={`li-${pIndex}-${lIndex}`} className="ml-5 mb-1">{cleanMarkdown(line)}</li>;
-          });
-
-          return <ul key={`ul-${pIndex}`} className="list-disc my-4">{listItems}</ul>;
-        }
-
-        // Check if it's a blockquote
-        if (paragraph.startsWith('> ')) {
-          const quoteContent = paragraph.substring(2).replace(/\n>\s?/g, '\n');
-          return (
-            <blockquote key={`quote-${pIndex}`} className="border-l-4 border-border-medium pl-4 py-1 my-4 italic">
-              {cleanMarkdown(quoteContent)}
-            </blockquote>
-          );
-        }
-
-        // Regular paragraph with line breaks
-        const lines = paragraph.split('\n');
-
-        // If there are multiple lines, use fragments with breaks
-        if (lines.length > 1) {
-          return (
-            <p key={`p-${pIndex}`} className="my-3">
-              {lines.map((line, lIndex) => (
-                <>
-                  {lIndex > 0 && <br />}
-                  {cleanMarkdown(line)}
-                </>
-              ))}
-            </p>
-          );
-        }
-
-        // Single line paragraph
-        return (
-          <p key={`p-${pIndex}`} className="my-3">
-            {cleanMarkdown(paragraph)}
-          </p>
-        );
-      });
-    };
-
-    // Function to clean markdown formatting from text
-    const cleanMarkdown = (text) => {
-      // Remove bold/italic markers
-      let cleaned = text
-        .replace(/\*\*(.*?)\*\*/g, '$1') // Bold
-        .replace(/__(.*?)__/g, '$1')     // Bold
-        .replace(/\*(.*?)\*/g, '$1')     // Italic
-        .replace(/_(.*?)_/g, '$1')       // Italic
-        .replace(/~~(.*?)~~/g, '$1')     // Strikethrough
-        .replace(/`(.*?)`/g, '$1');      // Inline code
-
-      return cleaned;
-    };
 
 
 
@@ -392,11 +239,30 @@ const AIAssistantPage = ({ sessions, activeSession, messages = [] }) => {
                                                         message.sender === 'user'
                                                             ? 'bg-gradient-to-r from-blue-500 via-purple-500 to-indigo-600 text-white border-blue-400/20 rounded-br-md shadow-blue-500/20'
                                                             : 'bg-card/80 backdrop-blur-sm border-secondary-200/50 text-secondary-700 rounded-bl-md'
-                                                    }`}>
-                                                        {message.sender === 'ai'
-                                                            ? formatAIContent(message.message)
-                                                            : <p className="text-base leading-relaxed">{message.message}</p>
-                                                        }
+                                                    }`}> {message.sender === 'ai' ? (
+                                                            <ReactMarkdown
+                                                                components={{
+                                                                    p: ({node, ...props}) => <p className="my-3 leading-relaxed" {...props} />,
+                                                                    h1: ({node, ...props}) => <h1 className="text-2xl font-bold mt-6 mb-4" {...props} />,
+                                                                    h2: ({node, ...props}) => <h2 className="text-xl font-bold mt-5 mb-3" {...props} />,
+                                                                    h3: ({node, ...props}) => <h3 className="text-lg font-bold mt-4 mb-2" {...props} />,
+                                                                    ul: ({node, ...props}) => <ul className="list-disc ml-5 my-4 space-y-2" {...props} />,
+                                                                    ol: ({node, ...props}) => <ol className="list-decimal ml-5 my-4 space-y-2" {...props} />,
+                                                                    li: ({node, ...props}) => <li className="ml-2" {...props} />,
+                                                                    code: ({node, inline, ...props}) => inline ? (
+                                                                        <code className="bg-black/20 px-2 py-1 rounded text-sm font-mono" {...props} />
+                                                                    ) : (
+                                                                        <code className="block bg-neutral-800 p-4 rounded overflow-x-auto text-neutral-200 font-mono text-sm" {...props} />
+                                                                    ),
+                                                                    pre: ({node, ...props}) => <pre className="bg-neutral-800 p-4 rounded overflow-x-auto my-4" {...props} />,
+                                                                    blockquote: ({node, ...props}) => <blockquote className="border-l-4 border-blue-400/50 pl-4 py-1 my-4 italic opacity-90" {...props} />,
+                                                                }}
+                                                            >
+                                                                {message.message}
+                                                            </ReactMarkdown>
+                                                        ) : (
+                                                            <p className="text-base leading-relaxed">{message.message}</p>
+                                                        )}
                                                     </div>
 
                                                     <div className={`flex items-center gap-3 mt-3 ${message.sender === 'user' ? 'justify-end' : 'justify-start'}`}>
