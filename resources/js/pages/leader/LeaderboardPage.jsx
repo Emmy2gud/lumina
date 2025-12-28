@@ -106,7 +106,7 @@ const PodiumCard = ({ entry, position }) => {
 
 const LeaderboardRow = ({ entry, showChange }) => {
   const isCurrentUser = entry.isCurrentUser;
-  const change = Math.floor(Math.random() * 5) - 2; // Simulated rank change
+  const change = Math.floor(Math.random() * 5) - 2;
 
   return (
     <div className={cn(
@@ -207,13 +207,8 @@ const LeaderboardPage = () => {
   const quizMasters = [...leaderboardData].sort((a, b) => b.quizAverage - a.quizAverage);
 
   return (
-    <div className="min-h-screen  max-w-6xl m-auto md:p-8 ml-0 ">
-      {/* Header */}
-      {/* <header className="sticky top-0 z-50 border-b border-border/50 bg-background/80 backdrop-blur-xl">
-        <div className="container mx-auto px-4 py-4">
-          <NavTabs />
-        </div>
-      </header> */}
+    <div className="min-h-screen max-w-8xl m-auto md:p-8 ml-0 ">
+
 
       <main className="container mx-auto px-4 py-6 space-y-6">
         {/* Page Header */}

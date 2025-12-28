@@ -7,24 +7,25 @@ use Illuminate\Http\Request;
 
 class AIChatSessionController extends Controller
 {
-
     public function index()
     {
 
-        $sessions = AIChatSession::with(['messages' => function($query) {
+        $sessions = AIChatSession::with(['messages' => function ($query) {
             $query->orderBy('created_at', 'asc');
         }])
-        ->where('user_id', auth()->id())
-        ->latest()
-        ->get();
+            ->where('user_id', auth()->id())
+            ->latest()
+            ->get();
+
+        $activeSessionId = session('session_id');
+        $activeSession = $activeSessionId ? $sessions->find($activeSessionId) : $sessions->first();
 
         return inertia('ai/AIAssistantPage', [
             'sessions' => $sessions,
-            'activeSession' => $sessions->first(),
-            'messages' => $sessions->first() ? $sessions->first()->messages : []
+            'activeSession' => $activeSession,
+            'messages' => $activeSession ? $activeSession->messages : [],
         ]);
     }
-
 
     public function createSession(Request $request)
     {
@@ -33,14 +34,14 @@ class AIChatSessionController extends Controller
             'user_id' => auth()->id(),
             'course_id' => $request->course_id,
             'context_type' => $request->context_type,
-            'title' => 'New Chat ' ,
+            'title' => 'New Chat ',
             // 'date' => now()->format('M d y'),
         ]);
 
         // Redirect to the AI assistant page with the session ID
         return redirect('/ai')->with([
             'session_id' => $session->id,
-            'welcome_message' => "Hello! I'm your Learnify AI assistant. How can I help you today?"
+            'welcome_message' => "Hello! I'm your Learnify AI assistant. How can I help you today?",
         ]);
     }
 
@@ -51,7 +52,7 @@ class AIChatSessionController extends Controller
             ->findOrFail($id);
 
         return response()->json([
-            'session' => $session
+            'session' => $session,
         ]);
     }
 
@@ -59,6 +60,7 @@ class AIChatSessionController extends Controller
     {
 
         $aIChatSession->delete();
+
         return redirect('/ai')->with('success', 'Post deleted successfully!');
     }
 }

@@ -34,6 +34,9 @@ createInertiaApp({
           page.default.layout = useProfileLayout
             ? (page) => <ProfileLayout {...page.props}>{page}</ProfileLayout>
             : (page) => <GeneralLayout {...page.props}>{page}</GeneralLayout>
+        }else if(name.startsWith('ai')){
+         //setting no layout for ai pages
+          page.default.layout = (page) => <>{page}</>
         }
 
         return page

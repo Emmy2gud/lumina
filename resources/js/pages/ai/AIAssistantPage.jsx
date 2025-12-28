@@ -1,20 +1,18 @@
 
 import { useState, useRef, useEffect, use } from 'react';
-import { useForm, usePage } from '@inertiajs/react';
+import { useForm, usePage, router } from '@inertiajs/react';
 
 import { Send, Upload, DownloadCloud, FileText, Trash2, Bot, User, Plus, Loader, Search, ThumbsUp, Book, ThumbsDown, SparklesIcon, MessageCircle, Zap, Brain, Star } from 'lucide-react';
 
 
 const AIAssistantPage = ({ sessions, activeSession, messages = [] }) => {
-
-    console.log(sessions);
-  // Split into paragraphs first
+    const page = usePage();
 
     const [currentSession, setCurrentSession] = useState(activeSession);
     const [input, setInput] = useState('');
     const [isLoading, setIsLoading] = useState(false);
     const [uploadedFiles, setUploadedFiles] = useState([]);
-
+    const [displayedMessages, setDisplayedMessages] = useState(messages);
 
     const messagesEndRef = useRef(null);
     const {delete:destroy}=useForm();
@@ -22,18 +20,17 @@ const AIAssistantPage = ({ sessions, activeSession, messages = [] }) => {
         message: '',
         session_id: currentSession ? currentSession.id : null,
         file: null,
-
-
     });
+
+
     const submit = (e) => {
         e.preventDefault();
         post('/ai/messages', {
-          preserveScroll: true,
-          onSuccess: () => {
-
-            setData('message', '');
-            setData('file', null);
-          }
+            onSuccess: () => {
+                setData('message', '');
+                setData('file', null);
+                setUploadedFiles([]);
+            },
         });
     }
     const handledelete = (e) => {
@@ -46,6 +43,16 @@ const AIAssistantPage = ({ sessions, activeSession, messages = [] }) => {
             setCurrentSession(sessions[0]);
         }
     }, [sessions]);
+
+    // Update currentSession when messages prop changes (after server reload)
+    useEffect(() => {
+        if (currentSession && page.props.sessions) {
+            const updatedSession = page.props.sessions.find(s => s.id === currentSession.id);
+            if (updatedSession) {
+                setCurrentSession(updatedSession);
+            }
+        }
+    }, [page.props.sessions]);
 
     const selectSession = (sessionId) => {
         const session = sessions.find(s => s.id === sessionId);
@@ -230,8 +237,8 @@ const AIAssistantPage = ({ sessions, activeSession, messages = [] }) => {
 
 
     return (
-        <div className="min-h-screen bg-gradient-background ">
-            <div className="w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 ">
+        <div className="min-h-screen bg-gradient-background  ">
+            <div className="w-full mx-auto px-4 sm:px-6 lg:px-8 py-1   ">
                 <div className="flex flex-col lg:flex-row h-[calc(100vh-120px)] gap-6 mt-20">
 
                     {/* Enhanced Left Sidebar - Chat History */}
@@ -581,17 +588,7 @@ const AIAssistantPage = ({ sessions, activeSession, messages = [] }) => {
                                                 </div>
                                             </div>
                                         </div>
-                                        <div className="p-5 bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 rounded-2xl border border-blue-100/50 hover:shadow-xl hover:shadow-blue-500/10 transition-all duration-300 cursor-pointer hover:scale-[1.02] group">
-                                            <div className="flex items-start gap-3">
-                                                <div className="p-2 bg-gradient-to-br from-blue-500 to-indigo-500 rounded-lg group-hover:shadow-lg transition-shadow">
-                                                    <Brain className="h-4 w-4 text-white" />
-                                                </div>
-                                                <div>
-                                                    <p className="font-semibold text-sm text-secondary-700 group-hover:text-secondary-900 transition-colors">Practice Quiz</p>
-                                                    <p className="text-xs text-secondary-600 mt-1 font-medium leading-relaxed">Test your knowledge with AI-generated questions</p>
-                                                </div>
-                                            </div>
-                                        </div>
+
                                     </div>
                                 ) : (
                                     <div className="text-center py-8 px-4">
