@@ -16,7 +16,7 @@ export default function Footer() {
       ];
 
   return (
-   <footer className="bg-gradient-to-b from-slate-900 via-slate-800 to-slate-900 text-white mt-20">
+   <footer className="bg-gradient-to-b from-slate-900 via-slate-800 to-slate-900 text-white ">
 
 
 
@@ -46,7 +46,7 @@ export default function Footer() {
           <div className="lg:col-span-2 space-y-6">
             <div>
               <h2 className="text-3xl font-bold bg-gradient-to-r from-purple-400 to-indigo-400 bg-clip-text text-transparent mb-2">
-                Learnify
+                lumina
               </h2>
               <p className="text-xs text-purple-400 font-semibold tracking-wider mb-4">Your AI-Powered Learning Platform</p>
               <p className="text-slate-400 text-sm leading-relaxed mb-6 font-light">
@@ -61,7 +61,7 @@ export default function Footer() {
               </div>
               <div className="flex items-center space-x-3 text-slate-400 hover:text-white transition-colors cursor-pointer group">
                 <Mail className="h-4 w-4 text-purple-400 group-hover:scale-110 transition-transform" />
-                <span className="text-sm font-light">support@learnify.com</span>
+                <span className="text-sm font-light">support@lumina.com</span>
               </div>
               <div className="flex items-center space-x-3 text-slate-400 hover:text-white transition-colors cursor-pointer group">
                 <MapPin className="h-4 w-4 text-purple-400 group-hover:scale-110 transition-transform" />
@@ -107,7 +107,7 @@ export default function Footer() {
               About
             </h3>
             <ul className="space-y-3 mb-8">
-              {['About Learnify', 'Blog & Updates', 'Careers', 'Press Kit', 'For Business'].map((item, index) => (
+              {['About lumina', 'Blog & Updates', 'Careers', 'Press Kit', 'For Business'].map((item, index) => (
                 <li key={index}>
                   <a href="#" className="text-slate-400 hover:text-purple-400 transition-colors text-sm flex items-center group font-light">
                     <ArrowRight className="h-3 w-3 mr-2 opacity-0 group-hover:opacity-100 transition-opacity" />
@@ -180,7 +180,7 @@ export default function Footer() {
           <div className="border-t border-slate-700 pt-8">
             <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
               <div className="text-slate-500 text-sm font-light text-center md:text-left">
-                © {currentYear} Learnify. All rights reserved.
+                © {currentYear} lumina. All rights reserved.
                 <span className="mx-2 text-slate-700">|</span>
                 <span className="text-purple-400">Empowering learners worldwide</span>
               </div>

@@ -28,18 +28,18 @@ order: 0,
 }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-surface-secondary">
       <div className="pt-16 md:pt-0 flex">
         <div className="flex-1 p-4 md:p-8 ml-0 md:ml-20 lg:ml-64">
           <div className="max-w-3xl mx-auto">
             <div className="mb-8">
-              <h1 className="text-2xl md:text-3xl font-bold text-gray-900">Create New Course</h1>
-              <p className="text-gray-600">
+              <h1 className="text-2xl md:text-3xl font-bold text-text-primary">Create New Course</h1>
+              <p className="text-text-secondary">
                 Fill in the details below to create your course section
               </p>
             </div>
 
-            <div className="bg-white p-6 rounded-lg shadow-sm">
+            <div className="bg-surface-primary p-6 rounded-lg shadow-sm">
               <form onSubmit={submit} className="space-y-6" encType='multipart/form-data'>
                 <div className="space-y-2">
                   <Label htmlFor="title">Course Title</Label>
@@ -48,13 +48,13 @@ order: 0,
                     id="title"
                     value={data.title}
                     onChange={(e) => setData('title', e.target.value)}
-                    className="block border border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary"
+                    className="block border border-border-medium rounded-md shadow-sm focus:ring-primary focus:border-primary"
                     placeholder="Enter course title"
                   />
                   {errors.title && (
                     <p className="text-sm text-red-500 font-medium text-destructive">{errors.title}</p>
                   )}
-                  {/* <p className="text-sm text-gray-400">
+                  {/* <p className="text-sm text-text-muted">
                     Give your course a clear and descriptive title.
                   </p> */}
                 </div>
@@ -88,3 +88,13 @@ order: 0,
 };
 
 export default AddSectionPage;
+
+
+
+
+
+
+
+
+
+

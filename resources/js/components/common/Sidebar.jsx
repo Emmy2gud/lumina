@@ -22,22 +22,18 @@ import {
   Sparkles,
   Bot,
   Menu,
-  X
+  X,
+  Trophy
 } from 'lucide-react';
+import { usePage } from '@inertiajs/react';
+import { useSidebar } from '../../contexts/SidebarContext';
 
 const Sidebar = () => {
-  const [collapsed, setCollapsed] = useState(false);
+  const { collapsed, setCollapsed } = useSidebar();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [openMenuPath, setOpenMenuPath] = useState(null);
+    const { auth, categories, cartCount, cart } = usePage().props;
 
-  // Mock auth for demo
-  const auth = {
-    user: {
-      role: 'teacher',
-      name: 'John Smith',
-      email: 'john.smith@example.com'
-    }
-  };
 
   const isActive = (path) => {
     if (typeof window !== 'undefined') {
@@ -60,7 +56,6 @@ const Sidebar = () => {
       icon: LayoutDashboard,
       subItems: [
         { title: 'Create Course', path: '/courses/create', icon: PlusCircle },
-        { title: 'Edit Courses', path: '/courses/edit', icon: Edit },
         { title: 'View Sections', path: '/sections/view', icon: BookPlus },
         { title: 'View Lessons', path: '/lessons/view', icon: BookPlus },
         { title: 'View Courses', path: '/courses', icon: BookPlus },
@@ -88,7 +83,7 @@ const Sidebar = () => {
     {
       id: 13,
       title: 'Q&A / Discussions',
-      path: '/discussions',
+      path: '/q&asection',
       icon: MessageCircle,
       dropicon: null
     },
@@ -104,29 +99,18 @@ const Sidebar = () => {
   const studentNavItems = [
     { id: 7, title: 'Dashboard', path: '/dashboard/student', icon: Home },
     { id: 8, title: 'My Courses', path: '/courses/enrolled', icon: BookOpen },
-    { id: 9, title: 'Materials', path: '/materials/view', icon: FileText },
-    { id: 12, title: 'Assignments', path: '/assignments', icon: Package },
-    { id: 10, title: 'Take Quiz', path: '/quiz/take', icon: ClipboardCheck },
-    { id: 13, title: 'Q&A / Discussions', path: '/discussions', icon: MessageCircle },
-    { id: 11, title: 'My Progress', path: '/analytics/progress', icon: TrendingUp },
-  ];
-
-  const aiToolsSection = [
-    {
-      id: 14,
+    { id: 10, title: 'Quiz', path: '/quiz/take', icon: ClipboardCheck },
+    { id: 11, title: 'Activity', path: '/analytics/progress', icon: TrendingUp },
+    { id: 12, title: 'LeaderBoard', path: '/leaderboard', icon: Trophy },
+        {
+      id: 13,
       title: 'AI Teaching Assistant',
-      path: '/ai/assistant',
+      path: "/ai",
       icon: Sparkles,
       gradient: 'from-purple-500 to-pink-500'
     },
-    {
-      id: 15,
-      title: 'AI Content Generator',
-      path: '/ai/generator',
-      icon: Bot,
-      gradient: 'from-blue-500 to-cyan-500'
-    },
   ];
+
 
   const navItems = auth.user.role === 'teacher' ? teacherNavItems : studentNavItems;
 
@@ -174,8 +158,8 @@ const Sidebar = () => {
       </div>
 
       {/* Main Navigation */}
-      <div className="flex-1 overflow-y-auto py-4 px-3">
-        {!collapsed && <div className="text-xs font-semibold text-slate-400 uppercase tracking-wider px-3 mb-3">Main Menu</div>}
+      <div className="flex-1 overflow-y-auto py-5 px-3">
+
 
         <nav className="space-y-1">
           {navItems.map((item) => (
@@ -225,42 +209,7 @@ const Sidebar = () => {
           ))}
         </nav>
 
-        {/* AI Tools Section */}
-        <div className="mt-6">
-          {!collapsed && (
-            <div className="text-xs font-semibold text-slate-400 uppercase tracking-wider px-3 mb-3">
-              AI Powered
-            </div>
-          )}
-          <div className="space-y-2">
-            {aiToolsSection.map((item) => (
-              <a
-                key={item.id}
-                href={item.path}
-                onClick={handleNavClick}
-                className={`flex items-center p-3 rounded-xl transition-all duration-200 group relative overflow-hidden ${
-                  isActive(item.path)
-                    ? `bg-gradient-to-r ${item.gradient} text-white shadow-lg`
-                    : 'bg-white border-2 border-slate-200 hover:border-transparent hover:shadow-md'
-                } ${collapsed ? 'justify-center' : 'space-x-3'}`}
-              >
-                {!isActive(item.path) && (
-                  <div className={`absolute inset-0 bg-gradient-to-r ${item.gradient} opacity-0 group-hover:opacity-10 transition-opacity`}></div>
-                )}
-                <item.icon className={`${
-                  isActive(item.path) ? 'text-white' : `text-slate-600 group-hover:text-${item.gradient.split('-')[1]}-600`
-                } ${collapsed ? 'w-6 h-6' : 'w-5 h-5'} transition-colors z-10`} />
-                {!collapsed && (
-                  <span className={`text-sm font-medium z-10 ${
-                    isActive(item.path) ? 'text-white' : 'text-slate-700'
-                  }`}>
-                    {item.title}
-                  </span>
-                )}
-              </a>
-            ))}
-          </div>
-        </div>
+
       </div>
 
       {/* Bottom Section */}
@@ -289,14 +238,14 @@ const Sidebar = () => {
             <div className="flex items-center space-x-3">
               <div className="w-10 h-10 rounded-full bg-gradient-to-br from-indigo-600 to-purple-600 flex items-center justify-center shadow-md">
                 <span className="text-white font-bold text-sm">
-                  {auth.user.name.split(' ').map(n => n[0]).join('')}
+                  {auth.user.fullname}
                 </span>
               </div>
               <div className="flex-1 min-w-0">
                 <p className="text-sm font-semibold text-slate-900 truncate">
                   {auth.user.name}
                 </p>
-                <p className="text-xs text-slate-500 truncate">
+                <p className="text-sm text-slate-500 truncate">
                   {auth.user.role === 'teacher' ? '👨‍🏫 Teacher' : '👨‍🎓 Student'}
                 </p>
               </div>
@@ -312,9 +261,10 @@ const Sidebar = () => {
       {/* Mobile Menu Button */}
       <button
         onClick={() => setMobileOpen(true)}
-        className="lg:hidden fixed top-4 left-4 z-50 p-2 bg-white rounded-lg shadow-lg hover:bg-slate-50"
+        className="lg:hidden fixed top-1 left-4 z-50 p-2 bg-white rounded-lg shadow-lg hover:bg-slate-50"
       >
         <Menu size={24} className="text-slate-700" />
+
       </button>
 
       {/* Mobile Overlay */}

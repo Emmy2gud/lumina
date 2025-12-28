@@ -140,7 +140,7 @@ const MaterialsPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-surface-secondary">
 
 
       <div className="pt-16 md:pt-0 flex">
@@ -154,8 +154,8 @@ const MaterialsPage = () => {
             <div className="mb-8">
               <div className="flex justify-between items-start md:items-center flex-col md:flex-row gap-4 md:gap-0">
                 <div>
-                  <h1 className="text-2xl md:text-3xl font-bold text-gray-900">Materials Library</h1>
-                  <p className="text-gray-600">
+                  <h1 className="text-2xl md:text-3xl font-bold text-text-primary">Materials Library</h1>
+                  <p className="text-text-secondary">
                     {isTeacher
                       ? "Upload and manage course materials"
                       : "Access and download course materials"}
@@ -176,7 +176,7 @@ const MaterialsPage = () => {
 
               {/* Upload Progress Bar (Teacher only) */}
               {isTeacher && isUploading && (
-                <div className="mt-4 bg-white p-4 rounded-lg shadow-sm border border-gray-200">
+                <div className="mt-4 bg-surface-primary p-4 rounded-lg shadow-sm border border-border-light">
                   <div className="flex justify-between mb-2">
                     <span className="text-sm font-medium">Uploading file...</span>
                     <span className="text-sm text-gray-500">{uploadProgress}%</span>
@@ -192,19 +192,19 @@ const MaterialsPage = () => {
             </div>
 
             {/* Search and Filters */}
-            <div className="bg-white p-4 rounded-lg shadow-sm mb-8 border border-gray-100">
+            <div className="bg-surface-primary p-4 rounded-lg shadow-sm mb-8 border border-gray-100">
               <div className="flex flex-col md:flex-row gap-4">
                 {/* Search Input */}
                 <div className="relative flex-grow">
                   <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                    <Search className="h-5 w-5 text-gray-400" />
+                    <Search className="h-5 w-5 text-text-muted" />
                   </div>
                   <input
                     type="text"
                     placeholder="Search materials..."
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
-                    className="pl-10 pr-4 py-2 border border-gray-300 rounded-md w-full focus:outline-none focus:ring-2 focus:ring-learnify-primary focus:border-transparent"
+                    className="pl-10 pr-4 py-2 border border-border-medium rounded-md w-full focus:outline-none focus:ring-2 focus:ring-learnify-primary focus:border-transparent"
                   />
                 </div>
 
@@ -213,7 +213,7 @@ const MaterialsPage = () => {
                   <select
                     value={fileType}
                     onChange={(e) => setFileType(e.target.value)}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-learnify-primary focus:border-transparent"
+                    className="w-full px-4 py-2 border border-border-medium rounded-md focus:outline-none focus:ring-2 focus:ring-learnify-primary focus:border-transparent"
                   >
                     <option value="all">All Types</option>
                     <option value="pdf">PDF Files</option>
@@ -227,7 +227,7 @@ const MaterialsPage = () => {
                   <select
                     value={sortBy}
                     onChange={(e) => setSortBy(e.target.value)}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-learnify-primary focus:border-transparent"
+                    className="w-full px-4 py-2 border border-border-medium rounded-md focus:outline-none focus:ring-2 focus:ring-learnify-primary focus:border-transparent"
                   >
                     <option value="newest">Newest First</option>
                     <option value="oldest">Oldest First</option>
@@ -242,7 +242,7 @@ const MaterialsPage = () => {
             <div className="space-y-4">
               {filteredMaterials.length > 0 ? (
                 filteredMaterials.map((material) => (
-                  <div key={material.id} className="bg-white rounded-lg border border-gray-100 overflow-hidden hover:shadow-md transition-shadow">
+                  <div key={material.id} className="bg-surface-primary rounded-lg border border-gray-100 overflow-hidden hover:shadow-md transition-shadow">
                     <div className="p-4 flex items-start">
                       <div className="mr-4">
                         {material.thumbnail ? (
@@ -259,7 +259,7 @@ const MaterialsPage = () => {
                       </div>
 
                       <div className="flex-1">
-                        <h3 className="font-semibold text-gray-900 mb-1">{material.title}</h3>
+                        <h3 className="font-semibold text-text-primary mb-1">{material.title}</h3>
                         <div className="flex flex-wrap items-center text-xs text-gray-500 mb-2 gap-3">
                           <span className="capitalize">{material.type} file</span>
                           <span>{material.size}</span>
@@ -292,12 +292,12 @@ const MaterialsPage = () => {
                   </div>
                 ))
               ) : (
-                <div className="text-center py-12 bg-white rounded-lg shadow-sm">
+                <div className="text-center py-12 bg-surface-primary rounded-lg shadow-sm">
                   <div className="w-16 h-16 bg-learnify-softPurple rounded-full flex items-center justify-center mx-auto mb-4">
                     <FileText className="h-8 w-8 text-learnify-primary" />
                   </div>
-                  <h3 className="text-lg font-medium text-gray-900 mb-2">No materials found</h3>
-                  <p className="text-gray-600 mb-6">
+                  <h3 className="text-lg font-medium text-text-primary mb-2">No materials found</h3>
+                  <p className="text-text-secondary mb-6">
                     {searchTerm || fileType !== 'all'
                       ? "Try adjusting your search or filters"
                       : isTeacher
@@ -321,7 +321,7 @@ const MaterialsPage = () => {
             {/* Course Materials Sections */}
             <div className="mt-12 space-y-8">
               <section>
-                <h2 className="text-xl font-bold text-gray-900 mb-4">React Fundamentals Materials</h2>
+                <h2 className="text-xl font-bold text-text-primary mb-4">React Fundamentals Materials</h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                   {materials
                     .filter(material => material.course === "React Fundamentals")
@@ -333,7 +333,7 @@ const MaterialsPage = () => {
               </section>
 
               <section>
-                <h2 className="text-xl font-bold text-gray-900 mb-4">UI Design Basics Materials</h2>
+                <h2 className="text-xl font-bold text-text-primary mb-4">UI Design Basics Materials</h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                   {materials
                     .filter(material => material.course === "UI Design Basics")
@@ -345,7 +345,7 @@ const MaterialsPage = () => {
               </section>
 
               <section>
-                <h2 className="text-xl font-bold text-gray-900 mb-4">JavaScript ES6 Essentials Materials</h2>
+                <h2 className="text-xl font-bold text-text-primary mb-4">JavaScript ES6 Essentials Materials</h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                   {materials
                     .filter(material => material.course === "JavaScript ES6 Essentials")
@@ -364,3 +364,13 @@ const MaterialsPage = () => {
 };
 
 export default MaterialsPage;
+
+
+
+
+
+
+
+
+
+

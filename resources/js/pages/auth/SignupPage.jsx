@@ -47,11 +47,11 @@ const SignupPage = () => {
 
 
       const getStrengthInfo = () => {
-        if (strength === 1) return { label: 'Weak', color: 'bg-red-500' };
-        if (strength === 2) return { label: 'Fair', color: 'bg-yellow-500' };
-        if (strength === 3) return { label: 'Good', color: 'bg-lime-500' };
-        if (strength === 4) return { label: 'Strong', color: 'bg-green-500' };
-        return { label: '', color: 'bg-gray-200' };
+        if (strength === 1) return { label: 'Weak', color: 'bg-danger' };
+        if (strength === 2) return { label: 'Fair', color: 'bg-warning' };
+        if (strength === 3) return { label: 'Good', color: 'bg-success' };
+        if (strength === 4) return { label: 'Strong', color: 'bg-success' };
+        return { label: '', color: 'bg-neutral-200' };
       };
 
 
@@ -67,23 +67,23 @@ const SignupPage = () => {
 
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
-      <div className="flex w-full max-w-6xl mx-auto bg-white rounded-2xl shadow-xl overflow-hidden">
+    <div className="min-h-screen flex items-center justify-center bg-card py-12 px-4 sm:px-6 lg:px-8">
+      <div className="flex w-full max-w-6xl mx-auto bg-card rounded-2xl shadow-xl overflow-hidden">
 
-                <div className="hidden lg:block lg:w-1/2 bg-gradient-to-br from-soft-purple to-primary p-12">
+                <div className="hidden lg:block lg:w-1/2 bg-gradient-primary p-12">
                             <div className="relative w-full h-full flex flex-col items-center justify-center">
                                 <div className="absolute inset-0 bg-pattern opacity-10"></div>
 
                                 {/* Illustration container */}
                                 <div className="relative z-10 w-full max-w-md mx-auto space-y-8">
                                     <div className="flex items-center justify-center space-x-6">
-                                        <div className="p-4 bg-white/20 backdrop-blur-sm rounded-2xl">
+                                        <div className="p-4 bg-card/20 backdrop-blur-sm rounded-2xl">
                                             <BookOpen
                                                 size={48}
                                                 className="text-white"
                                             />
                                         </div>
-                                        <div className="p-4 bg-white/20 backdrop-blur-sm rounded-2xl">
+                                        <div className="p-4 bg-card/20 backdrop-blur-sm rounded-2xl">
                                             <GraduationCap
                                                 size={48}
                                                 className="text-white"
@@ -92,18 +92,18 @@ const SignupPage = () => {
                                     </div>
 
                                     <div className="flex items-center justify-center space-x-6">
-                                        <div className="p-4 bg-white/20 backdrop-blur-sm rounded-2xl">
+                                        <div className="p-4 bg-card/20 backdrop-blur-sm rounded-2xl">
                                             <Users size={48} className="text-white" />
                                         </div>
-                                        <div className="p-4 bg-white/20 backdrop-blur-sm rounded-2xl">
+                                        <div className="p-4 bg-card/20 backdrop-blur-sm rounded-2xl">
                                             <Laptop size={48} className="text-white" />
                                         </div>
                                     </div>
                                 </div>
                                 <div className="text-center">
-                                    <div className="w-16 h-16 rounded-full bg-learnify-primary mx-auto flex items-center justify-center">
-                                        {/* <span className="text-white font-bold text-2xl">L</span> */}
-                                    </div>
+                                                           <div className="w-16 h-16 rounded-lg bg-primary-700 mx-auto flex items-center justify-center mt-2">
+                                <span className="text-white font-bold text-2xl ">L</span>
+                            </div>
                                     <h2 className="mt-6 text-3xl font-bold text-white">
                                         Welcome back!
                                     </h2>
@@ -119,17 +119,17 @@ const SignupPage = () => {
                         <div className="w-full lg:w-1/2 py-8 px-12">
                         <div className="max-w-md mx-auto space-y-8">
         <div className="text-center">
-          <div className="w-16 h-16 rounded-full bg-learnify-primary mx-auto flex items-center justify-center">
-            <span className="text-white font-bold text-2xl">L</span>
-          </div>
-          <h2 className="mt-6 text-3xl font-bold text-gray-900">Create Account</h2>
-          <p className="mt-2 text-sm text-gray-600">
+                            <div className="w-16 h-16 rounded-lg bg-primary-700 mx-auto flex items-center justify-center mt-2">
+                                <span className="text-white font-bold text-2xl ">L</span>
+                            </div>
+          <h2 className="mt-6 text-3xl font-bold text-text-primary">Create Account</h2>
+          <p className="mt-2 text-sm text-text-secondary">
             Join Learnify today to start learning
           </p>
         </div>
 
         {error && (
-          <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-md text-sm flex items-center">
+          <div className="bg-card-danger border border-danger text-danger px-4 py-3 rounded-md text-sm flex items-center">
             <AlertCircle className="h-5 w-5 mr-2" />
             {error}
           </div>
@@ -139,12 +139,12 @@ const SignupPage = () => {
           <div className="space-y-4">
 
             <div>
-              <label htmlFor="fullName" className="block text-sm font-medium text-gray-700 mb-1">
+              <label htmlFor="fullName" className="block text-sm font-medium text-text-secondary mb-1">
                 Full Name
               </label>
               <div className="relative">
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                  <User className="h-5 w-5 text-gray-400" />
+                  <User className="h-5 w-5 text-text-muted" />
                 </div>
                 <input
                   id="fullName"
@@ -153,14 +153,14 @@ const SignupPage = () => {
                   autoComplete="name"
                   value={data.fullname}
                   onChange={e => setData('fullname', e.target.value)}
-                  className="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-learnify-primary focus:border-learnify-primary"
+                  className="block w-full pl-10 pr-3 py-2 border border-border-medium rounded-md shadow-sm placeholder-text-muted focus:outline-none focus:ring-primary focus:border-primary"
                   placeholder="John Smith"
 
                 />
               </div>
 
                 {errors.fullname && (
-                    <div className="text-red-500 text-sm mt-1">
+                    <div className="text-danger text-sm mt-1">
                         {errors.fullname}
                         </div>
                 )}
@@ -169,12 +169,12 @@ const SignupPage = () => {
 
 
             <div>
-              <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
+              <label htmlFor="email" className="block text-sm font-medium text-text-secondary mb-1">
                 Email address
               </label>
               <div className="relative">
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                  <Mail className="h-5 w-5 text-gray-400" />
+                  <Mail className="h-5 w-5 text-text-muted" />
                 </div>
                 <input
                   id="email"
@@ -183,13 +183,13 @@ const SignupPage = () => {
                   autoComplete="email"
                     value={data.email}
                     onChange={e=>setData('email', e.target.value)}
-                  className="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-learnify-primary focus:border-learnify-primary"
+                  className="block w-full pl-10 pr-3 py-2 border border-border-medium rounded-md shadow-sm placeholder-text-muted focus:outline-none focus:ring-primary focus:border-primary"
                   placeholder="you@example.com"
 
                 />
               </div>
               {errors.email && (
-                  <div className="text-red-500 text-sm mt-1">
+                  <div className="text-danger text-sm mt-1">
                         {errors.email}
                     </div>
                         )}
@@ -197,12 +197,12 @@ const SignupPage = () => {
 
 
             <div>
-              <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1">
+              <label htmlFor="password" className="block text-sm font-medium text-text-secondary mb-1">
                 Password
               </label>
               <div className="relative">
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                  <Lock className="h-5 w-5 text-gray-400" />
+                  <Lock className="h-5 w-5 text-text-muted" />
                 </div>
                 <input
                   id="password"
@@ -211,7 +211,7 @@ const SignupPage = () => {
                   autoComplete="new-password"
                     value={data.password}
                     onChange={e=>setData('password', e.target.value)}
-                  className="block w-full pl-10 pr-10 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-learnify-primary focus:border-learnify-primary"
+                  className="block w-full pl-10 pr-10 py-2 border border-border-medium rounded-md shadow-sm placeholder-text-muted focus:outline-none focus:ring-primary focus:border-primary"
                   placeholder="••••••••"
 
                 />
@@ -219,7 +219,7 @@ const SignupPage = () => {
                   <button
                     type="button"
                     onClick={() => setShowPassword(!showPassword)}
-                    className="text-gray-400 hover:text-gray-600 focus:outline-none"
+                    className="text-text-muted hover:text-text-secondary focus:outline-none"
                   >
                     {showPassword ? (
                       <EyeOff className="h-5 w-5" />
@@ -230,7 +230,7 @@ const SignupPage = () => {
                 </div>
 
                 {errors.password && (
-                  <div className="text-red-500 text-sm mt-1">
+                  <div className="text-danger text-sm mt-1">
                         {errors.password}
                     </div>
                         )}
@@ -244,11 +244,11 @@ const SignupPage = () => {
                       {[0, 1, 2, 3].map((index) => (
                         <div
                           key={index}
-                          className={`h-2 w-6 rounded ${index < strength ? getStrengthInfo().color : 'bg-gray-200'}`}
+                          className={`h-2 w-6 rounded ${index < strength ? getStrengthInfo().color : 'bg-neutral-200'}`}
                         ></div>
                       ))}
                     </div>
-                    <span className="text-xs text-gray-500">
+                    <span className="text-xs text-text-muted">
                       {strength > 0 ? getStrengthInfo().label : 'Enter a password'}
                     </span>
                   </div>
@@ -258,12 +258,12 @@ const SignupPage = () => {
 
 
             <div>
-              <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-700 mb-1">
+              <label htmlFor="confirmPassword" className="block text-sm font-medium text-text-secondary mb-1">
                 Confirm Password
               </label>
               <div className="relative">
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                  <Lock className="h-5 w-5 text-gray-400" />
+                  <Lock className="h-5 w-5 text-text-muted" />
                 </div>
                 <input
                   id="confirmPassword"
@@ -272,7 +272,7 @@ const SignupPage = () => {
                   autoComplete="new-password"
                     value={data.password_confirmation}
                     onChange={e=>setData('password_confirmation', e.target.value)}
-                  className="block w-full pl-10 pr-10 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-learnify-primary focus:border-learnify-primary"
+                  className="block w-full pl-10 pr-10 py-2 border border-border-medium rounded-md shadow-sm placeholder-text-muted focus:outline-none focus:ring-primary focus:border-primary"
                   placeholder="••••••••"
 
                 />
@@ -280,7 +280,7 @@ const SignupPage = () => {
                   <button
                     type="button"
                     onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                    className="text-gray-400 hover:text-gray-600 focus:outline-none"
+                    className="text-text-muted hover:text-text-secondary focus:outline-none"
                   >
                     {showConfirmPassword ? (
                       <EyeOff className="h-5 w-5" />
@@ -294,34 +294,34 @@ const SignupPage = () => {
 
             {/* User Role */}
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-3">
+              <label className="block text-sm font-medium text-text-secondary mb-3">
                 I want to join as a:
               </label>
               <div className="grid grid-cols-2 gap-4">
                 <div
-                  className={`border ${data.role === 'student' ? 'border-primary bg-soft-purple' : 'border-gray-200'} rounded-md p-3 cursor-pointer transition-colors hover:bg-learnify-softPurple`}
+                  className={`border ${data.role === 'student' ? 'border-primary bg-card-secondary' : 'border-border'} rounded-md p-3 cursor-pointer transition-colors hover:bg-card-secondary`}
                   onClick={()=>setData({ ...data, role: 'student' })}
 
                 >
                   <div className="flex items-center justify-between mb-1">
-                    <span className={`font-medium ${data.role  === 'student' ? 'text-white' : ' text-black'}`}>Student</span>
+                    <span className={`font-medium ${data.role  === 'student' ? 'text-primary-500' : ' text-text-primary'}`}>Student</span>
                     {data.role === 'student' && (
-                      <CheckCircle className={`h-5 w-5  ${data.role  === 'student' ? 'text-white' : ' text-black'}`} />
+                      <CheckCircle className={`h-5 w-5  ${data.role  === 'student' ? 'text-primary-500' : ' text-text-primary'}`} />
                     )}
                   </div>
-                  <p className={`text-xs ${data.role  === 'student' ? 'text-white ' : '  text-gray-500'} `} >Take courses and learn new skills</p>
+                  <p className={`text-xs ${data.role  === 'student' ? 'text-primary-500' : '  text-text-muted'} `} >Take courses and learn new skills</p>
                 </div>
                 <div
-                  className={`border ${data.role === 'teacher' ? 'border-primary bg-soft-purple' : 'border-gray-200'} rounded-md p-3 cursor-pointer transition-colors hover:bg-soft-purple`}
+                  className={`border ${data.role === 'teacher' ? 'border-primary bg-card-secondary' : 'border-border'} rounded-md p-3 cursor-pointer transition-colors hover:bg-card-secondary`}
                   onClick={() => setData({ ...data, role: 'teacher' })}
                 >
                   <div className="flex items-center justify-between mb-1">
-                    <span className={`font-medium ${data.role  === 'teacher' ? 'text-white' : ' text-black'}`}>Teacher</span>
+                    <span className={`font-medium ${data.role  === 'teacher' ? 'text-primary-500' : ' text-text-primary'}`}>Teacher</span>
                     {data.role === 'teacher' && (
                       <CheckCircle className="h-5 w-5 text-white" />
                     )}
                   </div>
-                  <p className={`text-xs ${data.role  === 'teacher' ? 'text-white ' : '  text-gray-500'} `}>Create courses and teach students</p>
+                  <p className={`text-xs ${data.role  === 'teacher' ? 'text-primary-500 ' : '  text-text-muted'} `}>Create courses and teach students</p>
                 </div>
               </div>
             </div>
@@ -336,11 +336,11 @@ const SignupPage = () => {
                 type="checkbox"
                 checked={agreeToTerms}
                 onChange={() => setAgreeToTerms(!agreeToTerms)}
-                className="h-4 w-4 accent-primary  focus:ring-primary-500 focus:outline-none"
+                className="h-4 w-4 text-primary focus:ring-primary focus:outline-none"
               />
             </div>
             <div className="ml-3 text-sm">
-              <label htmlFor="terms" className="font-medium text-gray-700">
+              <label htmlFor="terms" className="font-medium text-text-secondary">
                 I agree to the{' '}
                 <a href="#" className="text-primary hover:text-secondary">
                   Terms of Service
@@ -357,7 +357,7 @@ const SignupPage = () => {
             <button
               type="submit"
               disabled={isLoading}
-              className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-primary hover:bg-secondary focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary disabled:opacity-50 disabled:cursor-not-allowed"
+              className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-gradient-primary hover:bg-secondary focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {isLoading ? (
                 <span className="flex items-center">
@@ -374,9 +374,9 @@ const SignupPage = () => {
           </div>
         </form>
         <div className="text-center mt-4">
-          <p className="text-sm text-gray-600">
+          <p className="text-sm text-text-secondary">
             Already have an account?{' '}
-            <Link to="/login" className="font-medium text-primary hover:textfy-secondary">
+            <Link to="/login" className="font-medium text-primary hover:text-secondary">
               Sign in
             </Link>
           </p>
@@ -390,3 +390,13 @@ const SignupPage = () => {
 };
 
 export default SignupPage;
+
+
+
+
+
+
+
+
+
+

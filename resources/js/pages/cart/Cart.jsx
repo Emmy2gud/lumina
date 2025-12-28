@@ -65,7 +65,7 @@ const updateQuantity = (courseId, change) => {
                             Object.entries(cart).map(([id, item])=> (
                                 <div
                                     key={item.id}
-                                    className="group relative flex gap-4 rounded-xl bg-white p-4 shadow-sm transition will-change-transform hover:-translate-y-0.5 hover:shadow-[var(--shadow-elegant)] animate-enter"
+                                    className="group relative flex gap-4 rounded-xl bg-surface-primary p-4 shadow-sm transition will-change-transform hover:-translate-y-0.5 hover:shadow-[var(--shadow-elegant)] animate-enter"
                                 >
                                     <div className="h-30 w-30 overflow-hidden rounded-lg shadow-sm">
                                         <img
@@ -80,8 +80,8 @@ const updateQuantity = (courseId, change) => {
                                         <div className="flex items-start justify-between gap-3">
                                             <div>
                                                 <h2 className="font-semibold leading-tight">{item.name}</h2>
-                                                 <h6 className="text-sm text-gray-600 py-1">{item.instructor}</h6>
-                                                <p className="text-sm text-gray-600 ">${item.price}</p>
+                                                 <h6 className="text-sm text-text-secondary py-1">{item.instructor}</h6>
+                                                <p className="text-sm text-text-secondary ">${item.price}</p>
                                             </div>
 
                                             <div className="hidden sm:block text-right font-semibold">
@@ -90,7 +90,7 @@ const updateQuantity = (courseId, change) => {
                                         </div>
 
                                         <div className="mt-3 flex flex-wrap items-center gap-3">
-                                            <div className="inline-flex items-center overflow-hidden rounded-lg border border-gray-300 bg-background">
+                                            <div className="inline-flex items-center overflow-hidden rounded-lg border border-border-medium bg-background">
                                                 <button
                                                     className="h-9 w-10 select-none transition hover:bg-accent hover:text-accent-foreground"
                                                      onClick={() => updateQuantity(item.id, -1)}
@@ -124,7 +124,7 @@ const updateQuantity = (courseId, change) => {
                     </article>
 
                     {/* Summary */}
-                    <aside className="h-fit rounded-xl bg-white p-6 shadow-sm md:sticky md:top-6 animate-enter">
+                    <aside className="h-fit rounded-xl bg-surface-primary p-6 shadow-sm md:sticky md:top-6 animate-enter">
                         <h2 className="mb-4 text-lg font-semibold">Order Summary</h2>
                         <div className="space-y-2 text-sm">
                             <div className="flex items-center justify-between">
@@ -174,3 +174,13 @@ const updateQuantity = (courseId, change) => {
         </>
     );
 }
+
+
+
+
+
+
+
+
+
+

@@ -1,10 +1,14 @@
-
+import { students, sessions, messages } from "@/data/mockData";
 import { useState } from 'react';
 import { Link } from "@inertiajs/react";
 import { Book, Edit, Trash2, Plus, TrendingUp, Download, Pencil, Eye, BarChart2, PieChart,Users,Star,MessageSquare} from 'lucide-react';
 import Navbar from '../../components/common/Navbar';
 import Sidebar from '../../components/common/Sidebar';
 import TeacherStats from '../../components/dashboard/TeacherStats';
+import { StudentCard } from '@/components/dashboard/StudentCard';
+import { GoalsTracker } from "@/components/dashboard/GoalsTracker";
+import { ResourcesWidget } from "@/components/dashboard/ResourcesWidget";
+import { PerformanceChart } from "@/components/dashboard/chart/PerformanceChart";
 
 const TeacherDashboard = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -97,7 +101,7 @@ const TeacherDashboard = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gray-50 mt-10">
+    <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white mt-2">
 
 
       <div className="pt-16 md:pt-0 flex">
@@ -107,13 +111,7 @@ const TeacherDashboard = () => {
         {/* Main Content */}
         <div className="flex-1 p-4 md:p-8 ml-0 md:ml-20 lg:ml-64">
           <div className="max-w-6xl mx-auto">
-            {/* Page Header */}
-            <div className="mb-8">
-              <h1 className="text-2xl md:text-3xl font-bold text-gray-900">Teacher Dashboard</h1>
-              <p className="text-gray-600">
-                Manage your courses, track your performance, and engage with students
-              </p>
-            </div>
+
 
             {/* Stats Cards */}
             <TeacherStats />
@@ -121,12 +119,13 @@ const TeacherDashboard = () => {
             {/* Courses and Revenue */}
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-8">
               {/* Courses Table */}
-              <div className="lg:col-span-4 bg-white rounded-lg shadow-sm border border-gray-100 overflow-hidden">
+              <div className="lg:col-span-4  bg-surface-primary/50
+       border-1 border-gray-600/10 rounded-lg shadow-sm overflow-hidden">
                 <div className="flex justify-between items-center p-6 border-b border-gray-100">
                   <h2 className="font-bold text-lg">Your Courses</h2>
                   <Link
                     to="/create-course"
-                    className="flex items-center text-sm bg-learnify-primary text-white px-3 py-2 rounded-md hover:bg-learnify-secondary transition-colors"
+                    className="flex items-center text-sm bg-primary text-white px-3 py-2 rounded-md hover:bg-learnify-secondary transition-colors"
                   >
                     <Plus className="h-4 w-4 mr-1" />
                     New Course
@@ -136,7 +135,7 @@ const TeacherDashboard = () => {
                 <div className="">
                   <table className="w-full">
                     <thead>
-                      <tr className="bg-gray-50">
+                      <tr className="bg-surface-secondary">
                         <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                           Course
                         </th>
@@ -159,12 +158,12 @@ const TeacherDashboard = () => {
                     </thead>
                     <tbody className="divide-y divide-gray-200">
                       {courses.map((course) => (
-                        <tr key={course.id} className="hover:bg-gray-50">
+                        <tr key={course.id} className="hover:bg-surface-secondary">
                           <td className="px-6 py-4">
                             <div className="flex items-center">
-                              <Book className="h-8 w-8 text-primary opacity-75 mr-3" />
+                              <Book className="h-8 w-8 text-violet-600 opacity-75 mr-3" />
                               <div>
-                                <div className="font-medium text-gray-900">{course.title}</div>
+                                <div className="font-medium text-text-primary">{course.title}</div>
                                 <div className="text-xs text-gray-500">
                                   Published: {course.published !== '-' ? new Date(course.published).toLocaleDateString() : 'Not published'}
                                 </div>
@@ -183,7 +182,7 @@ const TeacherDashboard = () => {
                                 </svg>
                               </div>
                             ) : (
-                              <span className="text-sm text-gray-400">No ratings</span>
+                              <span className="text-sm text-text-muted">No ratings</span>
                             )}
                           </td>
                           <td className="px-6 py-4 text-sm text-gray-500">
@@ -203,7 +202,7 @@ const TeacherDashboard = () => {
                               <button className="text-learnify-primary hover:text-learnify-secondary">
                                 <Edit className="h-4 w-4" />
                               </button>
-                              <button className="text-gray-400 hover:text-gray-600">
+                              <button className="text-text-muted hover:text-text-secondary">
                                 <Eye className="h-4 w-4" />
                               </button>
                               <button className="text-red-500 hover:text-red-700">
@@ -234,7 +233,7 @@ const TeacherDashboard = () => {
             {/* Student Engagement and Recent Activity */}
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-8">
               {/* Student Engagement */}
-              <div className="bg-white rounded-lg shadow-sm border border-gray-100 p-6">
+              <div className="bg-surface-primary rounded-lg shadow-sm border border-gray-100 p-6">
                 <h2 className="font-bold text-lg mb-6">Student Engagement</h2>
 
                 <div className="space-y-6">
@@ -273,7 +272,7 @@ const TeacherDashboard = () => {
 
                   <div className="grid grid-cols-2 gap-4">
                     <div className="bg-learnify-softPurple p-3 rounded-md text-center">
-                      <p className="text-sm text-gray-600">Avg. Rating</p>
+                      <p className="text-sm text-text-secondary">Avg. Rating</p>
                       <p className="font-bold text-lg text-learnify-primary flex items-center justify-center">
                         4.8
                         <svg className="h-4 w-4 text-yellow-400 fill-yellow-400 ml-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -282,7 +281,7 @@ const TeacherDashboard = () => {
                       </p>
                     </div>
                     <div className="bg-learnify-softPurple p-3 rounded-md text-center">
-                      <p className="text-sm text-gray-600">Engagement</p>
+                      <p className="text-sm text-text-secondary">Engagement</p>
                       <p className="font-bold text-lg text-learnify-primary">85%</p>
                     </div>
                   </div>
@@ -290,7 +289,7 @@ const TeacherDashboard = () => {
               </div>
 
               {/* Recent Activity */}
-              <div className="lg:col-span-2 bg-white rounded-lg shadow-sm border border-gray-100 p-6">
+              <div className="lg:col-span-2 bg-surface-primary rounded-lg shadow-sm border border-gray-100 p-6">
                 <h2 className="font-bold text-lg mb-6">Recent Activity</h2>
 
                 <div className="space-y-4">
@@ -312,7 +311,7 @@ const TeacherDashboard = () => {
                         )}
                       </div>
                       <div className="flex-1">
-                        <p className="text-gray-600">{activity.content}</p>
+                        <p className="text-text-secondary">{activity.content}</p>
                         <p className="text-xs text-gray-500 mt-1">{activity.time}</p>
                       </div>
                     </div>
@@ -328,149 +327,30 @@ const TeacherDashboard = () => {
             </div>
 
             {/* To-Do List and Analytics */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-8">
-              {/* To-Do List */}
-              <div className="bg-white rounded-lg shadow-sm border border-gray-100 p-6">
-                <div className="flex justify-between items-center mb-6">
-                  <h2 className="font-bold text-lg">Your To-Do List</h2>
-                  <button className="text-sm text-learnify-primary hover:text-learnify-secondary">
-                    <Plus className="h-4 w-4" />
-                  </button>
+            <div>
+                    <div className="flex items-center justify-between my-5">
+                  <h2 className="text-lg font-semibold text-foreground">Your Students</h2>
+                  <button className="text-sm text-primary hover:underline">View All</button>
                 </div>
+                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-8">
 
-                <div className="space-y-3">
-                  {/* Task Items */}
-                  <div className="flex items-center p-3 bg-learnify-softPurple rounded-md">
-                    <input
-                      type="checkbox"
-                      className="h-4 w-4 text-learnify-primary focus:ring-learnify-primary border-gray-300 rounded"
-                    />
-                    <span className="ml-3 flex-1">Grade final projects for React course</span>
-                    <span className="text-xs text-gray-500">Due today</span>
-                  </div>
+                {/* list of students */}
+                {students.slice(0, 6).map((student) => (
+                    <StudentCard key={student.id} student={student} />
+                  ))}
 
-                  <div className="flex items-center p-3 bg-learnify-softPurple rounded-md">
-                    <input
-                      type="checkbox"
-                      className="h-4 w-4 text-learnify-primary focus:ring-learnify-primary border-gray-300 rounded"
-                    />
-                    <span className="ml-3 flex-1">Record new JavaScript tutorial videos</span>
-                    <span className="text-xs text-gray-500">Due tomorrow</span>
-                  </div>
-
-                  <div className="flex items-center p-3 bg-learnify-softPurple rounded-md">
-                    <input
-                      type="checkbox"
-                      className="h-4 w-4 text-learnify-primary focus:ring-learnify-primary border-gray-300 rounded"
-                    />
-                    <span className="ml-3 flex-1">Respond to student questions</span>
-                    <span className="text-xs text-gray-500">Due in 2 days</span>
-                  </div>
-
-                  <div className="flex items-center p-3 bg-gray-100 rounded-md opacity-70">
-                    <input
-                      type="checkbox"
-                      checked
-                      readOnly
-                      className="h-4 w-4 text-learnify-primary focus:ring-learnify-primary border-gray-300 rounded"
-                    />
-                    <span className="ml-3 flex-1 line-through">Update course materials</span>
-                    <span className="text-xs text-gray-500">Completed</span>
-                  </div>
-                </div>
-
-                <div className="mt-6 text-center">
-                  <button className="text-sm text-learnify-primary hover:text-learnify-secondary font-medium">
-                    View All Tasks
-                  </button>
-                </div>
-              </div>
-
-              {/* Analytics */}
-              <div className="bg-white rounded-lg shadow-sm border border-gray-100 p-6">
-                <h2 className="font-bold text-lg mb-6">Analytics</h2>
-
-                <div className="grid grid-cols-2 gap-4 mb-6">
-                  <div className="bg-learnify-softPurple p-4 rounded-md">
-                    <div className="flex items-center mb-2">
-                      <TrendingUp className="h-5 w-5 text-learnify-primary mr-2" />
-                      <h3 className="font-medium">Traffic Sources</h3>
-                    </div>
-                    <div className="space-y-2 mt-4">
-                      <div>
-                        <div className="flex justify-between text-xs mb-1">
-                          <span>Organic Search</span>
-                          <span>45%</span>
-                        </div>
-                        <div className="h-2 bg-gray-200 rounded-full overflow-hidden">
-                          <div className="h-full bg-learnify-primary rounded-full" style={{ width: '45%' }}></div>
-                        </div>
-                      </div>
-                      <div>
-                        <div className="flex justify-between text-xs mb-1">
-                          <span>Direct</span>
-                          <span>30%</span>
-                        </div>
-                        <div className="h-2 bg-gray-200 rounded-full overflow-hidden">
-                          <div className="h-full bg-learnify-primary rounded-full" style={{ width: '30%' }}></div>
-                        </div>
-                      </div>
-                      <div>
-                        <div className="flex justify-between text-xs mb-1">
-                          <span>Social</span>
-                          <span>25%</span>
-                        </div>
-                        <div className="h-2 bg-gray-200 rounded-full overflow-hidden">
-                          <div className="h-full bg-learnify-primary rounded-full" style={{ width: '25%' }}></div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="bg-learnify-softPurple p-4 rounded-md">
-                    <div className="flex items-center mb-2">
-                      <BarChart2 className="h-5 w-5 text-learnify-primary mr-2" />
-                      <h3 className="font-medium">Student Demographics</h3>
-                    </div>
-                    <div className="mt-4 flex justify-center">
-                      <svg className="w-full h-24" viewBox="0 0 100 100">
-                        <circle cx="50" cy="50" r="40" fill="none" stroke="#E5E7EB" strokeWidth="20" />
-                        <circle cx="50" cy="50" r="40" fill="none" stroke="#9b87f5" strokeWidth="20" strokeDasharray="251.2" strokeDashoffset="188.4" strokeLinecap="round" transform="rotate(-90 50 50)" />
-                        <circle cx="50" cy="50" r="40" fill="none" stroke="#7E69AB" strokeWidth="20" strokeDasharray="251.2" strokeDashoffset="62.8" strokeLinecap="round" transform="rotate(90 50 50)" />
-                      </svg>
-                    </div>
-                    <div className="flex justify-around mt-2 text-xs">
-                      <div className="flex items-center">
-                        <div className="w-3 h-3 bg-learnify-primary rounded-full mr-1"></div>
-                        <span>Beginners (75%)</span>
-                      </div>
-                      <div className="flex items-center">
-                        <div className="w-3 h-3 bg-learnify-secondary rounded-full mr-1"></div>
-                        <span>Advanced (25%)</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div>
-                  <h3 className="font-medium text-sm mb-3">Top Performing Content</h3>
-                  <div className="space-y-2">
-                    <div className="flex justify-between items-center p-2 bg-gray-50 rounded">
-                      <span className="text-sm">React Hooks Tutorial</span>
-                      <span className="text-xs text-green-600">↑ 28%</span>
-                    </div>
-                    <div className="flex justify-between items-center p-2 bg-gray-50 rounded">
-                      <span className="text-sm">Redux State Management</span>
-                      <span className="text-xs text-green-600">↑ 24%</span>
-                    </div>
-                    <div className="flex justify-between items-center p-2 bg-gray-50 rounded">
-                      <span className="text-sm">JavaScript ES6 Features</span>
-                      <span className="text-xs text-green-600">↑ 15%</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
             </div>
+            </div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-6 gap-6 mt-8">
+                <GoalsTracker/>
+                <ResourcesWidget/>
+
+            </div>
+            <div className="mt-8">
+                <PerformanceChart students={students}/>
+            </div>
+
           </div>
         </div>
       </div>
@@ -479,3 +359,13 @@ const TeacherDashboard = () => {
 };
 
 export default TeacherDashboard;
+
+
+
+
+
+
+
+
+
+

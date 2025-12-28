@@ -13,7 +13,7 @@ createInertiaApp({
     // Try these path patterns
     const paths = [
       `./Pages/${normalized}.jsx`,
-      
+
       `./Pages/**/${normalized}.jsx`,
       `./Pages/${name.replace(/\./g, '/')}.jsx`, // original case
     ]
@@ -30,7 +30,7 @@ createInertiaApp({
 
         // Apply layout if not defined
         if (page.default.layout === undefined) {
-            const useProfileLayout = name.startsWith('dashboard')  ||  name.startsWith('coursedashboard') || name.startsWith('materials') || name.startsWith('quizdashboard')
+            const useProfileLayout = name.startsWith('dashboard')  ||  name.startsWith('coursedashboard') || name.startsWith('materials') || name.startsWith('quizdashboard') || name.startsWith('q&a') | name.startsWith('leader')
           page.default.layout = useProfileLayout
             ? (page) => <ProfileLayout {...page.props}>{page}</ProfileLayout>
             : (page) => <GeneralLayout {...page.props}>{page}</GeneralLayout>

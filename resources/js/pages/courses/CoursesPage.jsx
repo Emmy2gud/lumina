@@ -91,33 +91,33 @@ const CoursesPage = ({courses}) => {
   }, [searchTerm, selectedCategory, selectedLevel, selectedDuration, sortBy]);
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-surface-secondary">
 
 
       <div className="pt-24 pb-10">
         <div className="container mx-auto px-4 md:px-6">
           {/* Page Header */}
           <div className="mb-8">
-            <h1 className="text-3xl font-bold text-gray-900 mb-2">Explore Courses</h1>
-            <p className="text-gray-600">
+            <h1 className="text-3xl font-bold text-text-primary mb-2">Explore Courses</h1>
+            <p className="text-text-secondary">
               Discover our wide range of courses to enhance your skills
             </p>
           </div>
 
           {/* Search and Filters Bar */}
-          <div className="bg-white p-4 rounded-lg shadow-sm mb-8">
+          <div className="bg-surface-primary p-4 rounded-lg shadow-sm mb-8">
             <div className="flex flex-col md:flex-row gap-4">
               {/* Search Input */}
               <div className="relative flex-grow">
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                  <Search className="h-5 w-5 text-gray-400" />
+                  <Search className="h-5 w-5 text-text-muted" />
                 </div>
                 <input
                   type="text"
                   placeholder="Search for courses"
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="pl-10 pr-4 py-2 border border-gray-300 rounded-md w-full focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                  className="pl-10 pr-4 py-2 border border-border-medium rounded-md w-full focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
                 />
               </div>
 
@@ -126,7 +126,7 @@ const CoursesPage = ({courses}) => {
                 <select
                   value={sortBy}
                   onChange={(e) => setSortBy(e.target.value)}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                  className="w-full px-4 py-2 border border-border-medium rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
                 >
                   <option value="popular">Most Popular</option>
                   <option value="rating">Highest Rated</option>
@@ -139,7 +139,7 @@ const CoursesPage = ({courses}) => {
               {/* Filter Toggle Button (Mobile) */}
               <button
                 onClick={() => setShowFilters(!showFilters)}
-                className="md:hidden flex items-center justify-center px-4 py-2 border border-gray-300 rounded-md hover:bg-gray-50"
+                className="md:hidden flex items-center justify-center px-4 py-2 border border-border-medium rounded-md hover:bg-surface-secondary"
               >
                 <Filter className="h-5 w-5 mr-2" />
                 Filters
@@ -148,15 +148,15 @@ const CoursesPage = ({courses}) => {
 
             {/* Filters (Mobile) */}
             {showFilters && (
-              <div className="mt-4 md:hidden space-y-4 p-4 border-t border-gray-200">
+              <div className="mt-4 md:hidden space-y-4 p-4 border-t border-border-light">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                  <label className="block text-sm font-medium text-text-secondary mb-1">
                     Category
                   </label>
                   <select
                     value={selectedCategory}
                     onChange={(e) => setSelectedCategory(e.target.value)}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                    className="w-full px-4 py-2 border border-border-medium rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
                   >
                     {categories.map((category) => (
                       <option key={category} value={category}>
@@ -167,13 +167,13 @@ const CoursesPage = ({courses}) => {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                  <label className="block text-sm font-medium text-text-secondary mb-1">
                     Level
                   </label>
                   <select
                     value={selectedLevel}
                     onChange={(e) => setSelectedLevel(e.target.value)}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                    className="w-full px-4 py-2 border border-border-medium rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
                   >
                     {levels.map((level) => (
                       <option key={level} value={level}>
@@ -184,13 +184,13 @@ const CoursesPage = ({courses}) => {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                  <label className="block text-sm font-medium text-text-secondary mb-1">
                     Duration
                   </label>
                   <select
                     value={selectedDuration}
                     onChange={(e) => setSelectedDuration(e.target.value)}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                    className="w-full px-4 py-2 border border-border-medium rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
                   >
                     {durations.map((duration) => (
                       <option key={duration} value={duration}>
@@ -206,9 +206,9 @@ const CoursesPage = ({courses}) => {
           {/* Main Content */}
           <div className="flex flex-col md:flex-row gap-8">
             {/* Filters Sidebar (Desktop) */}
-            <div className="hidden md:block w-64 bg-white p-6 rounded-lg shadow-sm h-fit sticky top-24">
+            <div className="hidden md:block w-64 bg-surface-primary p-6 rounded-lg shadow-sm h-fit sticky top-24">
               <div className="mb-6">
-                <h3 className="font-semibold text-gray-900 mb-4 flex items-center">
+                <h3 className="font-semibold text-text-primary mb-4 flex items-center">
                   <SlidersHorizontal className="h-5 w-5 mr-2" />
                   Filters
                 </h3>
@@ -216,7 +216,7 @@ const CoursesPage = ({courses}) => {
                 <div className="space-y-6">
                   {/* Category Filter */}
                   <div>
-                    <h4 className="font-medium text-gray-700 mb-3">Category</h4>
+                    <h4 className="font-medium text-text-secondary mb-3">Category</h4>
                     <div className="space-y-2">
                       {categories.map((category) => (
                         <div key={category} className="flex items-center">
@@ -230,7 +230,7 @@ const CoursesPage = ({courses}) => {
                           />
                           <label
                             htmlFor={`category-${category}`}
-                            className="ml-2 text-sm text-gray-600"
+                            className="ml-2 text-sm text-text-secondary"
                           >
                             {category}
                           </label>
@@ -241,7 +241,7 @@ const CoursesPage = ({courses}) => {
 
                   {/* Level Filter */}
                   <div>
-                    <h4 className="font-medium text-gray-700 mb-3">Level</h4>
+                    <h4 className="font-medium text-text-secondary mb-3">Level</h4>
                     <div className="space-y-2">
                       {levels.map((level) => (
                         <div key={level} className="flex items-center">
@@ -255,7 +255,7 @@ const CoursesPage = ({courses}) => {
                           />
                           <label
                             htmlFor={`level-${level}`}
-                            className="ml-2 text-sm text-gray-600"
+                            className="ml-2 text-sm text-text-secondary"
                           >
                             {level}
                           </label>
@@ -266,7 +266,7 @@ const CoursesPage = ({courses}) => {
 
                   {/* Duration Filter */}
                   <div>
-                    <h4 className="font-medium text-gray-700 mb-3"></h4>
+                    <h4 className="font-medium text-text-secondary mb-3"></h4>
                     <div className="space-y-2">
                       {durations.map((duration) => (
                         <div key={duration} className="flex items-center">
@@ -280,7 +280,7 @@ const CoursesPage = ({courses}) => {
                           />
                           <label
                             htmlFor={`duration-${duration}`}
-                            className="ml-2 text-sm text-gray-600"
+                            className="ml-2 text-sm text-text-secondary"
                           >
                             {duration}
                           </label>
@@ -293,7 +293,7 @@ const CoursesPage = ({courses}) => {
 
               {/* Popular Tags */}
               <div>
-                <h3 className="font-semibold text-gray-900 mb-4">Popular Tags</h3>
+                <h3 className="font-semibold text-text-primary mb-4">Popular Tags</h3>
                 <div className="flex flex-wrap gap-2">
                   <span className="text-xs bg-soft-purple text-white px-2 py-1 rounded-full">
                     javascript
@@ -318,7 +318,7 @@ const CoursesPage = ({courses}) => {
             <div className="flex-1">
               {/* Results summary */}
               <div className="mb-6 flex items-center justify-between">
-                <p className="text-gray-600">
+                <p className="text-text-secondary">
                   {filteredCourses.length} courses found
                   {selectedCategory !== 'All' && ` in ${selectedCategory}`}
                   {searchTerm && ` for "${searchTerm}"`}
@@ -329,7 +329,7 @@ const CoursesPage = ({courses}) => {
                   <button className="p-2 rounded bg-soft-purple text-white">
                     <BookOpen className="h-5 w-5" />
                   </button>
-                  <button className="p-2 rounded bg-white border border-gray-200 text-gray-500 hover:bg-soft-purple hover:text-primary">
+                  <button className="p-2 rounded bg-surface-primary border border-border-light text-gray-500 hover:bg-soft-purple hover:text-primary">
                     <Clock className="h-5 w-5" />
                   </button>
                 </div>
@@ -343,8 +343,8 @@ const CoursesPage = ({courses}) => {
                   ))}
                 </div>
               ) : (
-                <div className="text-center py-12 bg-white rounded-lg">
-                  <p className="text-lg text-gray-600 mb-4">
+                <div className="text-center py-12 bg-surface-primary rounded-lg">
+                  <p className="text-lg text-text-secondary mb-4">
                     No courses found matching your criteria.
                   </p>
                   <button
@@ -366,7 +366,7 @@ const CoursesPage = ({courses}) => {
 
                 <div className="mt-12 flex justify-center">
                   <nav className="flex items-center space-x-1">
-                    {/* <button className="px-3 py-1 rounded-md bg-white border border-gray-300 text-gray-500 hover:bg-soft-purple hover:text-primary">
+                    {/* <button className="px-3 py-1 rounded-md bg-surface-primary border border-border-medium text-gray-500 hover:bg-soft-purple hover:text-primary">
                     Prev
                     </button>
                     <button className="px-3 py-1 rounded-md bg-primary text-white">
@@ -374,7 +374,7 @@ const CoursesPage = ({courses}) => {
                     </button> */}
 
                      {courses.links.map((link)=>(
-                        <Link prefetch key={link.label } preserveScroll={true} href={link.url ?? ''} className={`px-3 py-1 rounded-md  border border-gray-300 text-gray-500 hover:bg-soft-purple hover:text-white ${link.active?"bg-primary text-white":null}`} dangerouslySetInnerHTML={{__html:link.label}} />
+                        <Link prefetch key={link.label } preserveScroll={true} href={link.url ?? ''} className={`px-3 py-1 rounded-md  border border-border-medium text-gray-500 hover:bg-soft-purple hover:text-white ${link.active?"bg-primary text-white":null}`} dangerouslySetInnerHTML={{__html:link.label}} />
 
 
 
@@ -382,10 +382,10 @@ const CoursesPage = ({courses}) => {
 
                      }
 
-                    {/* <button className="px-3 py-1 rounded-md bg-white border border-gray-300 text-gray-500 hover:bg-soft-purple hover:text-primary">
+                    {/* <button className="px-3 py-1 rounded-md bg-surface-primary border border-border-medium text-gray-500 hover:bg-soft-purple hover:text-primary">
                       {courses.last_page}
                     </button>
-                    <button className="px-3 py-1 rounded-md bg-white border border-gray-300 text-gray-500 hover:bg-soft-purple hover:text-primary">
+                    <button className="px-3 py-1 rounded-md bg-surface-primary border border-border-medium text-gray-500 hover:bg-soft-purple hover:text-primary">
                       Next
                     </button> */}
                   </nav>
@@ -403,3 +403,13 @@ const CoursesPage = ({courses}) => {
 };
 
 export default CoursesPage;
+
+
+
+
+
+
+
+
+
+

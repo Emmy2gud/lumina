@@ -21,7 +21,7 @@ const FlashcardsPage = () => {
         <div className="container mx-auto px-4 py-24 max-w-6xl">
           <div className="mb-16 text-center space-y-6">
             <h1 className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-purple-900 via-purple-700 to-indigo-600 bg-clip-text text-transparent">AI-Powered Flashcards</h1>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto font-light">
+            <p className="text-xl text-text-secondary max-w-3xl mx-auto font-light">
               Generate and study flashcards to reinforce your learning. Our AI assistant will help you create effective flashcards for any topic.
             </p>
           </div>
@@ -29,11 +29,11 @@ const FlashcardsPage = () => {
           <AIFlashcardGenerator onAddFlashcard={addFlashcard} />
 
           <div className="mt-20">
-            <h2 className="text-4xl font-bold text-gray-900 mb-10">Your Flashcard Collection</h2>
+            <h2 className="text-4xl font-bold text-text-primary mb-10">Your Flashcard Collection</h2>
             {flashcards.length > 0 ? (
               <FlashcardDeck flashcards={flashcards} />
             ) : (
-              <div className="text-center py-16 bg-gradient-to-br from-purple-50 to-indigo-50 rounded-2xl border border-gray-200">
+              <div className="text-center py-16 bg-gradient-to-br from-purple-50 to-indigo-50 rounded-2xl border border-border-light">
                 <p className="text-gray-500 text-lg font-light">No flashcards yet. Generate some using the AI assistant above!</p>
               </div>
             )}
@@ -45,3 +45,13 @@ const FlashcardsPage = () => {
 };
 
 export default FlashcardsPage;
+
+
+
+
+
+
+
+
+
+

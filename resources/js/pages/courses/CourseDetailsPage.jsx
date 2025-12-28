@@ -93,7 +93,7 @@ const CourseDetailsPage = ({ course, instructor }) => {
     }, 0);
 
     return (
-        <div className="min-h-screen bg-gray-50">
+        <div className="min-h-screen bg-card">
             <div className="pt-24 pb-10">
                 <div className="container mx-auto px-4 md:px-6">
                     <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -102,14 +102,14 @@ const CourseDetailsPage = ({ course, instructor }) => {
                             {/* Course Content */}
                             <CourseContent course={course} />
 
-                            <div className="bg-white mt-8 rounded-lg overflow-hidden border border-gray-200">
+                            <div className="bg-card mt-8 rounded-lg overflow-hidden border border-secondary-100">
                                 <div className="flex overflow-x-auto">
                                     <button
                                         onClick={() => setActiveTab("overview")}
                                         className={`px-6 py-4 font-medium whitespace-nowrap ${
                                             activeTab === "overview"
-                                                ? "text-learnify-primary border-b-2 border-learnify-primary"
-                                                : "text-gray-600 hover:text-learnify-primary"
+                                                ? "text-primary border-b-2 border-primary"
+                                                : "text-secondary-700 hover:text-primary"
                                         }`}
                                     >
                                         Overview
@@ -120,8 +120,8 @@ const CourseDetailsPage = ({ course, instructor }) => {
                                         }
                                         className={`px-6 py-4 font-medium whitespace-nowrap ${
                                             activeTab === "curriculum"
-                                                ? "text-learnify-primary border-b-2 border-learnify-primary"
-                                                : "text-gray-600 hover:text-learnify-primary"
+                                                ? "text-primary border-b-2 border-primary"
+                                                : "text-secondary-700 hover:text-primary"
                                         }`}
                                     >
                                         Curriculum
@@ -132,8 +132,8 @@ const CourseDetailsPage = ({ course, instructor }) => {
                                         }
                                         className={`px-6 py-4 font-medium whitespace-nowrap ${
                                             activeTab === "instructor"
-                                                ? "text-learnify-primary border-b-2 border-learnify-primary"
-                                                : "text-gray-600 hover:text-learnify-primary"
+                                                ? "text-primary border-b-2 border-primary"
+                                                : "text-secondary-700 hover:text-primary"
                                         }`}
                                     >
                                         Instructor
@@ -142,8 +142,8 @@ const CourseDetailsPage = ({ course, instructor }) => {
                                         onClick={() => setActiveTab("reviews")}
                                         className={`px-6 py-4 font-medium whitespace-nowrap ${
                                             activeTab === "reviews"
-                                                ? "text-learnify-primary border-b-2 border-learnify-primary"
-                                                : "text-gray-600 hover:text-learnify-primary"
+                                                ? "text-primary border-b-2 border-primary"
+                                                : "text-secondary-700 hover:text-primary"
                                         }`}
                                     >
                                         Reviews
@@ -153,8 +153,8 @@ const CourseDetailsPage = ({ course, instructor }) => {
                                         onClick={() => setActiveTab("section")}
                                         className={`px-6 py-4 font-medium whitespace-nowrap ${
                                             activeTab === "section"
-                                                ? "text-learnify-primary border-b-2 border-learnify-primary"
-                                                : "text-gray-600 hover:text-learnify-primary"
+                                                ? "text-primary border-b-2 border-primary"
+                                                : "text-secondary-700 hover:text-primary"
                                         }`}
                                     >
                                         Sections Overview
@@ -168,7 +168,7 @@ const CourseDetailsPage = ({ course, instructor }) => {
                                             <h2 className="text-xl font-bold mb-4">
                                                 About This Course
                                             </h2>
-                                            <p className="text-gray-600 mb-6 whitespace-pre-line">
+                                            <p className="text-secondary-700 mb-6 whitespace-pre-line">
                                                 {course.description}
                                             </p>
 
@@ -224,9 +224,9 @@ const CourseDetailsPage = ({ course, instructor }) => {
                                                 Course Materials
                                             </h3>
                                             <div className="space-y-3 mb-6">
-                                                <div className="flex items-center justify-between p-3 bg-learnify-softPurple rounded-md">
+                                                <div className="flex items-center justify-between p-3 bg-card-primary rounded-md">
                                                     <div className="flex items-center">
-                                                        <BookOpen className="h-5 w-5 text-red-500 mr-3" />
+                                                        <BookOpen className="h-5 w-5 text-danger mr-3" />
 
                                                         {/* <Download className="h-5 w-5 text-blue-500 mr-3" /> */}
 
@@ -235,22 +235,22 @@ const CourseDetailsPage = ({ course, instructor }) => {
                                                                 React
                                                                 fundamentals
                                                             </p>
-                                                            <p className="text-xs text-gray-500">
+                                                            <p className="text-xs text-secondary-500">
                                                                 104kb
                                                             </p>
                                                         </div>
                                                     </div>
-                                                    <button className="text-learnify-primary hover:text-learnify-secondary">
+                                                    <button className="text-primary hover:text-secondary">
                                                         <Download className="h-5 w-5" />
                                                     </button>
                                                 </div>
                                             </div>
 
-                                            <div className="bg-learnify-softPurple p-4 rounded-md">
+                                            <div className="bg-card-primary p-4 rounded-md">
                                                 <h3 className="font-semibold text-lg mb-2">
                                                     Certificate of Completion
                                                 </h3>
-                                                <p className="text-gray-600">
+                                                <p className="text-secondary-700">
                                                     Upon completing this course,
                                                     you'll receive a certificate
                                                     that you can share with your
@@ -269,27 +269,27 @@ const CourseDetailsPage = ({ course, instructor }) => {
                                             </h2>
                                             <div className="flex flex-wrap gap-4 mb-6">
                                                 <div className="flex items-center">
-                                                    <BookOpen className="h-5 w-5 mr-2 text-learnify-primary" />
+                                                    <BookOpen className="h-5 w-5 mr-2 text-primary" />
                                                     <span>
-                                                        {course.sections.length}{" "}
+                                                        {course.sections.length}{' '}
                                                         sections
                                                     </span>
                                                 </div>
                                                 <div className="flex items-center">
-                                                    <PlayCircle className="h-5 w-5 mr-2 text-learnify-primary" />
+                                                    <PlayCircle className="h-5 w-5 mr-2 text-primary" />
                                                     <span>
                                                         {totalVideos} videos
                                                     </span>
                                                 </div>
                                                 <div className="flex items-center">
-                                                    <Clock className="h-5 w-5 mr-2 text-learnify-primary" />
+                                                    <Clock className="h-5 w-5 mr-2 text-primary" />
                                                     <span>
                                                         {course.duration} total
                                                         duration
                                                     </span>
                                                 </div>
                                                 <div className="flex items-center">
-                                                    <Award className="h-5 w-5 mr-2 text-learnify-primary" />
+                                                    <Award className="h-5 w-5 mr-2 text-primary" />
                                                     {course.sections.map(
                                                         (section) => (
                                                             <div
@@ -309,9 +309,9 @@ const CourseDetailsPage = ({ course, instructor }) => {
                                                     )}
                                                 </div>
                                                 <div className="flex items-center">
-                                                    <BookOpen className="h-5 w-5 mr-2 text-learnify-primary" />
+                                                    <BookOpen className="h-5 w-5 mr-2 text-primary" />
                                                     <span>
-                                                        {totalExercises}{" "}
+                                                        {totalExercises}{' '}
                                                         exercises/projects
                                                     </span>
                                                 </div>
@@ -343,13 +343,13 @@ const CourseDetailsPage = ({ course, instructor }) => {
                                                     <h3 className="text-lg font-semibold mb-2">
                                                         {instructor.fullname}
                                                     </h3>
-                                                    <p className="text-gray-600 mb-4">
+                                                    <p className="text-secondary-700 mb-4">
                                                         {instructor.bio}
                                                     </p>
 
-                                                    <div className="flex flex-wrap gap-4 text-sm text-gray-600">
+                                                    <div className="flex flex-wrap gap-4 text-sm text-secondary-700">
                                                         <div className="flex items-center">
-                                                            <Star className="h-4 w-4 mr-1 text-yellow-400 fill-yellow-400" />
+                                                            <Star className="h-4 w-4 mr-1 text-warning fill-warning" />
                                                             <span>
                                                                 4.8 Instructor
                                                                 Rating
@@ -380,8 +380,8 @@ const CourseDetailsPage = ({ course, instructor }) => {
                                                 Student Reviews
                                             </h2>
                                             <div className="flex flex-col md:flex-row gap-6 mb-8">
-                                                <div className="md:w-1/3 bg-learnify-softPurple p-6 rounded-lg text-center">
-                                                    <div className="text-5xl font-bold text-learnify-primary mb-2">
+                                                <div className="md:w-1/3 bg-card-primary p-6 rounded-lg text-center">
+                                                    <div className="text-5xl font-bold text-primary mb-2">
                                                         {course.rating}
                                                     </div>
                                                     <div className="flex justify-center mb-2">
@@ -394,18 +394,18 @@ const CourseDetailsPage = ({ course, instructor }) => {
                                                                         Math.floor(
                                                                             course.rating
                                                                         )
-                                                                            ? "text-yellow-400 fill-yellow-400"
+                                                                            ? "text-warning fill-warning"
                                                                             : i <
                                                                               course.rating
-                                                                            ? "text-yellow-400 fill-yellow-400 opacity-50"
-                                                                            : "text-gray-300"
+                                                                            ? "text-warning fill-warning opacity-50"
+                                                                            : "text-secondary-300"
                                                                     }`}
                                                                 />
                                                             )
                                                         )}
                                                     </div>
-                                                    <p className="text-gray-600">
-                                                        Course Rating •{" "}
+                                                    <p className="text-secondary-700">
+                                                        Course Rating •{' '}
                                                         {course.reviews} Reviews
                                                     </p>
                                                 </div>
@@ -439,17 +439,17 @@ const CourseDetailsPage = ({ course, instructor }) => {
                                                                                 star
                                                                             }
                                                                         </span>
-                                                                        <Star className="h-4 w-4 text-yellow-400 fill-yellow-400" />
+                                                                        <Star className="h-4 w-4 text-warning fill-warning" />
                                                                     </div>
-                                                                    <div className="flex-1 h-2 bg-gray-200 rounded-full mx-2">
+                                                                    <div className="flex-1 h-2 bg-secondary-200 rounded-full mx-2">
                                                                         <div
-                                                                            className="h-2 bg-yellow-400 rounded-full"
+                                                                            className="h-2 bg-warning rounded-full"
                                                                             style={{
                                                                                 width: `${percentage}%`,
                                                                             }}
                                                                         ></div>
                                                                     </div>
-                                                                    <div className="w-12 text-right text-sm text-gray-600">
+                                                                    <div className="w-12 text-right text-sm text-secondary-700">
                                                                         {
                                                                             percentage
                                                                         }
@@ -464,10 +464,10 @@ const CourseDetailsPage = ({ course, instructor }) => {
 
                                             {/* Sample Reviews */}
                                             <div className="space-y-6">
-                                                <div className="border-b border-gray-200 pb-6">
+                                                <div className="border-b border-secondary-100 pb-6">
                                                     <div className="flex items-start justify-between mb-3">
                                                         <div className="flex items-center">
-                                                            <div className="w-10 h-10 rounded-full bg-learnify-primary flex items-center justify-center text-white mr-3">
+                                                            <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white mr-3">
                                                                 MJ
                                                             </div>
                                                             <div>
@@ -475,7 +475,7 @@ const CourseDetailsPage = ({ course, instructor }) => {
                                                                     Michael
                                                                     Johnson
                                                                 </h4>
-                                                                <p className="text-sm text-gray-500">
+                                                                <p className="text-sm text-secondary-500">
                                                                     2 weeks ago
                                                                 </p>
                                                             </div>
@@ -485,13 +485,13 @@ const CourseDetailsPage = ({ course, instructor }) => {
                                                                 (_, i) => (
                                                                     <Star
                                                                         key={i}
-                                                                        className="h-4 w-4 text-yellow-400 fill-yellow-400"
+                                                                        className="h-4 w-4 text-warning fill-warning"
                                                                     />
                                                                 )
                                                             )}
                                                         </div>
                                                     </div>
-                                                    <p className="text-gray-600">
+                                                    <p className="text-secondary-700">
                                                         This course exceeded my
                                                         expectations. The
                                                         content is comprehensive
@@ -506,10 +506,10 @@ const CourseDetailsPage = ({ course, instructor }) => {
                                                     </p>
                                                 </div>
 
-                                                <div className="border-b border-gray-200 pb-6">
+                                                <div className="border-b border-secondary-100 pb-6">
                                                     <div className="flex items-start justify-between mb-3">
                                                         <div className="flex items-center">
-                                                            <div className="w-10 h-10 rounded-full bg-learnify-secondary flex items-center justify-center text-white mr-3">
+                                                            <div className="w-10 h-10 rounded-full bg-secondary flex items-center justify-center text-white mr-3">
                                                                 ST
                                                             </div>
                                                             <div>
@@ -517,7 +517,7 @@ const CourseDetailsPage = ({ course, instructor }) => {
                                                                     Sarah
                                                                     Thompson
                                                                 </h4>
-                                                                <p className="text-sm text-gray-500">
+                                                                <p className="text-sm text-secondary-500">
                                                                     1 month ago
                                                                 </p>
                                                             </div>
@@ -530,15 +530,15 @@ const CourseDetailsPage = ({ course, instructor }) => {
                                                                         className={`h-4 w-4 ${
                                                                             i <
                                                                             4
-                                                                                ? "text-yellow-400 fill-yellow-400"
-                                                                                : "text-gray-300"
+                                                                                ? "text-warning fill-warning"
+                                                                                : "text-secondary-300"
                                                                         }`}
                                                                     />
                                                                 )
                                                             )}
                                                         </div>
                                                     </div>
-                                                    <p className="text-gray-600">
+                                                    <p className="text-secondary-700">
                                                         Great course overall.
                                                         The content is very
                                                         detailed and relevant.
@@ -555,7 +555,7 @@ const CourseDetailsPage = ({ course, instructor }) => {
                                                 <div>
                                                     <div className="flex items-start justify-between mb-3">
                                                         <div className="flex items-center">
-                                                            <div className="w-10 h-10 rounded-full bg-learnify-tertiary flex items-center justify-center text-white mr-3">
+                                                            <div className="w-10 h-10 rounded-full bg-info flex items-center justify-center text-white mr-3">
                                                                 AR
                                                             </div>
                                                             <div>
@@ -563,7 +563,7 @@ const CourseDetailsPage = ({ course, instructor }) => {
                                                                     Alex
                                                                     Rodriguez
                                                                 </h4>
-                                                                <p className="text-sm text-gray-500">
+                                                                <p className="text-sm text-secondary-500">
                                                                     2 months ago
                                                                 </p>
                                                             </div>
@@ -576,15 +576,15 @@ const CourseDetailsPage = ({ course, instructor }) => {
                                                                         className={`h-4 w-4 ${
                                                                             i <
                                                                             5
-                                                                                ? "text-yellow-400 fill-yellow-400"
-                                                                                : "text-gray-300"
+                                                                                ? "text-warning fill-warning"
+                                                                                : "text-secondary-300"
                                                                         }`}
                                                                     />
                                                                 )
                                                             )}
                                                         </div>
                                                     </div>
-                                                    <p className="text-gray-600">
+                                                    <p className="text-secondary-700">
                                                         One of the best React
                                                         courses I've taken. The
                                                         instructor's teaching
@@ -607,7 +607,7 @@ const CourseDetailsPage = ({ course, instructor }) => {
                                             <h2 className="text-xl font-bold mb-4">💬 Questions & Answers</h2>
 
                                             {/* Input box */}
-                                            <div className="bg-gray-50 p-4 rounded-lg mb-6 shadow-sm">
+                                            <div className="bg-card p-4 rounded-lg mb-6 shadow-sm">
                                                 <div className="flex gap-3">
                                                     <img src={"https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&q=80&w=200&h=200"} alt="you" className="w-10 h-10 rounded-full object-cover" />
                                                     <div className="flex-1">
@@ -617,19 +617,19 @@ const CourseDetailsPage = ({ course, instructor }) => {
                                                             onChange={(e) => setNewQuestion(e.target.value)}
                                                             onInput={(e) => { e.target.style.height = 'auto'; e.target.style.height = e.target.scrollHeight + 'px'; }}
                                                             placeholder="Ask a question about this lesson..."
-                                                            className="w-full resize-none overflow-hidden rounded-xl border border-gray-200 bg-white px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-learnify-primary transition"
+                                                            className="w-full resize-none overflow-hidden rounded-xl border border-secondary-100 bg-card px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary transition"
                                                             rows={1}
                                                         />
 
                                                         <div className="mt-3 flex items-center justify-between">
-                                                            <div className="flex items-center gap-2 text-gray-500">
-                                                                <label className="flex items-center gap-2 cursor-pointer hover:text-gray-700">
+                                                            <div className="flex items-center gap-2 text-secondary-500">
+                                                                <label className="flex items-center gap-2 cursor-pointer hover:text-secondary-700">
                                                                     <input type="file" className="hidden" onChange={(e) => handleAttach(e.target.files && e.target.files[0])} />
-                                                                    <svg className="w-5 h-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15.172 7l-6.586 6.586a2 2 0 002.828 2.828L18 9.828a4 4 0 10-5.656-5.656L6.344 10.172a6 6 0 108.486 8.486L20 13.657"/></svg>
+                                                                    <svg className="w-5 h-5 text-secondary-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15.172 7l-6.586 6.586a2 2 0 002.828 2.828L18 9.828a4 4 0 10-5.656-5.656L6.344 10.172a6 6 0 108.486 8.486L20 13.657"/></svg>
                                                                     <span className="text-xs">Attach</span>
                                                                 </label>
 
-                                                                <button onClick={() => insertEmoji('😊')} className="flex items-center gap-1 text-gray-500 hover:text-gray-700 text-sm">
+                                                                <button onClick={() => insertEmoji('😊')} className="flex items-center gap-1 text-secondary-500 hover:text-secondary-700 text-sm">
                                                                     <svg className="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01"/></svg>
                                                                     <span className="sr-only">Insert emoji</span>
                                                                 </button>
@@ -638,14 +638,14 @@ const CourseDetailsPage = ({ course, instructor }) => {
                                                             <div className="flex items-center gap-3">
                                                                 <div className="flex items-center gap-2">
                                                                     {attachments.map((a, idx) => (
-                                                                        <div key={idx} className="text-xs bg-gray-100 px-2 py-1 rounded-md">{a.name}</div>
+                                                                        <div key={idx} className="text-xs bg-card-muted px-2 py-1 rounded-md">{a.name}</div>
                                                                     ))}
                                                                 </div>
 
                                                                 <button
                                                                     onClick={handleSendQuestion}
                                                                     disabled={!newQuestion.trim()}
-                                                                    className={`flex items-center gap-2 px-4 py-2 rounded-md text-sm font-medium transition ${newQuestion.trim() ? 'bg-learnify-primary text-white' : 'bg-gray-200 text-gray-500 cursor-not-allowed'}`}>
+                                                                    className={`flex items-center gap-2 px-4 py-2 rounded-md text-sm font-medium transition ${newQuestion.trim() ? 'bg-primary text-white' : 'bg-secondary-200 text-secondary-500 cursor-not-allowed'}`}>
                                                                     <svg className="w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14.752 11.168l-9.197-5.266A1 1 0 003 6.89v10.22a1 1 0 001.555.831l9.197-5.266a1 1 0 000-1.664z"/></svg>
                                                                     <span>Send</span>
                                                                 </button>
@@ -658,29 +658,29 @@ const CourseDetailsPage = ({ course, instructor }) => {
                                             {/* Questions list */}
                                             <div className="space-y-4">
                                                 {questions.map((q) => (
-                                                    <div key={q.id} className="bg-white rounded-lg p-4 shadow-sm border border-gray-100 hover:shadow-md transition">
+                                                    <div key={q.id} className="bg-card rounded-lg p-4 shadow-sm border border-secondary-100 hover:shadow-md transition">
                                                         <div className="flex items-start gap-3">
                                                             <img src={q.user.avatar} alt={q.user.name} className="w-10 h-10 rounded-full object-cover" />
                                                             <div className="flex-1">
                                                                 <div className="flex items-center justify-between">
                                                                     <div>
-                                                                        <div className="font-semibold text-gray-900">{q.user.name}</div>
-                                                                        <div className="text-xs text-gray-400">{q.time}</div>
+                                                                        <div className="font-semibold text-secondary-900">{q.user.name}</div>
+                                                                        <div className="text-xs text-secondary-500">{q.time}</div>
                                                                     </div>
-                                                                    <div className="text-sm text-gray-500">{/* optional flags */}</div>
+                                                                    <div className="text-sm text-secondary-500">{/* optional flags */}</div>
                                                                 </div>
 
-                                                                <div className="mt-3 text-gray-700 whitespace-pre-wrap">{q.text}</div>
+                                                                <div className="mt-3 text-secondary-700 whitespace-pre-wrap">{q.text}</div>
 
-                                                                <hr className="my-3 border-gray-100" />
+                                                                <hr className="my-3 border-secondary-100" />
 
                                                                 {q.answer ? (
-                                                                    <div className="bg-learnify-softPurple p-3 rounded-lg">
-                                                                        <div className="text-sm text-gray-700">{q.answer.text}</div>
-                                                                        <div className="text-xs text-gray-400 mt-2">Answered • {q.answer.time}</div>
+                                                                    <div className="bg-card-primary p-3 rounded-lg">
+                                                                        <div className="text-sm text-secondary-700">{q.answer.text}</div>
+                                                                        <div className="text-xs text-secondary-500 mt-2">Answered • {q.answer.time}</div>
                                                                     </div>
                                                                 ) : (
-                                                                    <div className="text-xs text-gray-400">No answer yet</div>
+                                                                    <div className="text-xs text-secondary-500">No answer yet</div>
                                                                 )}
                                                             </div>
                                                         </div>
@@ -695,7 +695,7 @@ const CourseDetailsPage = ({ course, instructor }) => {
 
                         {/* Sidebar - Right 1/3 */}
                         <div className="lg:col-span-1">
-                            <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200 sticky top-24">
+                            <div className="bg-card p-6 rounded-lg shadow-sm border border-secondary-100 sticky top-24">
                                 <div className="relative aspect-video mb-6 overflow-hidden rounded-md">
                                     <img
                                         src={`/storage/${course.thumbnail}`}
@@ -703,7 +703,7 @@ const CourseDetailsPage = ({ course, instructor }) => {
                                         className="w-full h-full object-cover"
                                     />
                                     <div className="absolute inset-0 bg-black/60 flex items-center justify-center">
-                                        <button className="bg-white/20 hover:bg-white/30 p-4 rounded-full transition-colors">
+                                        <button className="bg-card/20 hover:bg-card/30 p-4 rounded-full transition-colors">
                                             <PlayCircle className="h-10 w-10 text-white" />
                                         </button>
                                     </div>
@@ -714,20 +714,20 @@ const CourseDetailsPage = ({ course, instructor }) => {
 
                                 <div className="mb-6">
                                     <div className="flex justify-between items-center mb-4">
-                                        <span className="text-3xl font-bold text-learnify-primary">
+                                        <span className="text-3xl font-bold text-primary">
                                             {course.discountPrice}
                                         </span>
-                                        <span className="text-lg text-gray-500 line-through">
+                                        <span className="text-lg text-secondary-500 line-through">
                                             {course.price}
                                         </span>
                                     </div>
-                                    <button className="w-full bg-primary text-white py-3 rounded-md font-medium hover:bg-learnify-secondary transition-colors mb-3">
+                                    <button className="w-full bg-primary text-white py-3 rounded-md font-medium hover:bg-secondary transition-colors mb-3">
                                         Enroll Now
                                     </button>
-                                    <button className="w-full border border-learnify-primary text-learnify-primary py-3 rounded-md font-medium hover:bg-learnify-softPurple transition-colors">
+                                    <button className="w-full border border-primary text-primary py-3 rounded-md font-medium hover:bg-card-primary transition-colors">
                                         Add to Wishlist
                                     </button>
-                                    <p className="text-center text-sm text-gray-500 mt-3">
+                                    <p className="text-center text-sm text-secondary-500 mt-3">
                                         30-Day Money-Back Guarantee
                                     </p>
                                 </div>
@@ -738,39 +738,39 @@ const CourseDetailsPage = ({ course, instructor }) => {
                                     </h3>
                                     <ul className="space-y-3">
                                         <li className="flex items-center">
-                                            <PlayCircle className="h-5 w-5 text-learnify-primary mr-3" />
+                                            <PlayCircle className="h-5 w-5 text-primary mr-3" />
                                             <span>
                                                 {course.duration} on-demand
                                                 video
                                             </span>
                                         </li>
                                         {/* <li className="flex items-center">
-                      <BookOpen className="h-5 w-5 text-learnify-primary mr-3" />
+                      <BookOpen className="h-5 w-5 text-primary mr-3" />
                       <span>{course.materials.length} downloadable resources</span>
                     </li> */}
                                         <li className="flex items-center">
-                                            <Award className="h-5 w-5 text-learnify-primary mr-3" />
+                                            <Award className="h-5 w-5 text-primary mr-3" />
                                             <span>
                                                 Certificate of completion
                                             </span>
                                         </li>
                                         <li className="flex items-center">
-                                            <Clock className="h-5 w-5 text-learnify-primary mr-3" />
+                                            <Clock className="h-5 w-5 text-primary mr-3" />
                                             <span>Full lifetime access</span>
                                         </li>
                                         <li className="flex items-center">
-                                            <Users className="h-5 w-5 text-learnify-primary mr-3" />
+                                            <Users className="h-5 w-5 text-primary mr-3" />
                                             <span>Access on mobile and TV</span>
                                         </li>
                                     </ul>
                                 </div>
 
-                                <div className="border-t border-gray-200 pt-6">
+                                <div className="border-t border-secondary-100 pt-6">
                                     <h3 className="font-semibold text-lg mb-3">
                                         Share this course:
                                     </h3>
                                     <div className="flex space-x-3">
-                                        <button className="bg-[#3b5998] text-white p-2 rounded-full hover:opacity-90">
+                                        <button className="bg-learnify-primary text-white p-2 rounded-full hover:opacity-90">
                                             <svg
                                                 className="h-5 w-5"
                                                 fill="currentColor"
@@ -779,7 +779,7 @@ const CourseDetailsPage = ({ course, instructor }) => {
                                                 <path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z" />
                                             </svg>
                                         </button>
-                                        <button className="bg-[#1da1f2] text-white p-2 rounded-full hover:opacity-90">
+                                        <button className="bg-learnify-secondary text-white p-2 rounded-full hover:opacity-90">
                                             <svg
                                                 className="h-5 w-5"
                                                 fill="currentColor"
@@ -788,7 +788,7 @@ const CourseDetailsPage = ({ course, instructor }) => {
                                                 <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723 10.054 10.054 0 01-3.127 1.184 4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z" />
                                             </svg>
                                         </button>
-                                        <button className="bg-[#0e76a8] text-white p-2 rounded-full hover:opacity-90">
+                                        <button className="bg-learnify-tertiary text-white p-2 rounded-full hover:opacity-90">
                                             <svg
                                                 className="h-5 w-5"
                                                 fill="currentColor"
@@ -797,7 +797,7 @@ const CourseDetailsPage = ({ course, instructor }) => {
                                                 <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667h-3.553v-11.452h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019h-3.564v-11.452h3.564v11.452z" />
                                             </svg>
                                         </button>
-                                        <button className="bg-[#bd081c] text-white p-2 rounded-full hover:opacity-90">
+                                        <button className="bg-danger text-white p-2 rounded-full hover:opacity-90">
                                             <svg
                                                 className="h-5 w-5"
                                                 fill="currentColor"
@@ -818,3 +818,13 @@ const CourseDetailsPage = ({ course, instructor }) => {
 };
 
 export default CourseDetailsPage;
+
+
+
+
+
+
+
+
+
+

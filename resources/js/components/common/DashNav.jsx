@@ -65,32 +65,12 @@ const DashNav = () => {
             <div className="container mx-auto px-4 md:px-8">
                 <div className="flex justify-between items-center">
                     {/* Logo */}
-                    <Link href="/" className="flex items-center gap-2">
-                        <div className="flex items-center gap-2">
-                            <div className="h-8 w-8 rounded-lg bg-primary " />
-                            <span className="text-xl font-extrabold text-primary">
-                                Lumina
-                            </span>
-                        </div>
-                    </Link>
-
-                    {/* Desktop Navigation */}
-                    <div className="hidden lg:flex items-center gap-2 mb-2">
-                        {navItems.map((item) => (
-                            <Link
-                                key={item.title}
-                                href={item.path}
-                                className={`flex items-center gap-1 px-3 py-2 rounded-md transition-colors duration-200 hover-scale   ${
-                                    isActive(item.path)
-                                        ? "bg-primary/10 text-primary font-semibold"
-                                        : "text-violet-600 font-medium hover:text-primary "
-                                }`}
-                            >
-                                {item.icon && <item.icon className="w-4 h-4" />}
-                                {item.title}
-                            </Link>
-                        ))}
+                    <div className="ml-40">
+                        <h1 className="text-3xl font-medium text-violet-600">Dashboard</h1>
                     </div>
+
+
+
 
                     {/* Desktop - Right side icons */}
                     <div className="hidden lg:flex items-center gap-4">
@@ -360,7 +340,7 @@ const DashNav = () => {
                 </div>
             </div>
             {/* category nav */}
-      
+
         </nav>
     );
 };

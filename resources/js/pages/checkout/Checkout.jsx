@@ -83,7 +83,7 @@ export default function Checkout({ cart }) {
 
                 <section className="grid gap-6 md:grid-cols-2">
                     <article className="space-y-6">
-                        <div className="rounded-xl bg-white  shadow-gray-400 p-6 shadow-sm">
+                        <div className="rounded-xl bg-surface-primary  shadow-gray-400 p-6 shadow-sm">
                             <h2 className="mb-4 text-lg font-semibold">
                                 Payment Details
                             </h2>
@@ -109,7 +109,7 @@ export default function Checkout({ cart }) {
                                             setData("fullname", e.target.value)
                                         }
                                         placeholder="Jane Doe"
-                                        className="flex h-10 w-full rounded-md border border-gray-400  bg-background px-3 py-2 text-base ring-offset-background placeholder:text-gray-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 md:text-sm"
+                                        className="flex h-10 w-full rounded-md border border-gray-400  bg-background px-3 py-2 text-base ring-offset-background placeholder:text-text-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 md:text-sm"
                                     />
                                     {errors.fullname && (
                                         <div className="text-red-500">
@@ -136,7 +136,7 @@ export default function Checkout({ cart }) {
                                             setData("email", e.target.value)
                                         }
                                         placeholder="johndoe@gmail.com"
-                                        className="flex h-10 w-full rounded-md border border-gray-400 bg-background px-3 py-2 text-base ring-offset-background placeholder:text-gray-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 md:text-sm"
+                                        className="flex h-10 w-full rounded-md border border-gray-400 bg-background px-3 py-2 text-base ring-offset-background placeholder:text-text-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 md:text-sm"
                                     />
                                     {errors.email && (
                                         <div className="text-red-500">
@@ -199,7 +199,7 @@ export default function Checkout({ cart }) {
                                                 )
                                             }
                                             placeholder="12345"
-                                            className="flex h-10 w-full rounded-md border border-gray-400 bg-background px-3 py-2 text-base ring-offset-background placeholder:text-gray-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 md:text-sm"
+                                            className="flex h-10 w-full rounded-md border border-gray-400 bg-background px-3 py-2 text-base ring-offset-background placeholder:text-text-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 md:text-sm"
                                         />
 
                                         {errors.postal && (
@@ -241,7 +241,7 @@ export default function Checkout({ cart }) {
                     </article>
 
                     {/* Order Summary */}
-                    <aside className="h-fit rounded-xl bg-white  shadow-gray-400 p-6 shadow-sm  md:sticky md:top-6">
+                    <aside className="h-fit rounded-xl bg-surface-primary  shadow-gray-400 p-6 shadow-sm  md:sticky md:top-6">
                         <h2 className="mb-4 text-lg font-semibold">
                             Order Summary
                         </h2>
@@ -264,7 +264,7 @@ export default function Checkout({ cart }) {
                                         <p className="line-clamp-1 text-sm font-medium">
                                             {i.name}
                                         </p>
-                                        <p className=" text-sm text-gray-400 ">
+                                        <p className=" text-sm text-text-muted ">
                                             {i.instructor}
                                         </p>
                                         <p className="text-xs text-muted-foreground">
@@ -336,3 +336,13 @@ export default function Checkout({ cart }) {
         </>
     );
 }
+
+
+
+
+
+
+
+
+
+

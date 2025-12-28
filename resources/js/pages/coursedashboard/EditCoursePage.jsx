@@ -59,7 +59,7 @@ const CreateCoursePage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-surface-secondary">
 
 
       <div className="pt-16 md:pt-0 flex">
@@ -68,13 +68,13 @@ const CreateCoursePage = () => {
         <div className="flex-1 p-4 md:p-8 ml-0 md:ml-20 lg:ml-64">
           <div className="max-w-3xl mx-auto">
             <div className="mb-8">
-              <h1 className="text-2xl md:text-3xl font-bold text-gray-900">Edit Course</h1>
-              <p className="text-gray-600">
+              <h1 className="text-2xl md:text-3xl font-bold text-text-primary">Edit Course</h1>
+              <p className="text-text-secondary">
                 Update your course details below.
               </p>
             </div>
 
-            <div className="bg-white p-6 rounded-lg shadow-sm">
+            <div className="bg-surface-primary p-6 rounded-lg shadow-sm">
               <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
                   <FormField
@@ -84,9 +84,9 @@ const CreateCoursePage = () => {
                       <FormItem>
                         <FormLabel>Course Title</FormLabel>
                         <FormControl>
-                          <Input   className="block  border border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary" placeholder="Enter course title" {...field} />
+                          <Input   className="block  border border-border-medium rounded-md shadow-sm focus:ring-primary focus:border-primary" placeholder="Enter course title" {...field} />
                         </FormControl>
-                        <FormDescription className="text-sm text-gray-400">
+                        <FormDescription className="text-sm text-text-muted">
                           Give your course a clear and descriptive title.
                         </FormDescription>
                         <FormMessage />
@@ -104,11 +104,11 @@ const CreateCoursePage = () => {
                           <Textarea
                             placeholder="Provide a detailed description of your course"
 
-                            className="block border border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary"
+                            className="block border border-border-medium rounded-md shadow-sm focus:ring-primary focus:border-primary"
                             {...field}
                           />
                         </FormControl>
-                        <FormDescription className="text-sm text-gray-400">
+                        <FormDescription className="text-sm text-text-muted">
                           Describe what students will learn from this course.
                         </FormDescription>
                         <FormMessage />
@@ -128,11 +128,11 @@ const CreateCoursePage = () => {
                         >
 
 <FormControl>
-                              <SelectTrigger className="border border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary">
+                              <SelectTrigger className="border border-border-medium rounded-md shadow-sm focus:ring-primary focus:border-primary">
                                 <SelectValue placeholder="Select a category" />
                               </SelectTrigger>
                             </FormControl>
-                            <SelectContent className="bg-soft-purple  border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary">
+                            <SelectContent className="bg-soft-purple  border-border-medium rounded-md shadow-sm focus:ring-primary focus:border-primary">
                               <SelectItem className='hover:bg-primary' value="programming">Programming</SelectItem>
                               <SelectItem className='hover:bg-primary'  value="design">Design</SelectItem>
                               <SelectItem className='hover:bg-primary'  value="business">Business</SelectItem>
@@ -140,7 +140,7 @@ const CreateCoursePage = () => {
                               <SelectItem className='hover:bg-primary'  value="personal-development">Personal Development</SelectItem>
                             </SelectContent>
                           </Select>
-                        <FormDescription className="text-sm text-gray-400">
+                        <FormDescription className="text-sm text-text-muted">
                           Choose the category that best fits your course.
                         </FormDescription>
                         <FormMessage />
@@ -156,12 +156,12 @@ const CreateCoursePage = () => {
                         <FormLabel>Thumbnail Image URL</FormLabel>
                         <FormControl>
                           <Input
-                          className="block  border border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary"
+                          className="block  border border-border-medium rounded-md shadow-sm focus:ring-primary focus:border-primary"
                             placeholder="Enter thumbnail image URL"
                             {...field}
                           />
                         </FormControl>
-                        <FormDescription className="text-sm text-gray-400">
+                        <FormDescription className="text-sm text-text-muted">
                           Provide a URL for your course thumbnail image.
                         </FormDescription>
                         <FormMessage />
@@ -177,12 +177,12 @@ const CreateCoursePage = () => {
                         <FormLabel>Introduction Video URL (optional)</FormLabel>
                         <FormControl>
                           <Input
-                          className="block border border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary"
+                          className="block border border-border-medium rounded-md shadow-sm focus:ring-primary focus:border-primary"
                             placeholder="Enter intro video URL"
                             {...field}
                           />
                         </FormControl>
-                        <FormDescription className="text-sm text-gray-400">
+                        <FormDescription className="text-sm text-text-muted">
                           Add an optional introduction video for your course.
                         </FormDescription>
                         <FormMessage />
@@ -218,3 +218,13 @@ const CreateCoursePage = () => {
 };
 
 export default CreateCoursePage;
+
+
+
+
+
+
+
+
+
+

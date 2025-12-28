@@ -106,7 +106,7 @@ const submit = (e) => {
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
 
                         <div className="md:col-span-1">
-                            <div className="bg-white rounded-2xl shadow-lg p-6 border border-slate-200 sticky top-24">
+                            <div className="bg-surface-primary rounded-2xl shadow-lg p-6 border border-slate-200 sticky top-24">
 
                                 <div className="text-center mb-8">
                                     <div className="relative w-28 h-28 mx-auto mb-4">
@@ -229,7 +229,7 @@ const submit = (e) => {
                         <div className="md:col-span-2">
                             {/* Profile Information Tab */}
                             {activeTab === "profile" && (
-                                <div className="bg-white rounded-2xl shadow-lg p-8 border border-slate-200">
+                                <div className="bg-surface-primary rounded-2xl shadow-lg p-8 border border-slate-200">
 
 
                                     <form onSubmit={submit}>
@@ -281,7 +281,7 @@ const submit = (e) => {
                                                             name="fullName"
                                                             value={data.fullname}
                                                             onChange={(e) =>setData('fullname', e.target.value)}
-                                                            className="block w-full pl-10 py-2.5 bg-white border border-slate-300 rounded-lg text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
+                                                            className="block w-full pl-10 py-2.5 bg-surface-primary border border-slate-300 rounded-lg text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
 
                                                         />
 
@@ -312,7 +312,7 @@ const submit = (e) => {
                                                             name="email"
                                                             value={data.email}
                                                             onChange={(e) =>setData('email', e.target.value)}
-                                                            className="w-full pl-10 py-2.5 bg-white border border-slate-300 rounded-lg text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
+                                                            className="w-full pl-10 py-2.5 bg-surface-primary border border-slate-300 rounded-lg text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
 
                                                         />
                                                     </div>
@@ -346,7 +346,7 @@ const submit = (e) => {
                                                             name="role"
                                                             value={data.role}
                                                             onChange={(e)=>setData('role',e.target.value)}
-                                                            className="block w-full py-2.5 pl-3 bg-white border border-slate-300 rounded-lg text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
+                                                            className="block w-full py-2.5 pl-3 bg-surface-primary border border-slate-300 rounded-lg text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
                                                         >
                                                             <option value="student">
                                                                 Student
@@ -378,7 +378,7 @@ const submit = (e) => {
                                                         value={data.bio}
                                                         onChange={(e) =>setData('bio', e.target.value)}
                                                         rows={4}
-                                                        className="block w-full py-2.5 px-3 bg-white border border-slate-300 rounded-lg text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all resize-none"
+                                                        className="block w-full py-2.5 px-3 bg-surface-primary border border-slate-300 rounded-lg text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all resize-none"
                                                         placeholder="Tell others about yourself..."
                                                     ></textarea>
 
@@ -431,7 +431,7 @@ const submit = (e) => {
                                                             value={data.skills}
                                                             onChange={(e) =>setData('skills', e.target.value)}
                                                             placeholder="Add a skill (press Enter)"
-                                                            className="block w-full py-2.5 px-3 bg-white border border-slate-300 rounded-lg text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
+                                                            className="block w-full py-2.5 px-3 bg-surface-primary border border-slate-300 rounded-lg text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
 
 
                                                         />
@@ -498,7 +498,7 @@ const submit = (e) => {
 
                             {/* Certificates Tab */}
                             {activeTab === "certificates" && (
-                                <div className="bg-white rounded-2xl shadow-lg p-8 border border-slate-200">
+                                <div className="bg-surface-primary rounded-2xl shadow-lg p-8 border border-slate-200">
                                     <h2 className="text-3xl font-bold bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent mb-6">
                                         Your Certificates
                                     </h2>
@@ -583,7 +583,7 @@ const submit = (e) => {
 
                             {/* Security Tab */}
                             {activeTab === "security" && (
-                                <div className="bg-white rounded-2xl shadow-lg p-8 border border-slate-200">
+                                <div className="bg-surface-primary rounded-2xl shadow-lg p-8 border border-slate-200">
                                     <h2 className="text-3xl font-bold bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent mb-6">
                                         Security Settings
                                     </h2>
@@ -612,7 +612,7 @@ const submit = (e) => {
                                                         onChange={
                                                             handleInputChange
                                                         }
-                                                        className="block w-full pl-10 pr-10 py-2.5 bg-white border border-slate-300 rounded-lg text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
+                                                        className="block w-full pl-10 pr-10 py-2.5 bg-surface-primary border border-slate-300 rounded-lg text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
                                                         placeholder="••••••••"
                                                     />
                                                     <div className="absolute inset-y-0 right-0 pr-3 flex items-center">
@@ -657,7 +657,7 @@ const submit = (e) => {
                                                         onChange={
                                                             handleInputChange
                                                         }
-                                                        className="block w-full pl-10 pr-10 py-2.5 bg-white border border-slate-300 rounded-lg text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
+                                                        className="block w-full pl-10 pr-10 py-2.5 bg-surface-primary border border-slate-300 rounded-lg text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
                                                         placeholder="••••••••"
                                                     />
                                                 </div>
@@ -691,7 +691,7 @@ const submit = (e) => {
                                                         onChange={
                                                             handleInputChange
                                                         }
-                                                        className="block w-full pl-10 pr-10 py-2.5 bg-white border border-slate-300 rounded-lg text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
+                                                        className="block w-full pl-10 pr-10 py-2.5 bg-surface-primary border border-slate-300 rounded-lg text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
                                                         placeholder="••••••••"
                                                     />
                                                 </div>
@@ -773,3 +773,13 @@ const submit = (e) => {
 };
 
 export default ProfilePage;
+
+
+
+
+
+
+
+
+
+

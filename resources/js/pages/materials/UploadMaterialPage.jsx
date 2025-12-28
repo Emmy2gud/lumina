@@ -48,20 +48,20 @@ const { data, setData, post, processing, errors } = useForm({
 
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-surface-secondary">
 
       <div className="pt-16 md:pt-0 flex">
 
         <div className="flex-1 p-4 md:p-8 ml-0 md:ml-20 lg:ml-64">
           <div className="max-w-3xl mx-auto">
             <div className="mb-8">
-              <h1 className="text-2xl md:text-3xl font-bold text-gray-900">Upload Teaching Material</h1>
-              <p className="text-gray-600">
+              <h1 className="text-2xl md:text-3xl font-bold text-text-primary">Upload Teaching Material</h1>
+              <p className="text-text-secondary">
                 Share resources and materials with your students
               </p>
             </div>
 
-            <div className="bg-white p-6 rounded-lg shadow-sm">
+            <div className="bg-surface-primary p-6 rounded-lg shadow-sm">
             <form onSubmit={submit} className="space-y-6" encType='multipart/form-data'>
                 <div className="space-y-2">
                   <Label htmlFor="title">Material Title</Label>
@@ -70,7 +70,7 @@ const { data, setData, post, processing, errors } = useForm({
                     id="title"
                     value={data.title}
                     onChange={(e) => setData('title', e.target.value)}
-                    className="block border border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary"
+                    className="block border border-border-medium rounded-md shadow-sm focus:ring-primary focus:border-primary"
                     placeholder="Enter course title"
                   />
                   {errors.title && (
@@ -86,14 +86,14 @@ const { data, setData, post, processing, errors } = useForm({
                     value={data.description}
                     onChange={(e) => setData('description', e.target.value)}
                     placeholder="Provide a detailed description of your course"
-                    className="block min-h-2 border border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary"
+                    className="block min-h-2 border border-border-medium rounded-md shadow-sm focus:ring-primary focus:border-primary"
                   />
                   {errors.description && (
                     <p className="text-sm text-red-500 font-medium text-destructive">{errors.description}</p>
                   )}
 
 
-                  {/* <p className="text-sm text-gray-400">
+                  {/* <p className="text-sm text-text-muted">
                     Describe what students will learn from this course.
                   </p> */}
                 </div>
@@ -105,10 +105,10 @@ const { data, setData, post, processing, errors } = useForm({
                     value={data.relatedCourse}
                     onValueChange={(value) => setData('relatedCourse', value)}
                   >
-                    <SelectTrigger className="border border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary">
+                    <SelectTrigger className="border border-border-medium rounded-md shadow-sm focus:ring-primary focus:border-primary">
                       <SelectValue placeholder="Select a category" />
                     </SelectTrigger>
-                    <SelectContent className="bg-soft-purple border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary">
+                    <SelectContent className="bg-soft-purple border-border-medium rounded-md shadow-sm focus:ring-primary focus:border-primary">
                       <SelectItem className='hover:bg-primary' value={course.title}>{course.title}</SelectItem>
 
                     </SelectContent>
@@ -116,7 +116,7 @@ const { data, setData, post, processing, errors } = useForm({
                   {errors.category && (
                     <p className="text-sm font-medium text-destructive">{errors.category}</p>
                   )}
-                  <p className="text-sm text-gray-400">
+                  <p className="text-sm text-text-muted">
                     Choose the category that best fits your course.
                   </p>
                 </div>
@@ -127,7 +127,7 @@ const { data, setData, post, processing, errors } = useForm({
           id="relatedCourse"
             value={data.relatedCourse}
             onChange={(e) => setData('relatedCourse', e.target.value)}
-            className="block border border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary"
+            className="block border border-border-medium rounded-md shadow-sm focus:ring-primary focus:border-primary"
         >
             <option value="" disabled>Select a course</option>
             <option value={course.id}>{course.title}</option>
@@ -191,7 +191,7 @@ const { data, setData, post, processing, errors } = useForm({
                       id="fileType"
                       value={data.file_type}
                       onChange={(e) => setData('file_type', e.target.value)}
-                      className="block border border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary"
+                      className="block border border-border-medium rounded-md shadow-sm focus:ring-primary focus:border-primary"
                       placeholder="Enter file type (e.g., PDF, DOCX)"
                     />
                     {errors.file_type && (
@@ -205,7 +205,7 @@ const { data, setData, post, processing, errors } = useForm({
                       id="fileSize"
                       value={data.file_size}
                       onChange={(e) => setData('file_size', e.target.value)}
-                      className="block border border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary"
+                      className="block border border-border-medium rounded-md shadow-sm focus:ring-primary focus:border-primary"
                       placeholder="Enter file size (e.g., 10MB)"
                     />
                     {errors.file_size && (
@@ -245,3 +245,13 @@ const { data, setData, post, processing, errors } = useForm({
 };
 
 export default UploadMaterialPage;
+
+
+
+
+
+
+
+
+
+

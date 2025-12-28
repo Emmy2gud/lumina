@@ -85,20 +85,20 @@ const VideoViewPage = () => {
 
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-surface-primary">
       {/* Top bar with back and breadcrumb */}
-      <div className="border-b border-gray-200 bg-white sticky top-16 z-10">
+      <div className="border-b border-border-light bg-surface-primary sticky top-16 z-10">
         <div className="max-w-7xl mx-auto px-6 py-4 flex items-center gap-4">
           <button
             onClick={handleBack}
-            className="p-2 rounded-lg bg-gray-100 hover:bg-gray-200 transition-colors flex-shrink-0"
+            className="p-2 rounded-lg bg-surface-tertiary hover:bg-gray-200 transition-colors flex-shrink-0"
           >
-            <ArrowLeft className="w-5 h-5 text-gray-700" />
+            <ArrowLeft className="w-5 h-5 text-text-secondary" />
           </button>
           <div className="flex-1 text-sm">
             <span className="text-gray-500">{sectionTitle}</span>
-            <span className="mx-2 text-gray-400">/</span>
-            <span className="font-semibold text-gray-900">{lesson.title}</span>
+            <span className="mx-2 text-text-muted">/</span>
+            <span className="font-semibold text-text-primary">{lesson.title}</span>
           </div>
         </div>
       </div>
@@ -130,21 +130,21 @@ const VideoViewPage = () => {
             <div className="lg:col-span-2 space-y-10">
               {/* Lesson header */}
               <section>
-                <h1 className="text-4xl font-bold text-gray-900 mb-4">{lesson.title}</h1>
-                <p className="text-lg text-gray-600 leading-relaxed">{lesson.description || "Learn more about this lesson."}</p>
+                <h1 className="text-4xl font-bold text-text-primary mb-4">{lesson.title}</h1>
+                <p className="text-lg text-text-secondary leading-relaxed">{lesson.description || "Learn more about this lesson."}</p>
               </section>
 
               {/* Action buttons */}
-              <div className="flex items-center gap-4 py-6 border-t border-b border-gray-200">
-                <button className="inline-flex items-center gap-2 px-5 py-3 rounded-lg bg-gray-100 hover:bg-gray-200 text-gray-800 font-medium transition-colors">
+              <div className="flex items-center gap-4 py-6 border-t border-b border-border-light">
+                <button className="inline-flex items-center gap-2 px-5 py-3 rounded-lg bg-surface-tertiary hover:bg-gray-200 text-text-secondary font-medium transition-colors">
                   <ThumbsUp className="w-5 h-5" />
                   Like
                 </button>
-                <button className="inline-flex items-center gap-2 px-5 py-3 rounded-lg bg-gray-100 hover:bg-gray-200 text-gray-800 font-medium transition-colors">
+                <button className="inline-flex items-center gap-2 px-5 py-3 rounded-lg bg-surface-tertiary hover:bg-gray-200 text-text-secondary font-medium transition-colors">
                   <Bookmark className="w-5 h-5" />
                   Save
                 </button>
-                <button className="inline-flex items-center gap-2 px-5 py-3 rounded-lg bg-gray-100 hover:bg-gray-200 text-gray-800 font-medium transition-colors">
+                <button className="inline-flex items-center gap-2 px-5 py-3 rounded-lg bg-surface-tertiary hover:bg-gray-200 text-text-secondary font-medium transition-colors">
                   <Share2 className="w-5 h-5" />
                   Share
                 </button>
@@ -158,9 +158,9 @@ const VideoViewPage = () => {
               </section>
 
               {/* Engagement section */}
-              <section className="bg-gray-50 rounded-2xl p-8 border border-gray-200">
-                <h3 className="text-xl font-bold text-gray-900 mb-4">Questions & Discussion</h3>
-                <p className="text-gray-600 mb-6">Have a question about this lesson? Ask your instructor or peers in the discussion forum.</p>
+              <section className="bg-surface-secondary rounded-2xl p-8 border border-border-light">
+                <h3 className="text-xl font-bold text-text-primary mb-4">Questions & Discussion</h3>
+                <p className="text-text-secondary mb-6">Have a question about this lesson? Ask your instructor or peers in the discussion forum.</p>
                 <button className="px-6 py-3 bg-purple-600 text-white rounded-lg font-medium hover:bg-purple-700 transition-colors">
                   Go to Discussion Forum
                 </button>
@@ -182,7 +182,7 @@ const VideoViewPage = () => {
                   <button
 
                     disabled={questionsLoading}
-                    className="w-full bg-white text-indigo-600 font-semibold py-3 px-4 rounded-lg hover:bg-indigo-50 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                    className="w-full bg-surface-primary text-indigo-600 font-semibold py-3 px-4 rounded-lg hover:bg-indigo-50 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                   >
                     {questionsLoading ? (
                       <>
@@ -199,7 +199,7 @@ const VideoViewPage = () => {
 
 
                 {/* Section Lessons List */}
-                <div className="bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-sm">
+                <div className="bg-surface-primary border border-border-light rounded-2xl overflow-hidden shadow-sm">
                   <div className="bg-gradient-to-r from-purple-600 to-indigo-600 text-white px-6 py-4">
                     <h3 className="text-lg font-bold">Lessons in this Section</h3>
                     <p className="text-sm text-purple-100 mt-1">5 videos • {relatedVideos.reduce((sum, v) => {
@@ -216,8 +216,8 @@ const VideoViewPage = () => {
                           ▶
                         </div>
                         <div className="flex-1 min-w-0">
-                          <h4 className="font-semibold text-gray-900 text-sm">{lesson.title}</h4>
-                          <p className="text-xs text-gray-600 mt-1">Currently watching</p>
+                          <h4 className="font-semibold text-text-primary text-sm">{lesson.title}</h4>
+                          <p className="text-xs text-text-secondary mt-1">Currently watching</p>
                         </div>
                       </div>
                     </div>
@@ -226,14 +226,14 @@ const VideoViewPage = () => {
                     {relatedVideos.map((video, idx) => (
                       <div
                         key={video.id}
-                        className="p-4 hover:bg-gray-50 cursor-pointer transition-colors group"
+                        className="p-4 hover:bg-surface-secondary cursor-pointer transition-colors group"
                       >
                         <div className="flex gap-3">
-                          <div className="flex-shrink-0 w-8 h-8 rounded-full bg-gray-200 text-gray-600 flex items-center justify-center font-semibold text-sm">
+                          <div className="flex-shrink-0 w-8 h-8 rounded-full bg-gray-200 text-text-secondary flex items-center justify-center font-semibold text-sm">
                             {idx + 2}
                           </div>
                           <div className="flex-1 min-w-0">
-                            <h4 className="font-medium text-gray-900 text-sm group-hover:text-purple-600 transition-colors line-clamp-2">
+                            <h4 className="font-medium text-text-primary text-sm group-hover:text-purple-600 transition-colors line-clamp-2">
                               {video.title}
                             </h4>
                             <p className="text-xs text-gray-500 mt-1">{video.duration}</p>
@@ -245,20 +245,20 @@ const VideoViewPage = () => {
                 </div>
 
                 {/* Lesson info card */}
-                <div className="bg-gradient-to-br from-slate-100 to-slate-50 rounded-2xl p-6 border border-gray-200 shadow-sm">
-                  <h3 className="text-lg font-bold text-gray-900 mb-4">Lesson Info</h3>
+                <div className="bg-gradient-to-br from-slate-100 to-slate-50 rounded-2xl p-6 border border-border-light shadow-sm">
+                  <h3 className="text-lg font-bold text-text-primary mb-4">Lesson Info</h3>
                   <div className="space-y-4 text-sm">
                     <div>
-                      <p className="text-gray-600 text-xs font-semibold uppercase">Duration</p>
-                      <p className="font-semibold text-gray-900">{lesson.duration}</p>
+                      <p className="text-text-secondary text-xs font-semibold uppercase">Duration</p>
+                      <p className="font-semibold text-text-primary">{lesson.duration}</p>
                     </div>
                     <div>
-                      <p className="text-gray-600 text-xs font-semibold uppercase">Section</p>
-                      <p className="font-semibold text-gray-900">{sectionTitle}</p>
+                      <p className="text-text-secondary text-xs font-semibold uppercase">Section</p>
+                      <p className="font-semibold text-text-primary">{sectionTitle}</p>
                     </div>
                     <div>
-                      <p className="text-gray-600 text-xs font-semibold uppercase">Type</p>
-                      <p className="font-semibold text-gray-900 capitalize">{lesson.type}</p>
+                      <p className="text-text-secondary text-xs font-semibold uppercase">Type</p>
+                      <p className="font-semibold text-text-primary capitalize">{lesson.type}</p>
                     </div>
                   </div>
                 </div>
@@ -274,3 +274,13 @@ const VideoViewPage = () => {
 };
 
 export default VideoViewPage;
+
+
+
+
+
+
+
+
+
+

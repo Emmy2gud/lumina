@@ -71,13 +71,13 @@ const Category = ({ courses, categories, activeCategory}) => {
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(120,119,198,0.3),transparent_50%)]"></div>
 
         {/* Floating Elements */}
-        <div className="absolute top-20 left-20 w-32 h-32 bg-white/5 rounded-full blur-xl animate-[float_6s_ease-in-out_infinite]"></div>
+        <div className="absolute top-20 left-20 w-32 h-32 bg-surface-primary/5 rounded-full blur-xl animate-[float_6s_ease-in-out_infinite]"></div>
         <div className="absolute top-40 right-32 w-24 h-24 bg-blue-400/10 rounded-full blur-lg animate-[float_8s_ease-in-out_infinite_reverse]"></div>
         <div className="absolute bottom-32 left-1/4 w-40 h-40 bg-purple-400/5 rounded-full blur-2xl animate-[float_10s_ease-in-out_infinite]"></div>
 
         <div className="relative container mx-auto px-4 py-20 text-center text-white">
           <div className={`transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-            <div className="inline-flex items-center px-4 py-2 bg-white/10 backdrop-blur-md border border-white/20 rounded-full text-sm font-medium mb-6">
+            <div className="inline-flex items-center px-4 py-2 bg-surface-primary/10 backdrop-blur-md border border-white/20 rounded-full text-sm font-medium mb-6">
               <TrendingUp className="w-4 h-4 mr-2" />
               #1 Platform for Web Development
             </div>
@@ -96,11 +96,11 @@ const Category = ({ courses, categories, activeCategory}) => {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
-              <button className="group relative px-8 py-4 bg-white text-gray-900 rounded-xl font-semibold text-lg hover:shadow-2xl hover:shadow-white/25 transition-all duration-300 transform hover:scale-105">
+              <button className="group relative px-8 py-4 bg-surface-primary text-text-primary rounded-xl font-semibold text-lg hover:shadow-2xl hover:shadow-white/25 transition-all duration-300 transform hover:scale-105">
                 <span className="relative z-10">Start Learning Now</span>
                 <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-600 rounded-xl opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
               </button>
-              <button className="px-8 py-4 bg-white/10 backdrop-blur-md border border-white/20 rounded-xl font-medium text-lg hover:bg-white/20 transition-all duration-300">
+              <button className="px-8 py-4 bg-surface-primary/10 backdrop-blur-md border border-white/20 rounded-xl font-medium text-lg hover:bg-surface-primary/20 transition-all duration-300">
                 View Free Courses
               </button>
             </div>
@@ -131,23 +131,23 @@ const Category = ({ courses, categories, activeCategory}) => {
       <main className="relative -mt-20 z-10">
 
         <div className="container mx-auto px-4 mb-16">
-          <div className="bg-white/95 dark:bg-gray-900/95 backdrop-blur-xl border border-white/20 dark:border-gray-700/30 rounded-2xl shadow-2xl p-6 max-w-6xl mx-auto">
+          <div className="bg-gray-900/95 backdrop-blur-xl border border-white/20 dark:border-gray-700/30 rounded-2xl shadow-2xl p-6 max-w-6xl mx-auto">
             {/* Search Bar */}
             <div className="flex flex-col lg:flex-row gap-4 mb-6">
               <div className="flex-1 relative">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-text-muted w-5 h-5" />
                 <input
                   type="text"
                   placeholder="Search courses, instructors, or topics..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="w-full pl-10 pr-4 py-3 bg-gray-50 dark:bg-gray-800 border-0 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900 dark:text-white placeholder-gray-500"
+                  className="w-full pl-10 pr-4 py-3 bg-surface-secondary dark:bg-gray-800 border-0 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 text-text-primary dark:text-white placeholder-gray-500"
                 />
               </div>
               <div className="flex gap-3">
                 <select
 
-                  className="px-4 py-3 bg-gray-50 dark:bg-gray-800 border-0 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900 dark:text-white"
+                  className="px-4 py-3 bg-surface-secondary dark:bg-gray-800 border-0 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 text-text-primary dark:text-white"
                 >
                   {sortOptions.map(option => (
                     <option key={option.value} value={option.value}>{option.label}</option>
@@ -164,13 +164,13 @@ const Category = ({ courses, categories, activeCategory}) => {
 
             {/* Advanced Filters */}
             <div className={`transition-all duration-300 overflow-hidden ${showFilters ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'}`}>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 pt-4 border-t border-gray-200 dark:border-gray-700">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 pt-4 border-t border-border-light dark:border-gray-700">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Category</label>
+                  <label className="block text-sm font-medium text-text-secondary dark:text-gray-300 mb-2">Category</label>
                   <select
 
 
-                    className="w-full px-3 py-2 bg-gray-50 dark:bg-gray-800 border-0 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900 dark:text-white text-sm"
+                    className="w-full px-3 py-2 bg-surface-secondary dark:bg-gray-800 border-0 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-text-primary dark:text-white text-sm"
                   >
                     {categoryFilters.map(category => (
                       <option key={category} value={category}>{category}</option>
@@ -178,11 +178,11 @@ const Category = ({ courses, categories, activeCategory}) => {
                   </select>
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Level</label>
+                  <label className="block text-sm font-medium text-text-secondary dark:text-gray-300 mb-2">Level</label>
                   <select
 
 
-                    className="w-full px-3 py-2 bg-gray-50 dark:bg-gray-800 border-0 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900 dark:text-white text-sm"
+                    className="w-full px-3 py-2 bg-surface-secondary dark:bg-gray-800 border-0 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-text-primary dark:text-white text-sm"
                   >
                     {levelFilters.map(level => (
                       <option key={level} value={level}>{level}</option>
@@ -190,10 +190,10 @@ const Category = ({ courses, categories, activeCategory}) => {
                   </select>
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Duration</label>
+                  <label className="block text-sm font-medium text-text-secondary dark:text-gray-300 mb-2">Duration</label>
                   <select
 
-                    className="w-full px-3 py-2 bg-gray-50 dark:bg-gray-800 border-0 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900 dark:text-white text-sm"
+                    className="w-full px-3 py-2 bg-surface-secondary dark:bg-gray-800 border-0 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-text-primary dark:text-white text-sm"
                   >
                     {durationFilters.map(duration => (
                       <option key={duration} value={duration}>{duration}</option>
@@ -201,10 +201,10 @@ const Category = ({ courses, categories, activeCategory}) => {
                   </select>
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Price Range</label>
+                  <label className="block text-sm font-medium text-text-secondary dark:text-gray-300 mb-2">Price Range</label>
                   <select
 
-                    className="w-full px-3 py-2 bg-gray-50 dark:bg-gray-800 border-0 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900 dark:text-white text-sm"
+                    className="w-full px-3 py-2 bg-surface-secondary dark:bg-gray-800 border-0 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-text-primary dark:text-white text-sm"
                   >
                     {priceFilters.map(price => (
                       <option key={price} value={price}>{price}</option>
@@ -224,13 +224,13 @@ const Category = ({ courses, categories, activeCategory}) => {
               <li className="text-gray-300">/</li>
               <li><a href="#" className="text-gray-500 hover:text-blue-600 transition-colors">Courses</a></li>
               <li className="text-gray-300">/</li>
-              <li className="text-gray-900 dark:text-white font-medium">{activeCategory}</li>
+              <li className="text-text-primary dark:text-white font-medium">{activeCategory}</li>
             </ol>
           </nav>
 
           {/* Featured Course Spotlight */}
           <div className="mb-12 relative overflow-hidden rounded-3xl bg-gradient-to-br from-indigo-500 via-purple-600 to-pink-500 p-1">
-            <div className="bg-white dark:bg-gray-900 rounded-3xl p-8 md:p-12">
+            <div className="bg-surface-primary dark:bg-gray-900 rounded-3xl p-8 md:p-12">
               <div className="flex flex-col lg:flex-row items-center gap-8">
                 <div className="flex-1 space-y-6">
                   <div className="flex items-center gap-3">
@@ -243,11 +243,11 @@ const Category = ({ courses, categories, activeCategory}) => {
                     </div>
                   </div>
 
-                  <h3 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white leading-tight">
+                  <h3 className="text-3xl md:text-4xl font-bold text-text-primary dark:text-white leading-tight">
                     {activeCategory} Bootcamp
                   </h3>
 
-                  <p className="text-gray-600 dark:text-gray-300 text-lg leading-relaxed">
+                  <p className="text-text-secondary dark:text-gray-300 text-lg leading-relaxed">
                     Master both frontend and backend development. Build 5 real-world projects including an e-commerce site, social media app, and more.
                   </p>
 
@@ -269,7 +269,7 @@ const Category = ({ courses, categories, activeCategory}) => {
 
                   <div className="flex items-center gap-4">
                     <div className="flex items-baseline gap-2">
-                      <span className="text-4xl font-bold text-gray-900 dark:text-white">$19.99</span>
+                      <span className="text-4xl font-bold text-text-primary dark:text-white">$19.99</span>
                       <span className="text-lg text-gray-500 line-through">$89.99</span>
                       <span className="px-2 py-1 bg-green-100 text-green-700 text-sm font-bold rounded-lg">78% OFF</span>
                     </div>
@@ -291,7 +291,7 @@ const Category = ({ courses, categories, activeCategory}) => {
           {/* Course Categories Section */}
           <section className="mb-16">
             <div className="text-center mb-12">
-              <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
+              <h2 className="text-4xl font-bold text-text-primary  mb-4">
                 Explore by Category
               </h2>
               <p className="text-xl text-gray-600 dark:text-gray-300">
@@ -314,10 +314,10 @@ const Category = ({ courses, categories, activeCategory}) => {
                   <button
                     key={category}
                     onClick={() => setCategoryFilter(category)}
-                    className={`p-4 rounded-2xl transition-all duration-300 transform hover:scale-105 ${
+                    className={`p-4 rounded-2xl text-white  transition-all duration-300 transform hover:scale-105 ${
                       categoryFilter === category
-                        ? `bg-gradient-to-br ${gradients[index]} text-white shadow-lg shadow-blue-500/25`
-                        : 'bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:shadow-lg'
+                        ? `bg-gradient-to-br ${gradients[index]} shadow-lg shadow-blue-500/25`
+                        : 'bg-surface-primary dark:bg-gray-800 border border-border-light dark:border-gray-700 hover:shadow-lg'
                     }`}
                   >
                     <div className="text-sm font-semibold">{category}</div>
@@ -332,20 +332,20 @@ const Category = ({ courses, categories, activeCategory}) => {
           <section aria-labelledby="courses-heading" className="mb-16">
             <div className="flex items-center justify-between mb-8">
               <div>
-                <h2 id="courses-heading" className="text-3xl font-bold text-gray-900 dark:text-white">
+                <h2 id="courses-heading" className="text-3xl font-bold text-text-primary dark:text-white">
                   {categoryFilter === "All Categories" ? `All ${activeCategory} Courses` : `${categoryFilter} Courses`}
                 </h2>
-                <p className="text-gray-600 dark:text-gray-300 mt-2">
+                <p className="text-text-secondary dark:text-gray-300 mt-2">
                   {sortedCourses.length} courses • Lifetime access • Certificate of completion
                 </p>
               </div>
             </div>
 
             {sortedCourses.length === 0 ? (
-              <div className="text-center py-16 bg-gray-50 dark:bg-gray-800/50 rounded-2xl">
+              <div className="text-center py-16 bg-surface-secondary dark:bg-gray-800/50 rounded-2xl">
                 <div className="text-6xl mb-4">🔍</div>
-                <h3 className="text-2xl font-semibold mb-2 text-gray-900 dark:text-white">No courses found</h3>
-                <p className="text-gray-600 dark:text-gray-300">Try adjusting your search or filters</p>
+                <h3 className="text-2xl font-semibold mb-2 text-text-primary dark:text-white">No courses found</h3>
+                <p className="text-text-secondary dark:text-gray-300">Try adjusting your search or filters</p>
               </div>
             ) : (
               <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
@@ -374,3 +374,13 @@ const Category = ({ courses, categories, activeCategory}) => {
 };
 
 export default Category;
+
+
+
+
+
+
+
+
+
+

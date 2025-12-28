@@ -80,31 +80,31 @@ export default function NotificationsPage() {
 
     return (
         <div className="container mt-10 mx-auto  px-4 md:px-8 py-8">
-            <div className=" mx-auto bg-white rounded-2xl shadow p-6">
+            <div className=" mx-auto bg-surface-primary rounded-2xl shadow p-6">
                 <div className="grid grid-cols-3 gap-6">
                     <div className="col-span-2">
 
                         <div className="">
                             <div className="flex items-center justify-between gap-4">
                                 <div>
-                                    <h1 className="text-2xl font-bold text-gray-900">Notifications</h1>
+                                    <h1 className="text-2xl font-bold text-text-primary">Notifications</h1>
                                     <p className="text-sm text-gray-500 mt-1">All your notifications in one place.</p>
                                 </div>
 
                                 <div className="flex items-center gap-3">
-                                    <div className="text-sm text-gray-600">
-                                        <span className="font-semibold text-gray-900">{notifications.filter(n => !n.read).length}</span>
+                                    <div className="text-sm text-text-secondary">
+                                        <span className="font-semibold text-text-primary">{notifications.filter(n => !n.read).length}</span>
                                         <span className="ml-1">unread</span>
                                     </div>
-                                    <button onClick={() => { setNotifications((s) => s.map(n => ({ ...n, read: true }))); }} className="text-sm bg-gray-100 font-semibold px-3 py-1 rounded-md hover:bg-gray-200  shadow-sm">Mark all read</button>
+                                    <button onClick={() => { setNotifications((s) => s.map(n => ({ ...n, read: true }))); }} className="text-sm bg-surface-tertiary font-semibold px-3 py-1 rounded-md hover:bg-gray-200  shadow-sm">Mark all read</button>
                                     <button onClick={() => setNotifications([])} className="text-sm bg-red-50 text-red-600 px-3 py-1 rounded-md font-semibold hover:bg-red-100  shadow-sm">Clear all</button>
                                 </div>
                             </div>
 
                             <div className="mt-4 flex items-center justify-between gap-4">
                                 <div className="flex items-center gap-2">
-                                    <button onClick={() => setFilter('all')} className={`px-3 py-1 rounded-md text-sm ${filter === 'all' ? 'bg-primary text-white' : 'bg-gray-100 text-gray-700'}`}>All</button>
-                                    <button onClick={() => setFilter('unread')} className={`px-3 py-1 rounded-md text-sm ${filter === 'unread' ? 'bg-primary text-white' : 'bg-gray-100 text-gray-700'}`}>Unread</button>
+                                    <button onClick={() => setFilter('all')} className={`px-3 py-1 rounded-md text-sm ${filter === 'all' ? 'bg-primary text-white' : 'bg-surface-tertiary text-text-secondary'}`}>All</button>
+                                    <button onClick={() => setFilter('unread')} className={`px-3 py-1 rounded-md text-sm ${filter === 'unread' ? 'bg-primary text-white' : 'bg-surface-tertiary text-text-secondary'}`}>Unread</button>
                                 </div>
 
                                 <div className="flex items-center gap-2">
@@ -132,7 +132,7 @@ export default function NotificationsPage() {
                                     >
                                         <div className="space-y-3">
                                             {notificationsFiltered.map((n, i) => (
-                                                <div key={n.id} className={`flex items-start gap-3 p-3 rounded-lg border border-gray-100 bg-white ${entered ? 'shadow-sm opacity-100 translate-y-0' : 'opacity-0 translate-y-2'} transition-all duration-300`} style={{ transitionDelay: `${i * 25}ms` }}>
+                                                <div key={n.id} className={`flex items-start gap-3 p-3 rounded-lg border border-gray-100 bg-surface-primary ${entered ? 'shadow-sm opacity-100 translate-y-0' : 'opacity-0 translate-y-2'} transition-all duration-300`} style={{ transitionDelay: `${i * 25}ms` }}>
                                                     <input type="checkbox" checked={selected.includes(n.id)} onChange={() => toggleSelect(n.id)} className="mt-1" />
                                                     <div className="flex-1">
                                                         <NotificationItem item={n} onMarkRead={markRead} />
@@ -147,17 +147,17 @@ export default function NotificationsPage() {
                     </div>
 
                     <aside className="col-span-1">
-                        <div className="sticky top-24 bg-white p-4 rounded-lg border border-gray-100 shadow-sm">
-                            <h3 className="text-sm font-semibold text-gray-900">Filters</h3>
+                        <div className="sticky top-24 bg-surface-primary p-4 rounded-lg border border-gray-100 shadow-sm">
+                            <h3 className="text-sm font-semibold text-text-primary">Filters</h3>
                             <div className="mt-3 flex flex-col gap-2">
-                                <button onClick={() => setFilter('all')} className={`text-left shadow-sm px-3 py-2 rounded-md ${filter === 'all' ? 'bg-primary/10 text-primary' : 'bg-gray-50'}`}>All notifications</button>
-                                <button onClick={() => setFilter('unread')} className={`text-left shadow-sm px-3 py-2 rounded-md ${filter === 'unread' ? 'bg-primary/10 text-primary' : 'bg-gray-50'}`}>Only unread</button>
+                                <button onClick={() => setFilter('all')} className={`text-left shadow-sm px-3 py-2 rounded-md ${filter === 'all' ? 'bg-primary/10 text-primary' : 'bg-surface-secondary'}`}>All notifications</button>
+                                <button onClick={() => setFilter('unread')} className={`text-left shadow-sm px-3 py-2 rounded-md ${filter === 'unread' ? 'bg-primary/10 text-primary' : 'bg-surface-secondary'}`}>Only unread</button>
                             </div>
 
                             <div className="mt-4">
                                 <h4 className="text-sm font-medium">Quick actions</h4>
                                 <div className="mt-2 flex flex-col gap-2">
-                                    <button onClick={() => { setNotifications((s) => s.map(n => ({ ...n, read: true }))); }} className="w-full text-sm bg-gray-100 px-3 py-2 rounded-md shadow-sm">Mark all read</button>
+                                    <button onClick={() => { setNotifications((s) => s.map(n => ({ ...n, read: true }))); }} className="w-full text-sm bg-surface-tertiary px-3 py-2 rounded-md shadow-sm">Mark all read</button>
                                     <button onClick={() => setNotifications([])} className="w-full text-sm bg-red-50 text-red-600 px-3 py-2 rounded-md shadow-sm">Clear all</button>
                                 </div>
                             </div>
@@ -168,3 +168,13 @@ export default function NotificationsPage() {
         </div>
     );
 }
+
+
+
+
+
+
+
+
+
+

@@ -37,22 +37,22 @@ const LoginPage = () => {
 
 
     return (
-        <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8  ">
-            <div className="flex w-full max-w-6xl mx-auto bg-white rounded-2xl shadow-xl overflow-hidden">
-                <div className="hidden lg:block lg:w-1/2 bg-gradient-to-br from-soft-purple to-primary p-12">
+        <div className="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8  ">
+            <div className="flex w-full max-w-6xl mx-auto rounded-2xl shadow-xl overflow-hidden">
+                <div className="hidden lg:block lg:w-1/2 bg-gradient-primary p-12">
                     <div className="relative w-full h-full flex flex-col items-center justify-center">
                         <div className="absolute inset-0 bg-pattern opacity-10"></div>
 
                         {/* Illustration container */}
                         <div className="relative z-10 w-full max-w-md mx-auto space-y-8">
                             <div className="flex items-center justify-center space-x-6">
-                                <div className="p-4 bg-white/20 backdrop-blur-sm rounded-2xl">
+                                <div className="p-4 bg-card/20 backdrop-blur-sm rounded-2xl">
                                     <BookOpen
                                         size={48}
                                         className="text-white"
                                     />
                                 </div>
-                                <div className="p-4 bg-white/20 backdrop-blur-sm rounded-2xl">
+                                <div className="p-4 bg-card/20 backdrop-blur-sm rounded-2xl">
                                     <GraduationCap
                                         size={48}
                                         className="text-white"
@@ -61,17 +61,17 @@ const LoginPage = () => {
                             </div>
 
                             <div className="flex items-center justify-center space-x-6">
-                                <div className="p-4 bg-white/20 backdrop-blur-sm rounded-2xl">
+                                <div className="p-4 bg-card/20 backdrop-blur-sm rounded-2xl">
                                     <Users size={48} className="text-white" />
                                 </div>
-                                <div className="p-4 bg-white/20 backdrop-blur-sm rounded-2xl">
+                                <div className="p-4 bg-card/20 backdrop-blur-sm rounded-2xl">
                                     <Laptop size={48} className="text-white" />
                                 </div>
                             </div>
                         </div>
                         <div className="text-center">
-                            <div className="w-16 h-16 rounded-full bg-learnify-primary mx-auto flex items-center justify-center">
-                                {/* <span className="text-white font-bold text-2xl">L</span> */}
+                            <div className="w-16 h-16 rounded-lg bg-primary-700 mx-auto flex items-center justify-center mt-2">
+                                <span className="text-white font-bold text-2xl ">L</span>
                             </div>
                             <h2 className="mt-6 text-3xl font-bold text-white">
                                 Welcome back!
@@ -89,20 +89,20 @@ const LoginPage = () => {
         <div className="w-full lg:w-1/2 py-8 px-12">
           <div className="max-w-md mx-auto space-y-8">
             <div className="text-center">
-              <div className="w-16 h-16 rounded-full bg-primary mx-auto flex items-center justify-center">
-                <span className="text-white font-bold text-2xl">L</span>
-              </div>
-              <h2 className="mt-6 text-3xl font-bold text-gray-900">Sign in to Learnify</h2>
-              <p className="mt-2 text-sm text-gray-600">
+                                      <div className="w-16 h-16 rounded-lg bg-primary-700 mx-auto flex items-center justify-center mt-2">
+                                <span className="text-white font-bold text-2xl ">L</span>
+                            </div>
+              <h2 className="mt-6 text-3xl font-bold text-text-primary">Sign in to Learnify</h2>
+              <p className="mt-2 text-sm text-text-secondary">
                 Or{' '}
-                <Link to="/signup" className="font-medium text-learnify-primary hover:text-learnify-secondary">
+                <Link to="/signup" className="font-medium text-primary hover:text-secondary">
                   create a new account
                 </Link>
               </p>
             </div>
 
             {error && (
-              <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-md text-sm">
+              <div className="bg-card-danger border border-danger text-danger px-4 py-3 rounded-md text-sm">
                 {error}
               </div>
             )}
@@ -111,12 +111,12 @@ const LoginPage = () => {
               {/* Email field */}
               <div className="space-y-4">
                 <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
+                  <label htmlFor="email" className="block text-sm font-medium text-text-secondary mb-1">
                     Email address
                   </label>
                   <div className="relative">
                     <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                      <Mail className="h-5 w-5 text-gray-400" />
+                      <Mail className="h-5 w-5 text-text-muted" />
                     </div>
                     <input
                       id="email"
@@ -125,28 +125,26 @@ const LoginPage = () => {
                       autoComplete="email"
                       value={data.email}
                       onChange={(e) => setData('email',e.target.value)}
-                      className="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-learnify-primary focus:border-learnify-primary"
+                      className="block w-full pl-10 pr-3 py-2 border border-border-medium rounded-md shadow-sm placeholder-text-muted focus:outline-none focus:ring-primary focus:border-primary"
                       placeholder="you@example.com"
 
                     />
                   </div>
                   {errors.email && (
-
-<div className="text-red-500 text-sm mt-1">
-
-  {errors.email}
-  </div>
-)}
+                    <div className="text-danger text-sm mt-1">
+                      {errors.email}
+                    </div>
+                  )}
                 </div>
 
 
                 <div>
-                  <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1">
+                  <label htmlFor="password" className="block text-sm font-medium text-text-secondary mb-1">
                     Password
                   </label>
                   <div className="relative">
                     <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                      <Lock className="h-5 w-5 text-gray-400" />
+                      <Lock className="h-5 w-5 text-text-muted" />
                     </div>
                     <input
                       id="password"
@@ -155,7 +153,7 @@ const LoginPage = () => {
                       autoComplete="current-password"
                       value={data.password}
                       onChange={(e) => setData('password',e.target.value)}
-                      className="block w-full pl-10 pr-10 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-learnify-primary focus:border-learnify-primary"
+                      className="block w-full pl-10 pr-10 py-2 border border-border-medium rounded-md shadow-sm placeholder-text-muted focus:outline-none focus:ring-primary focus:border-primary"
                       placeholder="••••••••"
 
                     />
@@ -163,7 +161,7 @@ const LoginPage = () => {
                       <button
                         type="button"
                         onClick={() => setShowPassword(!showPassword)}
-                        className="text-gray-400 hover:text-gray-600 focus:outline-none"
+                        className="text-text-muted hover:text-text-secondary focus:outline-none"
                       >
                         {showPassword ? (
                           <EyeOff className="h-5 w-5" />
@@ -173,11 +171,9 @@ const LoginPage = () => {
                       </button>
                     </div>
                     {errors.password && (
-
-                      <div className="text-red-500 text-sm mt-1">
-
+                      <div className="text-danger text-sm mt-1">
                         {errors.password}
-                        </div>
+                      </div>
                     )}
 
                   </div>
@@ -193,10 +189,10 @@ const LoginPage = () => {
                     type="checkbox"
                     checked={rememberMe}
                     onChange={() => setRememberMe(!rememberMe)}
-               className="h-4 w-4 accent-primary  focus:ring-primary-500 focus:outline-none"
+               className="h-4 w-4 text-primary focus:ring-primary focus:outline-none"
                required
                   />
-                  <label htmlFor="remember-me" className="ml-2 block text-sm text-gray-700">
+                  <label htmlFor="remember-me" className="ml-2 block text-sm text-text-secondary">
                     Remember me
                   </label>
                 </div>
@@ -213,7 +209,7 @@ const LoginPage = () => {
                 <button
                   type="submit"
                   disabled={isLoading}
-                  className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-primary hover:bg-learnify-secondary focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-gradient-primary hover:bg-secondary focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {isLoading ? (
                     <span className="flex items-center">

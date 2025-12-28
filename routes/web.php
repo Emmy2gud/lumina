@@ -11,10 +11,8 @@ use App\Http\Controllers\LessonController;
 use App\Http\Controllers\MaterialController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\QuizController;
 use App\Http\Controllers\SectionController;
-use App\Http\Middleware\TeachersMiddleware;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -30,14 +28,12 @@ Route::get(('/login'), [AuthController::class, 'login'])->name('login');
 Route::post(('/login'), [AuthController::class, 'authenticate']);
 Route::get(('/logout'), [AuthController::class, 'logout'])->name('logout');
 
-
 Route::get('/dashboard', function () {
     $user = Auth::user();
 
     if ($user->role === 'teacher') {
         return Inertia::render('dashboard/TeacherDashboard');
-    }
-    elseif ($user->role === 'student') {
+    } elseif ($user->role === 'student') {
         return Inertia::render('dashboard/StudentDashboard');
     }
 
@@ -49,7 +45,7 @@ Route::get('/courses/{course}/sections/create', [SectionController::class, 'crea
 Route::get('/sections/view', [SectionController::class, 'index']);
 Route::post('/courses/{course}/sections', [SectionController::class, 'store'])
     ->name('sections.store');
-//material upload nested route
+// material upload nested route
 Route::get('/courses/{course}/materials/create', [MaterialController::class, 'create'])
     ->name('sections.create');
 Route::get('/materials/view', [MaterialController::class, 'index']);
@@ -60,19 +56,18 @@ Route::post('/courses/{course}/materials', [MaterialController::class, 'store'])
 // Route::put('/sections/{section}', [SectionController::class, 'update'])->name('sections.update');
 // Route::delete('/sections/{section}', [SectionController::class, 'destroy'])->name('sections.destroy');
 
-Route::get('/sections/{section}/lessons/create',[LessonController::class, 'create'] );
+Route::get('/sections/{section}/lessons/create', [LessonController::class, 'create']);
 Route::get('/lessons/view', [LessonController::class, 'index']);
 Route::post('/sections/{section}/lessons', [LessonController::class, 'store'])
     ->name('lessons.store');
 Route::get('/lessons/{lesson}/view', [LessonController::class, 'show']);
 
-Route::get('/sections/{section}/quizzes/create',[QuizController::class, 'create'] );
+Route::get('/sections/{section}/quizzes/create', [QuizController::class, 'create']);
 Route::get('/sections/{section}/quizzes', [QuizController::class, 'store'])
     ->name('quizzes.store');
-    Route::get('/sections/{section}/quizzes',[QuizController::class, 'index'] );
+Route::get('/sections/{section}/quizzes', [QuizController::class, 'index']);
 
-
-Route::resource('/courses',CourseController::class);
+Route::resource('/courses', CourseController::class);
 
 Route::get('/coursespage', [CourseController::class, 'home']);
 Route::get('/course/{course}/view', [CourseController::class, 'show']);
@@ -107,22 +102,16 @@ Route::get('/quizform', function () {
     return inertia('quizdashboard/CreateQuizPage');
 });
 
-
-
 Route::get('/cart', [CartController::class, 'showCart']);
 Route::post('/cart/add/{courseId}', [CartController::class, 'addToCart'])->name('cart.add');
 Route::post('/cart/update/{courseId}', [CartController::class, 'updateCart'])->name('cart.update');
 Route::delete('/cart/{course}', [CartController::class, 'removeFromCart']);
 Route::post('/cart/sync', [CartController::class, 'syncCart']);
 
-
-
 Route::get('/payment/checkout', [CheckoutController::class, 'index']);
-
 
 // Explore page (courses list)
 Route::get('/explore', [ExploreController::class, 'index'])->name('explore');
-
 
 Route::post('/payment/initialize', [PaymentController::class, 'initialize'])
     ->name('payment.initialize');
@@ -130,11 +119,19 @@ Route::post('/payment/initialize', [PaymentController::class, 'initialize'])
 Route::get('/callback', [PaymentController::class, 'callback'])
     ->name('callback');
 
-
 Route::get('/payment/success', [PaymentController::class, 'success'])->name('payment.success');
 
 Route::get('payment/failed', [PaymentController::class, 'failed'])->name('payment.failed');
-//notifications
+// notifications
 Route::get('/notifications', function () {
     return Inertia::render('notification/NotificationsPage');
+});
+Route::get('/q&asection', function () {
+    return Inertia::render('q&a/QAndA');
+});
+Route::get('/leaderboard', function () {
+    return Inertia::render('leader/LeaderboardPage');
+});
+Route::get('/student/submissions', function () {
+    return Inertia::render('quizdashboard/student/StudentSubmissions');
 });

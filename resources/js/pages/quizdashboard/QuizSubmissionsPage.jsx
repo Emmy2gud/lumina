@@ -150,12 +150,12 @@ console.log(questions)
       case 'failed':
         return <Badge className="bg-red-100 text-red-800">Failed</Badge>;
       default:
-        return <Badge className="bg-gray-100 text-gray-800">Pending</Badge>;
+        return <Badge className="bg-surface-tertiary text-text-secondary">Pending</Badge>;
     }
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-surface-secondary">
 
 
       <div className="pt-16 md:pt-0 flex">
@@ -164,14 +164,14 @@ console.log(questions)
         <div className="flex-1 p-4 md:p-8 ml-0 md:ml-20 lg:ml-64">
           <div className="max-w-6xl mx-auto">
             <div className="mb-8">
-              <h1 className="text-2xl md:text-3xl font-bold text-gray-900">Quiz Submissions</h1>
-              <p className="text-gray-600">
+              <h1 className="text-2xl md:text-3xl font-bold text-text-primary">Quiz Submissions</h1>
+              <p className="text-text-secondary">
                 Review and grade student quiz submissions
               </p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-              <Card className='bg-white border-0 shadow-lg'>
+              <Card className='bg-surface-primary border-0 shadow-lg'>
                 <CardHeader className="pb-2">
                   <CardTitle className="text-lg">Total Submissions</CardTitle>
                   <CardDescription>All quizzes</CardDescription>
@@ -184,7 +184,7 @@ console.log(questions)
                 </CardContent>
               </Card>
 
-              <Card className='bg-white border-0 shadow-lg'>
+              <Card className='bg-surface-primary border-0 shadow-lg'>
                 <CardHeader className="pb-2">
                   <CardTitle className="text-lg">Pass Rate</CardTitle>
                   <CardDescription>Average across all quizzes</CardDescription>
@@ -199,7 +199,7 @@ console.log(questions)
                 </CardContent>
               </Card>
 
-              <Card className='bg-white border-0 shadow-lg'>
+              <Card className='bg-surface-primary border-0 shadow-lg'>
                 <CardHeader className="pb-2">
                   <CardTitle className="text-lg">Last Submission</CardTitle>
                   <CardDescription>Most recent quiz attempt</CardDescription>
@@ -215,14 +215,14 @@ console.log(questions)
               </Card>
             </div>
 
-            <div className="bg-white rounded-lg shadow-sm border border-gray-100 overflow-hidden">
+            <div className="bg-surface-primary rounded-lg shadow-sm border border-gray-100 overflow-hidden">
               <div className="p-4 border-b border-gray-100">
                 <div className="flex flex-col md:flex-row justify-between gap-4">
                   <div className="relative flex-1 max-w-md">
-                    <Search className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
+                    <Search className="absolute left-3 top-3 h-4 w-4 text-text-muted" />
                     <Input
                       placeholder="Search students..."
-                      className="pl-9 bg-gray-100 border-0 focus:ring-2 focus:ring-purple-500"
+                      className="pl-9 bg-surface-tertiary border-0 focus:ring-2 focus:ring-purple-500"
                       value={searchTerm}
                       onChange={(e) => setSearchTerm(e.target.value)}
                     />
@@ -233,7 +233,7 @@ console.log(questions)
                       value={selectedQuiz}
                       onValueChange={setSelectedQuiz}
                     >
-                      <SelectTrigger className="pl-9 bg-gray-100 border-0 focus:ring-2 focus:ring-purple-500">
+                      <SelectTrigger className="pl-9 bg-surface-tertiary border-0 focus:ring-2 focus:ring-purple-500">
                         <SelectValue placeholder="Filter by quiz" />
                       </SelectTrigger>
                       <SelectContent>
@@ -327,3 +327,13 @@ console.log(questions)
 };
 
 export default QuizSubmissionsPage;
+
+
+
+
+
+
+
+
+
+
