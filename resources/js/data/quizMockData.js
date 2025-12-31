@@ -37,7 +37,7 @@ export const submissions = [
     submittedOn: "2024-12-07 04:45 PM",
     relativeTime: "Yesterday",
     status: "graded",
-    score: 88,
+    score: 20,
     totalPoints: 100,
     feedback: "Excellent analysis of cellular processes. Good use of scientific terminology.",
   },

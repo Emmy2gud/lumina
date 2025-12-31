@@ -135,7 +135,7 @@ const HeroSection = () => {
                       <Play className="w-10 h-10 text-white ml-1" />
                     </div>
                   </div>
-                  <div className="absolute top-4 left-4 px-3 py-1 bg-primary text-primary-foreground text-xs font-bold rounded-full">
+                  <div className="absolute top-4 left-4 px-3 py-1 bg-primary text-white text-xs font-bold rounded-full">
                     BESTSELLER
                   </div>
                   <div className="absolute top-4 right-4 px-3 py-1 bg-background/90 backdrop-blur-sm text-foreground text-xs font-bold rounded-full">

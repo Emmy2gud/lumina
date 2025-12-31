@@ -25,7 +25,7 @@ import {
   X,
   Trophy
 } from 'lucide-react';
-import { usePage } from '@inertiajs/react';
+import { usePage,Link } from '@inertiajs/react';
 import { useSidebar } from '../../contexts/SidebarContext';
 
 const Sidebar = () => {
@@ -98,9 +98,8 @@ const Sidebar = () => {
 
   const studentNavItems = [
     { id: 7, title: 'Dashboard', path: '/dashboard/student', icon: Home },
-    { id: 8, title: 'My Courses', path: '/courses/enrolled', icon: BookOpen },
-    { id: 10, title: 'Quiz', path: '/quiz/take', icon: ClipboardCheck },
-    { id: 11, title: 'Activity', path: '/analytics/progress', icon: TrendingUp },
+    { id: 8, title: 'My Courses', path: '/student/courses', icon: BookOpen },
+    { id: 10, title: 'Quiz Assessment', path: '/student/submissions', icon: ClipboardCheck },
     { id: 12, title: 'LeaderBoard', path: '/leaderboard', icon: Trophy },
         {
       id: 13,
@@ -164,7 +163,7 @@ const Sidebar = () => {
         <nav className="space-y-1">
           {navItems.map((item) => (
             <div key={item.id} className="space-y-1">
-              <a
+              <Link
                 href={item.path || '#'}
                 onClick={item.subItems ? (e) => handleDropdownClick(e, item.id) : handleNavClick}
                 className={`flex items-center p-3 rounded-xl transition-all duration-200 group ${
@@ -184,7 +183,7 @@ const Sidebar = () => {
                     openMenuPath === item.id ? 'rotate-180' : ''
                   }`} />
                 )}
-              </a>
+              </Link>
 
               {openMenuPath === item.id && item.subItems && !collapsed && (
                 <div className="ml-4 pl-4 border-l-2 border-slate-200 space-y-1 mt-1">

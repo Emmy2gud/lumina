@@ -135,3 +135,6 @@ Route::get('/leaderboard', function () {
 Route::get('/student/submissions', function () {
     return Inertia::render('quizdashboard/student/StudentSubmissions');
 });
+Route::get('/student/courses', function () {
+    return Inertia::render('coursedashboard/students/StudentCoursePage');
+});

@@ -189,14 +189,14 @@ const CourseCard = ({ course }) => {
 
 
   return (
-    <Card className="p-4 border-border-light bg-surface-primary backdrop-blur-sm hover:shadow-lg transition-all duration-300 group cursor-pointer">
+    <Card className="p-4 border-border bg-surface-primary backdrop-blur-sm hover:shadow-lg transition-all duration-300 group cursor-pointer">
       <div className="flex items-start gap-4">
         <div className="text-4xl">{course.thumbnail}</div>
         <div className="flex-1 min-w-0">
           <h3 className="font-semibold text-foreground truncate group-hover:text-primary transition-colors">
             {course.title}
           </h3>
-          <p className="text-sm text-muted-foreground">{course.instructor}</p>
+          <p className="text-sm text-gray-500">{course.instructor}</p>
           <div className="mt-3 space-y-2">
             <div className="flex items-center justify-between text-xs">
               <span className="text-muted-foreground">Progress</span>
@@ -241,7 +241,7 @@ const DeadlineItem = ({ deadline }) => {
   return (
     <div
       className={cn(
-        "p-3 rounded-lg bg-card/50 border border-border-light border-l-4 hover:bg-accent/30 transition-colors cursor-pointer",
+        "p-3 rounded-lg bg-card/50 border border-border border-l-4 hover:bg-accent/30 transition-colors cursor-pointer",
         priorityBorders[deadline.priority]
       )}
     >
@@ -279,12 +279,12 @@ const ActivityItem = ({ activity }) => {
         <p className="text-sm font-medium text-foreground">{activity.title}</p>
         <p className="text-xs text-muted-foreground">{activity.description}</p>
         {activity.score && (
-          <Badge variant="secondary" className="mt-1 bg-status-success/20 text-status-success">
+          <Badge variant="secondary" className="mt-1 bg-green-100 text-success">
             Score: {activity.score}%
           </Badge>
         )}
       </div>
-      <span className="text-xs text-muted-foreground whitespace-nowrap">
+      <span className="text-xs text-text-muted whitespace-nowrap">
         {activity.timestamp}
       </span>
     </div>
@@ -356,7 +356,7 @@ const StudentDashboard = () => {
               <MessageSquare className="w-4 h-4" />
               Message Tutor
             </Button>
-            <Button variant="outline" className="gap-2">
+            <Button variant="outline" className="gap-2 border border-border">
               <Calendar className="w-4 h-4" />
               View Schedule
             </Button>
@@ -423,10 +423,10 @@ const StudentDashboard = () => {
           <Card className="p-6 border-0 bg-surface-primary backdrop-blur-sm">
             <div className="flex items-center justify-between mb-4">
               <div>
-                <h2 className="text-lg font-semibold text-foreground">Performance Overview</h2>
-                <p className="text-sm text-muted-foreground">Knowledge Growth</p>
+                <h2 className="text-lg font-medium text-foreground">Performance Overview</h2>
+                <p className="text-sm text-text-muted">Knowledge Growth</p>
               </div>
-              <Badge variant="secondary" className="bg-primary text-status-success">
+              <Badge variant="secondary" className="bg-primary text-white">
                 +23% avg improvement
               </Badge>
             </div>
@@ -443,8 +443,8 @@ const StudentDashboard = () => {
                   }}
                 />
                 <Legend />
-                <Bar dataKey="preScore" name="Pre-Assessment" fill="hsl(var(--muted-foreground))" radius={[4, 4, 0, 0]} />
-                <Bar dataKey="postScore" name="Post-Assessment" fill="hsl(var(--primary))" radius={[4, 4, 0, 0]} />
+                <Bar dataKey="preScore" name="Pre-Assessment" fill="#a88cff" radius={[4, 4, 0, 0]} />
+                <Bar dataKey="postScore" name="Post-Assessment" fill="#5634e8" radius={[4, 4, 0, 0]} />
               </BarChart>
             </ResponsiveContainer>
           </Card>
@@ -453,8 +453,8 @@ const StudentDashboard = () => {
           <Card className="p-6 border-0 bg-surface-primary backdrop-blur-sm">
             <div className="flex items-center justify-between mb-4">
               <div>
-                <h2 className="text-lg font-semibold text-foreground">Weekly Progress</h2>
-                <p className="text-sm text-muted-foreground">Learning Trend</p>
+                <h2 className="text-lg font-medium text-foreground">Weekly Progress</h2>
+                <p className="text-sm text-text-muted">Learning Trend</p>
               </div>
               <Badge variant="secondary" className="bg-primary/20 text-primary">
                 <TrendingUp className="w-3 h-3 mr-1" />
@@ -492,7 +492,7 @@ const StudentDashboard = () => {
             {/* Course Progress */}
             <Card className="p-6 border-0 bg-surface-primary backdrop-blur-sm">
               <div className="flex items-center justify-between mb-4">
-                <h2 className="text-lg font-semibold text-foreground">Course Progress</h2>
+                <h2 className="text-lg font-medium text-foreground">Course Progress</h2>
                 <Button variant="ghost" size="sm" className="gap-1" onClick={() => navigate("/courses")}>
                   View All <ChevronRight className="w-4 h-4" />
                 </Button>
@@ -506,23 +506,23 @@ const StudentDashboard = () => {
 
             {/* Skills Assessment */}
             <Card className="p-6 border-0 bg-surface-primary backdrop-blur-sm">
-              <h2 className="text-lg font-semibold text-foreground mb-4">Skills Assessment</h2>
+              <h2 className="text-lg font-medium text-foreground mb-4">Skills Assessment</h2>
               <div className="h-[350px]">
                 <ResponsiveContainer width="100%" height="100%">
                   <RadarChart data={skillsData}>
                     <PolarGrid stroke="hsl(var(--border))" />
-                    <PolarAngleAxis dataKey="skill" stroke="hsl(var(--muted-foreground))" fontSize={12} />
-                    <PolarRadiusAxis angle={30} domain={[0, 100]} stroke="hsl(var(--muted-foreground))" fontSize={10} />
-                    <Radar name="Skill Level" dataKey="level" stroke="hsl(var(--primary))" fill="hsl(var(--primary))" fillOpacity={0.3} strokeWidth={2} />
+                    <PolarAngleAxis dataKey="skill" stroke="#8b5cf6" fontSize={12} />
+                    <PolarRadiusAxis angle={30} domain={[0, 100]} stroke="#6b46ff" fontSize={10} />
+                    <Radar name="Skill Level" dataKey="level" stroke="#6d28d9" fill="#6d28d9" fillOpacity={0.3} strokeWidth={2} />
                   </RadarChart>
-                </ResponsiveContainer>
+                </ResponsiveContainer>text-text-muted
               </div>
             </Card>
 
             {/* XP History */}
             <Card className="p-6 border-0 bg-surface-primary backdrop-blur-sm">
               <div className="flex items-center justify-between mb-4">
-                <h2 className="text-lg font-semibold text-foreground flex items-center gap-2">
+                <h2 className="text-lg font-medium text-foreground flex items-center gap-2">
                   <Zap className="w-5 h-5 text-yellow-400" />
                   Recent XP Earned
                 </h2>
@@ -543,7 +543,7 @@ const StudentDashboard = () => {
             {/* Achievements */}
             <Card className="p-6 border-0 bg-surface-primary backdrop-blur-sm">
               <div className="flex items-center justify-between mb-4">
-                <h2 className="text-lg font-semibold text-foreground flex items-center gap-2">
+                <h2 className="text-lg font-medium text-foreground flex items-center gap-2">
                   <Award className="w-5 h-5 text-yellow-400" />
                   Achievements
                 </h2>
@@ -569,8 +569,8 @@ const StudentDashboard = () => {
             {/* Upcoming Deadlines */}
             <Card className="p-6 border-0 bg-surface-primary backdrop-blur-sm">
               <div className="flex items-center justify-between mb-4">
-                <h2 className="text-lg font-semibold text-foreground">Upcoming Deadlines</h2>
-                <Badge variant="secondary">{deadlines.length}</Badge>
+                <h2 className="text-lg font-medium text-foreground">Upcoming Deadlines</h2>
+                <Badge variant="secondary" className="text-white">{deadlines.length}</Badge>
               </div>
               <div className="space-y-3">
                 {deadlines.map((deadline) => (
@@ -581,7 +581,7 @@ const StudentDashboard = () => {
 
             {/* Recent Activity */}
             <Card className="p-6 border-0 bg-surface-primary backdrop-blur-sm">
-              <h2 className="text-lg font-semibold text-foreground mb-4">Recent Activity</h2>
+              <h2 className="text-lg font-medium text-foreground mb-4">Recent Activity</h2>
               <div className="space-y-1">
                 {recentActivities.map((activity) => (
                   <ActivityItem key={activity.id} activity={activity} />
@@ -591,23 +591,23 @@ const StudentDashboard = () => {
 
             {/* Quick Stats */}
             <Card className="p-6 border-0 bg-surface-primary backdrop-blur-sm">
-              <h2 className="text-lg font-semibold text-foreground mb-4">Quick Stats</h2>
+              <h2 className="text-lg font-medium text-foreground mb-2">Quick Stats</h2>
               <div className="grid grid-cols-2 gap-4">
-                <div className="text-center p-3 rounded-lg bg-accent/30">
-                  <p className="text-2xl font-bold text-foreground">47</p>
-                  <p className="text-xs text-muted-foreground">Quizzes Taken</p>
+                <div className="text-center p-3 rounded-lg bg-gradient-primary">
+                  <p className="text-2xl font-bold text-white">47</p>
+                  <p className="text-xs text-white">Quizzes Taken</p>
                 </div>
-                <div className="text-center p-3 rounded-lg bg-accent/30">
-                  <p className="text-2xl font-bold text-foreground">12</p>
-                  <p className="text-xs text-muted-foreground">Badges Earned</p>
+                <div className="text-center p-3 rounded-lg bg-gradient-primary">
+                  <p className="text-2xl font-bold text-white">12</p>
+                  <p className="text-xs text-white">Badges Earned</p>
                 </div>
-                <div className="text-center p-3 rounded-lg bg-accent/30">
-                  <p className="text-2xl font-bold text-foreground">1,245</p>
-                  <p className="text-xs text-muted-foreground">Questions</p>
+                <div className="text-center p-3 rounded-lg bg-gradient-primary">
+                  <p className="text-2xl font-bold text-white">1,245</p>
+                  <p className="text-xs text-white">Questions</p>
                 </div>
-                <div className="text-center p-3 rounded-lg bg-accent/30">
-                  <p className="text-2xl font-bold text-foreground">87%</p>
-                  <p className="text-xs text-muted-foreground">Accuracy</p>
+                <div className="text-center p-3 rounded-lg bg-gradient-primary">
+                  <p className="text-2xl font-bold text-white">87%</p>
+                  <p className="text-xs text-white">Accuracy</p>
                 </div>
               </div>
             </Card>
