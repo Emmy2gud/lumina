@@ -1,0 +1,25 @@
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
+import PricingHero from "@/components/pricing/PricingHero";
+import PricingCards from "@/components/pricing/PricingCards";
+import ComparisonTable from "@/components/pricing/ComparisonTable";
+import PricingFAQ from "@/components/pricing/PricingFAQ";
+import PricingCTA from "@/components/pricing/PricingCTA";
+
+const Pricing = () => {
+  return (
+    <div className="min-h-screen bg-background">
+      <Navbar />
+      <main>
+        <PricingHero />
+        <PricingCards />
+        <ComparisonTable />
+        <PricingFAQ />
+        <PricingCTA />
+      </main>
+      <Footer />
+    </div>
+  );
+};
+
+export default Pricing;
