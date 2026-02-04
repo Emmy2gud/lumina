@@ -42,7 +42,7 @@ const features = [
 
 const WhyTeach = () => {
   return (
-    <section className="py-20 lg:py-28 bg-surface">
+    <section className="py-20 lg:py-28 bg-surface px-10">
       <div className="container-lg section-padding">
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-16">
@@ -52,7 +52,7 @@ const WhyTeach = () => {
           <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
             Everything you need to succeed as an instructor
           </h2>
-          <p className="text-lg text-muted-foreground">
+          <p className="text-lg text-text-muted">
             We provide the tools, support, and audience—you bring the expertise.
           </p>
         </div>
@@ -71,7 +71,7 @@ const WhyTeach = () => {
               <h3 className="text-lg font-semibold text-foreground mb-2">
                 {feature.title}
               </h3>
-              <p className="text-muted-foreground leading-relaxed">
+              <p className="text-text-muted leading-relaxed">
                 {feature.description}
               </p>
             </div>

@@ -15,7 +15,7 @@ export function GoalsTracker() {
   const sortedGoals = allGoals.sort((a, b) => b.progress - a.progress);
 
   return (
-    <div className="border border-gray-100  rounded-xl p-5 col-span-4">
+    <div className="border border-border rounded-xl p-5 col-span-4">
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-2">
           <Target className="h-5 w-5 text-primary" />
@@ -28,7 +28,7 @@ export function GoalsTracker() {
         {sortedGoals.slice(0, 6).map((goal, index) => (
           <div
             key={`${goal.studentName}-${index}`}
-            className="p-3 rounded-lg bg-muted/30 hover:bg-muted/50 transition-colors"
+            className="p-3 rounded-lg bg-gray-300/10 hover:bg-muted/50 transition-colors"
           >
             <div className="flex items-center justify-between mb-2">
               <div className="flex items-center gap-2">
@@ -38,10 +38,10 @@ export function GoalsTracker() {
                 <span className="text-xs text-gray-400">{goal.studentName}</span>
               </div>
               {goal.progress >= 80 && (
-                <Award className="h-4 w-4 text-status-warning" />
+                <Award className="h-4 w-4 text-warning" />
               )}
             </div>
-            <p className="text-sm font-medium text-foreground mb-2">{goal.name}</p>
+            <p className="text-sm font-medium text-text-muted mb-2">{goal.name}</p>
             <div className="flex items-center gap-2">
               <Progress
                 value={goal.progress}
@@ -52,7 +52,7 @@ export function GoalsTracker() {
                   goal.progress < 50 && "[&>div]:bg-status-warning"
                 )}
               />
-              <span className="text-xs font-medium text-foreground">{goal.progress}%</span>
+              <span className="text-xs font-medium text-text-muted">{goal.progress}%</span>
             </div>
           </div>
         ))}

@@ -15,7 +15,7 @@ const LayoutContent = ({ children }) => {
       <DashNav />
       <div className="flex pt-16">
         <Sidebar />
-        <main className={`flex-1 transition-all duration-200 ${collapsed ? 'ml-20' : 'ml-72'}`}>
+        <main className={`flex-1 transition-all duration-200 ${collapsed ? 'ml-20' : 'md:ml-72'} m-0`}>
           {children}
         </main>
       </div>

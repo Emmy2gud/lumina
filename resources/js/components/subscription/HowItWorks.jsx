@@ -29,7 +29,7 @@ const steps = [
 
 const HowItWorks = () => {
   return (
-    <section className="py-20 lg:py-28">
+    <section className="py-20 lg:py-28 px-10">
       <div className="container-lg section-padding">
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-16">
@@ -39,7 +39,7 @@ const HowItWorks = () => {
           <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
             Start teaching in four simple steps
           </h2>
-          <p className="text-lg text-muted-foreground">
+          <p className="text-lg text-text-muted">
             From application to earning—we've made the process seamless.
           </p>
         </div>
@@ -57,18 +57,18 @@ const HowItWorks = () => {
               >
                 {/* Step Number Circle */}
                 <div className="relative inline-flex lg:flex items-center justify-center mb-6">
-                  <div className="w-20 h-20 rounded-2xl gradient-bg flex items-center justify-center shadow-lg relative z-10">
-                    <step.icon className="w-8 h-8 text-primary-foreground" />
+                  <div className="w-20 h-20 rounded-2xl bg-gradient-primary flex items-center justify-center shadow-lg relative z-10">
+                    <step.icon className="w-8 h-8 text-white" />
                   </div>
                   <span className="absolute -top-2 -right-2 w-8 h-8 rounded-full bg-card border-2 border-primary text-primary text-sm font-bold flex items-center justify-center shadow-md z-20">
                     {index + 1}
                   </span>
                 </div>
 
-                <h3 className="text-xl font-semibold text-foreground mb-2">
+                <h3 className="text-xl font-semibold  mb-2">
                   {step.title}
                 </h3>
-                <p className="text-muted-foreground leading-relaxed">
+                <p className="text-text-muted leading-relaxed">
                   {step.description}
                 </p>
               </div>

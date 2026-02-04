@@ -109,7 +109,7 @@ const TeacherDashboard = () => {
 
 
         {/* Main Content */}
-        <div className="flex-1 p-4 md:p-8 ml-0 md:ml-20 lg:ml-64">
+        <div className="flex-1 p-4 ">
           <div className="max-w-6xl mx-auto">
 
 
@@ -347,9 +347,9 @@ const TeacherDashboard = () => {
                 <ResourcesWidget/>
 
             </div>
-            <div className="mt-8">
+            {/* <div className="mt-8">
                 <PerformanceChart students={students}/>
-            </div>
+            </div> */}
 
           </div>
         </div>

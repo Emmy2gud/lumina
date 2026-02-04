@@ -1,8 +1,8 @@
-import tutorDashboard from "@/assets/tutor-dashboard-preview.png";
+
 
 const DashboardPreview = () => {
   return (
-    <section className="py-20 lg:py-28 overflow-hidden">
+    <section className="py-20 lg:py-28 overflow-hidden px-10">
       <div className="container-lg section-padding">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Content */}
@@ -13,7 +13,7 @@ const DashboardPreview = () => {
             <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-6">
               Powerful tools to manage your teaching business
             </h2>
-            <p className="text-lg text-muted-foreground leading-relaxed mb-8">
+            <p className="text-lg text-text-muted leading-relaxed mb-8">
               Get a complete overview of your courses, students, and earnings—all in one place. Our intuitive dashboard gives you the insights you need to grow.
             </p>
 
@@ -48,7 +48,7 @@ const DashboardPreview = () => {
           <div className="order-1 lg:order-2 relative">
             <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-border/50">
               <img
-                src={tutorDashboard}
+                src={""}
                 alt="LearnHub instructor dashboard showing course analytics and student management"
                 className="w-full h-auto"
               />

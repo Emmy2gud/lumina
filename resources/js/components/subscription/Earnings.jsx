@@ -25,7 +25,7 @@ const earningsFeatures = [
 
 const Earnings = () => {
   return (
-    <section className="py-20 lg:py-28 bg-surface">
+    <section className="py-20 lg:py-28 bg-surface px-10">
       <div className="container-lg section-padding">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Content */}
@@ -36,7 +36,7 @@ const Earnings = () => {
             <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-6">
               Fair compensation for quality teaching
             </h2>
-            <p className="text-lg text-muted-foreground leading-relaxed mb-8">
+            <p className="text-lg text-text-muted leading-relaxed mb-8">
               We believe instructors should be rewarded for their expertise. That's why we offer one of the highest revenue shares in the industry.
             </p>
 
@@ -50,7 +50,7 @@ const Earnings = () => {
                     <h3 className="font-semibold text-foreground mb-1">
                       {feature.title}
                     </h3>
-                    <p className="text-sm text-muted-foreground">
+                    <p className="text-sm text-text-muted">
                       {feature.description}
                     </p>
                   </div>
@@ -97,7 +97,7 @@ const Earnings = () => {
               </svg>
               <div className="absolute inset-0 flex flex-col items-center justify-center">
                 <span className="text-4xl font-bold gradient-text">70%</span>
-                <span className="text-sm text-muted-foreground">Your share</span>
+                <span className="text-sm text-text-muted">Your share</span>
               </div>
             </div>
 
@@ -109,17 +109,17 @@ const Earnings = () => {
               </div>
               <div className="flex items-center gap-2">
                 <div className="w-3 h-3 rounded-full bg-muted" />
-                <span className="text-sm text-muted-foreground">Platform (30%)</span>
+                <span className="text-sm text-text-muted">Platform (30%)</span>
               </div>
             </div>
 
             {/* Example Calculation */}
             <div className="mt-8 pt-6 border-t border-border">
-              <p className="text-sm text-muted-foreground text-center mb-4">
+              <p className="text-sm text-text-muted text-center mb-4">
                 Example: Course priced at $100
               </p>
               <div className="flex justify-between items-center">
-                <span className="text-muted-foreground">Your earnings</span>
+                <span className="text-text-muted">Your earnings</span>
                 <span className="text-2xl font-bold text-foreground">$70</span>
               </div>
             </div>

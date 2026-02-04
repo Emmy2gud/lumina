@@ -16,7 +16,7 @@ const tutorPlans = [
       "Community access",
     ],
     cta: "Start Free",
-    ctaVariant: "outline" as const,
+    ctaVariant: "outline" ,
   },
   {
     name: "Professional",
@@ -34,7 +34,7 @@ const tutorPlans = [
       "Student messaging",
     ],
     cta: "Go Professional",
-    ctaVariant: "hero" as const,
+    ctaVariant: "hero" ,
   },
   {
     name: "Enterprise",
@@ -53,13 +53,13 @@ const tutorPlans = [
       "Team collaboration",
     ],
     cta: "Contact Sales",
-    ctaVariant: "outline" as const,
+    ctaVariant: "outline" ,
   },
 ];
 
 const TutorPlans = () => {
   return (
-    <section className="py-20 lg:py-28">
+    <section className="py-20 lg:py-28 px-10">
       <div className="container-lg section-padding">
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-16">
@@ -69,7 +69,7 @@ const TutorPlans = () => {
           <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
             Choose your instructor plan
           </h2>
-          <p className="text-lg text-muted-foreground">
+          <p className="text-lg text-text-muted">
             Start for free and upgrade as you grow. Maximize your earnings with our Pro plans.
           </p>
         </div>
@@ -101,7 +101,7 @@ const TutorPlans = () => {
                 <h3 className="text-xl font-bold text-foreground mb-1">
                   {plan.name}
                 </h3>
-                <p className="text-muted-foreground text-sm">
+                <p className="text-text-muted text-sm">
                   {plan.description}
                 </p>
               </div>
@@ -112,7 +112,7 @@ const TutorPlans = () => {
                   <span className="text-4xl font-extrabold text-foreground">
                     {plan.price}
                   </span>
-                  <span className="text-muted-foreground">/{plan.period}</span>
+                  <span className="text-text-muted">/{plan.period}</span>
                 </div>
               </div>
 
@@ -141,7 +141,7 @@ const TutorPlans = () => {
         </div>
 
         {/* Note */}
-        <p className="text-center text-muted-foreground mt-8">
+        <p className="text-center text-text-mutedmt-8">
           💡 All plans include free course hosting and global payment processing
         </p>
       </div>

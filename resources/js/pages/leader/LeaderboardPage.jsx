@@ -67,28 +67,26 @@ const PodiumCard = ({ entry, position }) => {
         )}
       </div>
 
-      {/* Name */}
       <h3 className={cn("font-bold text-foreground mb-1", textSizes[position])}>
         {entry.name}
       </h3>
 
-      {/* Level */}
+
       <Badge variant="outline" className={cn("mb-2", tierBadgeStyles[entry.tier])}>
         Lv.{entry.level} {entry.levelTitle}
       </Badge>
 
-      {/* XP */}
+
       <p className="text-xl font-bold text-primary mb-1">
         {entry.xp.toLocaleString()} XP
       </p>
 
-      {/* Streak */}
+
       <div className="flex items-center gap-1 text-orange-400">
         <Flame className="w-4 h-4" />
         <span className="font-medium">{entry.streak}</span>
       </div>
 
-      {/* Podium */}
       <div className={cn(
         "w-24 mt-4 rounded-t-lg flex items-center justify-center",
         heights[position],
@@ -210,20 +208,20 @@ const LeaderboardPage = () => {
     <div className="min-h-screen max-w-8xl m-auto md:p-8 ml-0 ">
 
 
-      <main className="container mx-auto px-4 py-6 space-y-6">
+      <main className="container mx-auto px-4  space-y-6">
         {/* Page Header */}
         <div className="text-center space-y-2">
           <h1 className="text-4xl font-bold text-foreground flex items-center justify-center gap-3">
             <Trophy className="w-10 h-10 text-yellow-400" />
             Leaderboard
           </h1>
-          <p className="text-muted-foreground">
+          <p className="text-text-muted">
             Compete with fellow students and climb the ranks!
           </p>
         </div>
 
         {/* Time Period Tabs */}
-        <Tabs defaultValue="week" className="w-full " onValueChange={setTimePeriod}>
+        <Tabs defaultValue="week" className="w-90 md:w-full " onValueChange={setTimePeriod}>
           <TabsList className="grid w-full max-w-md mx-auto grid-cols-4 mb-6 bg-surface-tertiary ">
             <TabsTrigger value="week" className="data-[state=active]:bg-violet-600 data-[state=active]:text-white data-[state=active]:shadow-sm">This Week</TabsTrigger>
             <TabsTrigger value="month" className="data-[state=active]:bg-violet-600 data-[state=active]:text-white data-[state=active]:shadow-sm">This Month</TabsTrigger>
@@ -241,7 +239,7 @@ const LeaderboardPage = () => {
                     Weekly reset in <span className="text-primary">2 days</span>
                   </span>
                 </div>
-                <Badge className="bg-yellow-500/20 text-yellow-400">
+                <Badge className="bg-yellow-500/20 text-yellow-400 hover:text-white">
                   <Crown className="w-3 h-3 mr-1" />
                   Current Champion: {top3[0]?.name}
                 </Badge>
@@ -269,7 +267,7 @@ const LeaderboardPage = () => {
                       )}>
                         {currentUser.avatar}
                       </div>
-                      <Badge className="absolute -bottom-1 -right-1 bg-primary text-primary-foreground">
+                      <Badge className="absolute -bottom-1 -right-1 bg-primary text-white">
                         #{currentUser.rank}
                       </Badge>
                     </div>
@@ -322,7 +320,7 @@ const LeaderboardPage = () => {
                 <Users className="w-5 h-5 text-primary" />
                 Rankings
               </h2>
-              <div className="space-y-3">
+              <div className="space-y-3 ">
                 {rest.map((entry) => (
                   <LeaderboardRow key={entry.rank} entry={entry} showChange />
                 ))}

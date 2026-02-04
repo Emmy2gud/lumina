@@ -66,7 +66,7 @@ const Navbar = () => {
     const navItems = [
         { title: "Home", path: "/", icon: BookOpen },
         { title: "Explore", path: "/explore", icon: Search },
-        { title: "Become a Tutor", path: "/tutor", icon: GraduationCap },
+        { title: "Become a Tutor", path: "/tutor/subscription", icon: GraduationCap },
     ];
 
     const cartTotal = Object.values(cart || {}).reduce(

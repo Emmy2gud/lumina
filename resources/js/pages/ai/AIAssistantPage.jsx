@@ -84,9 +84,9 @@ const AIAssistantPage = ({ sessions, activeSession, messages = [] }) => {
 
 
     return (
-        <div className="min-h-screen bg-gradient-background  ">
-            <div className="w-full mx-auto px-4 sm:px-6 lg:px-8 py-1   ">
-                <div className="flex flex-col lg:flex-row h-[calc(100vh-120px)] gap-6 mt-20">
+        <div className="min-h-screen  bg-gradient-background  ">
+            <div className="w-full mx-auto px-4 sm:px-6 lg:px-8    ">
+                <div className="flex flex-col lg:flex-row h-[600px] gap-6 mt-10">
 
                     {/* Enhanced Left Sidebar - Chat History */}
                     <div className="w-full lg:w-80 bg-white/80 backdrop-blur-xl border border-white/20 shadow-2xl rounded-3xl overflow-hidden ">

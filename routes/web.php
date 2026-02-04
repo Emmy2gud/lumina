@@ -138,3 +138,7 @@ Route::get('/student/submissions', function () {
 Route::get('/student/courses', function () {
     return Inertia::render('coursedashboard/students/StudentCoursePage');
 });
+
+Route::get('/tutor/subscription', function () {
+    return Inertia::render('subscription/BecomeTutor');
+});

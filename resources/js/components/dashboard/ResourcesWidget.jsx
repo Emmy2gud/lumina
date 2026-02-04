@@ -37,11 +37,11 @@ export function ResourcesWidget() {
           return (
             <div
               key={resource.id}
-              className="p-3 rounded-lg bg-muted/30 hover:bg-muted/50 transition-colors cursor-pointer group"
+              className="p-3 rounded-lg border border-border bg-gray-300/10  hover:bg-muted/50 transition-colors cursor-pointer group"
             >
               <div className="flex items-start gap-3">
                 <div className={cn("flex h-10 w-10 items-center justify-center rounded-lg flex-shrink-0", colorClass)}>
-                  <Icon className="h-5 w-5" />
+                  <Icon className="h-5 w-5 text-primary-500" />
                 </div>
                 <div className="flex-1 min-w-0">
                   <p className="text-sm font-medium text-foreground truncate group-hover:text-primary transition-colors">
@@ -49,24 +49,24 @@ export function ResourcesWidget() {
                   </p>
                   <div className="flex items-center gap-3 mt-1 text-gray-400">
                     <span className="flex items-center gap-1 text-[10px]">
-                      <Eye className="h-3 w-3" />
+                      <Eye className="h-3 w-3 text-primary-500" />
                       {resource.views}
                     </span>
                     <span className="flex items-center gap-1 text-[10px]">
-                      <Download className="h-3 w-3" />
+                      <Download className="h-3 w-3 text-primary-500" />
                       {resource.downloads}
                     </span>
                     <span className="flex items-center gap-1 text-[10px]">
-                      <Clock className="h-3 w-3" />
+                      <Clock className="h-3 w-3 text-primary-500" />
                       {resource.avgTimeSpent}
                     </span>
                   </div>
                 </div>
               </div>
               <div className="mt-3 flex items-center gap-2">
-                <TrendingUp className="h-3 w-3 text-status-success" />
+                <TrendingUp className="h-3 w-3 text-success" />
                 <span className="text-[10px] text-gray-400">Effectiveness:</span>
-                <Progress value={resource.effectiveness} className="h-1 flex-1 [&>div]:bg-status-success" />
+                <Progress value={resource.effectiveness} className="h-1 flex-1 [&>div]:bg-success" />
                 <span className="text-[10px] font-medium text-status-success">{resource.effectiveness}%</span>
               </div>
             </div>

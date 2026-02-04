@@ -24,7 +24,7 @@ const categories = [
 
 const TeachCategories = () => {
   return (
-    <section className="py-20 lg:py-28 bg-surface">
+    <section className="py-20 lg:py-28 bg-surface px-10">
       <div className="container-lg section-padding">
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-12">
@@ -46,13 +46,13 @@ const TeachCategories = () => {
               key={category.name}
               className="group bg-card rounded-xl p-5 border border-border/50 hover:border-primary/30 hover:shadow-lg transition-all duration-300 cursor-pointer"
             >
-              <div className="w-11 h-11 rounded-lg bg-accent flex items-center justify-center mb-3 group-hover:bg-primary group-hover:scale-105 transition-all">
-                <category.icon className="w-5 h-5 text-primary group-hover:text-primary-foreground transition-colors" />
+              <div className="w-11 h-11 rounded-lg bg-accent flex items-center justify-center mb-3  group-hover:scale-105 transition-all">
+                <category.icon className="w-5 h-5 text-primary   transition-colors" />
               </div>
               <h3 className="font-semibold text-foreground mb-1">
                 {category.name}
               </h3>
-              <p className="text-sm text-muted-foreground">
+              <p className="text-sm text-text-muted">
                 {category.courses}
               </p>
             </div>

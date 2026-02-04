@@ -1,21 +1,22 @@
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
-import TutorHero from "@/components/tutor/TutorHero";
-import WhyTeach from "@/components/tutor/WhyTeach";
-import HowItWorks from "@/components/tutor/HowItWorks";
-import TeachCategories from "@/components/tutor/TeachCategories";
-import DashboardPreview from "@/components/tutor/DashboardPreview";
-import TutorPlans from "@/components/tutor/TutorPlans";
-import Earnings from "@/components/tutor/Earnings";
-import TutorCTA from "@/components/tutor/TutorCTA";
+
+
+
+import DashboardPreview from "@/components/subscription/DashboardPreview";
+import Earnings from "@/components/subscription/Earnings";
+import HowItWorks from "@/components/subscription/HowItWorks";
+import TeachCategories from "@/components/subscription/TeachCategories";
+import TutorCTA from "@/components/subscription/TutorCTA";
+import TutorHero from "@/components/subscription/TutorHero";
+import TutorPlans from "@/components/subscription/TutorPlans";
+import WhyTeach from "@/components/subscription/WhyTeach";
 
 const BecomeTutor = () => {
   return (
-    <div className="min-h-screen bg-background">
-      <Navbar />
+    <div className="min-h-screen bg-background ">
+      {/* <Navbar /> */}
       <main>
         <TutorHero />
-        <WhyTeach />
+        <WhyTeach/>
         <HowItWorks />
         <TeachCategories />
         <DashboardPreview />
@@ -23,7 +24,7 @@ const BecomeTutor = () => {
         <Earnings />
         <TutorCTA />
       </main>
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 };
