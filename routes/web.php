@@ -23,7 +23,7 @@ Route::get('/profiles/{user}', [ProfileController::class, 'show'])->middleware('
 Route::post('/profiles/{user}', [ProfileController::class, 'update'])->middleware('auth');
 
 Route::get(('/register'), [AuthController::class, 'register'])->name('register');
-Route::post(('/register'), [AuthController::class, 'store'])->name('register');
+Route::post(('/register'), [AuthController::class, 'store'])->name('register.store');
 Route::get(('/login'), [AuthController::class, 'login'])->name('login');
 Route::post(('/login'), [AuthController::class, 'authenticate']);
 Route::get(('/logout'), [AuthController::class, 'logout'])->name('logout');
@@ -49,10 +49,10 @@ Route::delete('/courses/{course}/sections/{section}', [SectionController::class,
     ->name('sections.destroy');
 // material upload nested route
 Route::get('/courses/{course}/materials/create', [MaterialController::class, 'create'])
-    ->name('sections.create');
+    ->name('materials.create');
 Route::get('/materials/view', [MaterialController::class, 'index']);
 Route::post('/courses/{course}/materials', [MaterialController::class, 'store'])
-    ->name('sections.store');
+    ->name('materials.store');
 
 // Route::get('/sections/{section}/edit', [SectionController::class, 'edit'])->name('sections.edit');
 // Route::put('/sections/{section}', [SectionController::class, 'update'])->name('sections.update');
