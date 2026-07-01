@@ -8,21 +8,22 @@ use Illuminate\Http\Request;
 
 class QuizController extends Controller
 {
-  public function index(){
-   $quizs = Quiz::with(['questions.options'])->latest()->paginate(10);
-    return inertia('quiz/QuizPage',[
-           'quiz'=>$quizs,
-
-    ]);
-}
-
-    public function create(Section $section)
+    public function index()
     {
-        return inertia('quizdashboard/CreateQuizPage', [
-            'sections' => $section
+        $quizs = Quiz::with(['questions.options'])->latest()->paginate(10);
+
+        return inertia('questions/QuizPage', [
+            'quiz' => $quizs,
+
         ]);
     }
 
+    public function create(Section $section)
+    {
+        // return inertia('quizdashboard/CreateQuizPage', [
+        //     'sections' => $section
+        // ]);
+    }
 
     public function store(Request $request, Section $section)
     {
@@ -38,28 +39,25 @@ class QuizController extends Controller
         $validatedQuiz['course_id'] = $section->course_id;
         $quiz = $section->quizzes()->create($validatedQuiz);
 
-
         $validatedQuestions = $request->validate([
             'questions' => 'required|array|min:1',
             'questions.*.question' => 'required|string',
             'questions.*.points' => 'required|integer|min:1',
             'questions.*.options' => 'required|array|min:2|max:6',
             'questions.*.options.*.option' => 'required|string',
-            'questions.*.options.*.is_correct' => 'required|boolean'
+            'questions.*.options.*.is_correct' => 'required|boolean',
         ]);
 
         foreach ($validatedQuestions['questions'] as $questionData) {
             $question = $quiz->questions()->create([
                 'question' => $questionData['question'],
-                'points' => $questionData['points']
+                'points' => $questionData['points'],
             ]);
-
 
             $question->options()->createMany($questionData['options']);
         }
 
         return redirect('/')->with('success', 'Quiz created successfully!');
-
 
     }
 }

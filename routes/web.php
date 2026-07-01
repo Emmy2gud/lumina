@@ -45,6 +45,8 @@ Route::get('/courses/{course}/sections/create', [SectionController::class, 'crea
 Route::get('/sections/view', [SectionController::class, 'index']);
 Route::post('/courses/{course}/sections', [SectionController::class, 'store'])
     ->name('sections.store');
+Route::delete('/courses/{course}/sections/{section}', [SectionController::class, 'destroy'])
+    ->name('sections.destroy');
 // material upload nested route
 Route::get('/courses/{course}/materials/create', [MaterialController::class, 'create'])
     ->name('sections.create');
@@ -133,8 +135,9 @@ Route::get('/leaderboard', function () {
     return Inertia::render('leader/LeaderboardPage');
 });
 Route::get('/student/submissions', function () {
-    return Inertia::render('quizdashboard/student/StudentSubmissions');
+    return Inertia::render('quizdashboard/tutor/StudentSubmissions');
 });
+
 Route::get('/student/courses', function () {
     return Inertia::render('coursedashboard/students/StudentCoursePage');
 });

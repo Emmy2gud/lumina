@@ -291,10 +291,10 @@ const Category = ({ courses, categories, activeCategory}) => {
           {/* Course Categories Section */}
           <section className="mb-16">
             <div className="text-center mb-12">
-              <h2 className="text-4xl font-bold text-text-primary  mb-4">
+              <h2 className="text-4xl font-bold text-primary  mb-4">
                 Explore by Category
               </h2>
-              <p className="text-xl text-gray-600 dark:text-gray-300">
+              <p className="text-xl text-primary-500/80 ">
                 Master every aspect of {activeCategory}
               </p>
             </div>
@@ -335,7 +335,7 @@ const Category = ({ courses, categories, activeCategory}) => {
                 <h2 id="courses-heading" className="text-3xl font-bold text-text-primary dark:text-white">
                   {categoryFilter === "All Categories" ? `All ${activeCategory} Courses` : `${categoryFilter} Courses`}
                 </h2>
-                <p className="text-text-secondary dark:text-gray-300 mt-2">
+                <p className="text-primary-500/80 mt-2">
                   {sortedCourses.length} courses • Lifetime access • Certificate of completion
                 </p>
               </div>

@@ -30,19 +30,19 @@ order: 0,
   return (
     <div className="min-h-screen bg-surface-secondary">
       <div className="pt-16 md:pt-0 flex">
-        <div className="flex-1 p-4 md:p-8 ml-0 md:ml-20 lg:ml-64">
+        <div className="flex-1 p-4 md:p-8 ">
           <div className="max-w-3xl mx-auto">
             <div className="mb-8">
-              <h1 className="text-2xl md:text-3xl font-bold text-text-primary">Create New Course</h1>
-              <p className="text-text-secondary">
+              <h1 className="text-2xl md:text-3xl font-bold text-primary ">Create New Section</h1>
+              <p className="text-secondary">
                 Fill in the details below to create your course section
               </p>
             </div>
 
-            <div className="bg-surface-primary p-6 rounded-lg shadow-sm">
+            <div className="bg-surface-primary p-6 rounded-lg shadow-sm w-[800px]">
               <form onSubmit={submit} className="space-y-6" encType='multipart/form-data'>
                 <div className="space-y-2">
-                  <Label htmlFor="title">Course Title</Label>
+                  <Label htmlFor="title">Section Title</Label>
 
                   <Input
                     id="title"

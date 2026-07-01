@@ -9,7 +9,7 @@ const CreateQuizPage = ({sections}) => {
       <div className="pt-16 md:pt-0 flex">
 
 
-        <div className="flex-1 p-4 md:p-8 ml-0 md:ml-20 lg:ml-64">
+        <div className="flex-1 p-4 md:p-8 ">
           <div className="max-w-5xl mx-auto">
             <div className="mb-8">
               <h1 className="text-2xl md:text-3xl font-bold text-text-primary">Create New Quiz</h1>

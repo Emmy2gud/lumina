@@ -118,7 +118,7 @@ export default function QAndA() {
 
   return (
 
-      <div className="min-h-screen space-y-6 animate-fade-in  md:p-8 ml-0 md:ml-20 lg:ml-70">
+      <div className="min-h-screen space-y-6 animate-fade-in p-3">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div>
             <h1 className="text-3xl font-bold text-foreground">Q&A / Discussions</h1>

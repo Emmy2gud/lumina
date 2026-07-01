@@ -65,11 +65,11 @@ const CreateCoursePage = () => {
         { title: "Game Development" },
     ];
   return (
-    <div className="min-h-screen bg-surface-secondary py-12">
-      <div className="pt-16 md:pt-0 flex">
-        <div className="max-w-6xl mx-auto ml-75 ">
+    <div className="min-h-screen bg-surface-secondary py-6">
+      <div className="pt-6 md:pt-0 flex">
+        <div className="max-w-6xl mx-auto  ">
    <div className="backdrop-blur-lg  ">
-        <div className="max-w-7xl mx-auto px-6 py-8">
+        <div className="max-w-7xl mx-auto py-8">
           <div className="text-center mb-6">
             <h1 className="text-4xl md:text-5xl font-extrabold bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 bg-clip-text text-transparent mb-3">
               Create New Course
@@ -109,12 +109,12 @@ const CreateCoursePage = () => {
             <div className="bg-surface-primary p-8 rounded-2xl shadow-md border border-gray-100">
               <form onSubmit={submit} className="space-y-6" encType='multipart/form-data'>
                 <div>
-                  <Label htmlFor="title" className="text-sm font-medium text-text-secondary">Course Title</Label>
+                  <Label htmlFor="title" className="text-sm font-medium text-secondary ">Course Title</Label>
                   <Input
                     id="title"
                     value={data.title}
                     onChange={(e) => setData('title', e.target.value)}
-                    className="mt-2 w-full px-4 py-3 rounded-xl border-border-light shadow-sm bg-surface-primary text-base"
+                    className="mt-2 w-full px-4 py-3 rounded-xl border-border shadow-sm bg-surface-primary text-base"
                     placeholder="e.g. Complete React Developer Course"
                   />
                   {errors.title && (
@@ -123,13 +123,13 @@ const CreateCoursePage = () => {
                 </div>
 
                 <div>
-                  <Label htmlFor="description" className="text-sm font-medium text-text-secondary">Course Description</Label>
+                  <Label htmlFor="description" className="text-sm font-medium text-secondary ">Course Description</Label>
                   <Textarea
                     id="description"
                     value={data.description}
                     onChange={(e) => setData('description', e.target.value)}
                     placeholder="Write a compelling summary of what students will learn"
-                    className="mt-2 w-full min-h-[160px] px-4 py-3 rounded-xl border-border-light shadow-sm bg-surface-primary text-base"
+                    className="mt-2 w-full min-h-[160px] px-4 py-3 rounded-xl border-border shadow-sm bg-surface-primary text-base"
                   />
                   {errors.description && (
                     <p className="text-sm text-red-500 font-medium mt-2">{errors.description}</p>
@@ -138,13 +138,13 @@ const CreateCoursePage = () => {
 
                 <div className="grid md:grid-cols-2 gap-4">
                   <div>
-                    <Label htmlFor="benefits" className="text-sm font-medium text-text-secondary">Benefits</Label>
+                    <Label htmlFor="benefits" className="text-sm font-medium text-secondary ">Benefits</Label>
                     <Textarea
                       id="benefits"
                       value={data.benefits}
                       onChange={(e) => setData('benefits', e.target.value)}
                       placeholder="What will students gain?"
-                      className="mt-2 w-full min-h-[120px] px-4 py-3 rounded-xl border-border-light shadow-sm bg-surface-primary text-base"
+                      className="mt-2 w-full min-h-[120px] px-4 py-3 rounded-xl border-border shadow-sm bg-surface-primary text-base"
                     />
                     {errors.benefits && (
                       <p className="text-sm text-red-500 font-medium mt-2">{errors.benefits}</p>
@@ -152,12 +152,12 @@ const CreateCoursePage = () => {
                   </div>
 
                   <div>
-                    <Label htmlFor="features" className="text-sm font-medium text-text-secondary">Features (comma separated)</Label>
+                    <Label htmlFor="features" className="text-sm font-medium text-secondary ">Features (comma separated)</Label>
                     <Input
                       id="Features"
                       value={data.features}
                       onChange={(e) => setData('features', e.target.value)}
-                      className="mt-2 w-full px-4 py-3 rounded-xl border-border-light shadow-sm bg-surface-primary text-base"
+                      className="mt-2 w-full min-h-[120px] px-4 py-3 rounded-xl border-border shadow-sm bg-surface-primary text-base"
                       placeholder="e.g. 12 hours, quizzes, projects"
                     />
                     {errors.features && (
@@ -168,12 +168,12 @@ const CreateCoursePage = () => {
 
                 <div className="grid md:grid-cols-2 gap-4">
                   <div>
-                    <Label htmlFor="requirements" className="text-sm font-medium text-text-secondary">Requirements</Label>
+                    <Label htmlFor="requirements" className="text-sm font-medium text-secondary ">Requirements</Label>
                     <Input
                       id="requirements"
                       value={data.requirements}
                       onChange={(e) => setData('requirements', e.target.value)}
-                      className="mt-2 w-full px-4 py-3 rounded-xl border-border-light shadow-sm bg-surface-primary text-base"
+                      className="mt-2 w-full px-4 py-3 rounded-xl border-border shadow-sm bg-surface-primary text-base"
                       placeholder="e.g. Basic JavaScript knowledge"
                     />
                     {errors.requirements && (
@@ -182,12 +182,12 @@ const CreateCoursePage = () => {
                   </div>
 
                   <div>
-                    <Label htmlFor="category" className="text-sm font-medium text-text-secondary">Category</Label>
+                    <Label htmlFor="category" className="text-sm font-medium text-secondary">Category</Label>
                     <Select
                       value={data.category}
                       onValueChange={(value) => setData('category', value)}
                     >
-                      <SelectTrigger className="mt-2 w-full rounded-xl border-border-light shadow-sm bg-surface-primary">
+                      <SelectTrigger className="mt-2 w-full text-secondary rounded-xl border-border shadow-sm bg-surface-primary">
                         <SelectValue placeholder="Select a category" />
                       </SelectTrigger>
                       <SelectContent className="rounded-xl border-gray-100 shadow-sm">
@@ -206,7 +206,7 @@ const CreateCoursePage = () => {
 
                 <div className="flex justify-end gap-4 pt-4">
                   <Button
-                    className="border border-border-light text-text-secondary bg-surface-primary"
+                    className="border border-border text-secondary bg-surface-primary"
                     type="button"
                     variant="outline"
                     onClick={() => window.history.back()}
@@ -229,7 +229,7 @@ const CreateCoursePage = () => {
           <aside className="md:col-span-4">
             <div className="sticky top-24 space-y-6">
               <div className="bg-surface-primary p-6 rounded-2xl shadow-sm border border-gray-100">
-                <h3 className="text-lg font-medium mb-3">Course Thumbnail</h3>
+                <h3 className="text-lg text-secondary  font-medium mb-3">Course Thumbnail</h3>
                 <div className="relative">
                   <input
                     id="thumbnailImage"
@@ -239,15 +239,15 @@ const CreateCoursePage = () => {
                     className="absolute inset-0 w-full h-full opacity-0 cursor-pointer rounded-2xl"
                   />
 
-                  <div className="flex items-center justify-between gap-3 px-4 py-4 rounded-xl border border-dashed border-border-light hover:border-primary transition-colors">
+                  <div className="flex items-center justify-between gap-3 px-4 py-4 rounded-xl border border-dashed border-gray-400 hover:border-primary transition-colors">
                     <div className="flex items-center gap-3">
-                      <UploadIcon className="w-6 h-6 text-text-muted" />
+                      <UploadIcon className="w-6 h-6 text-secondary " />
                       <div>
-                        <div className="text-sm font-medium">Upload thumbnail</div>
-                        <div className="text-xs text-gray-500">PNG or JPG, recommended 1280×720</div>
+                        <div className="text-sm font-medium text-secondary ">Upload thumbnail</div>
+                        <div className="text-xs  text-secondary ">PNG or JPG, recommended 1280×720</div>
                       </div>
                     </div>
-                    <div className="text-sm text-gray-500">Browse</div>
+                    <div className="text-sm  text-secondary ">Browse</div>
                   </div>
 
                   {previewUrl && (
@@ -262,7 +262,7 @@ const CreateCoursePage = () => {
                 </div>
               </div>
 
-              <div className="bg-surface-primary p-6 rounded-2xl shadow-sm border border-gray-100 text-sm text-text-secondary">
+              <div className="bg-surface-primary p-6 rounded-2xl shadow-sm border border-gray-100 text-sm text-secondary">
                 <h4 className="font-medium mb-2">Tips for a great course</h4>
                 <ul className="list-disc list-inside space-y-2">
                   <li>Write a clear, outcome-focused description.</li>

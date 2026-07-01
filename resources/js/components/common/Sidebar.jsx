@@ -71,15 +71,7 @@ const Sidebar = () => {
       ],
       dropicon: ChevronDown
     },
-    {
-      id: 5,
-      title: 'Quizzes & Assessments',
-      icon: FileQuestion,
-      subItems: [
-        { title: 'View Submissions', path: '/quiz/submissions', icon: FileCheck },
-      ],
-      dropicon: ChevronDown
-    },
+     { id: 10, title: 'Quiz Assessment', path: '/student/submissions', icon: ClipboardCheck },,
     {
       id: 13,
       title: 'Q&A / Discussions',
@@ -99,7 +91,7 @@ const Sidebar = () => {
   const studentNavItems = [
     { id: 7, title: 'Dashboard', path: '/dashboard/student', icon: Home },
     { id: 8, title: 'My Courses', path: '/student/courses', icon: BookOpen },
-    { id: 10, title: 'Quiz Assessment', path: '/student/submissions', icon: ClipboardCheck },
+
     { id: 12, title: 'LeaderBoard', path: '/leaderboard', icon: Trophy },
         {
       id: 13,

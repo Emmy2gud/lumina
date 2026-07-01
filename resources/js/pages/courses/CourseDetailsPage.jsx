@@ -9,6 +9,7 @@ import {
     Award,
     Download,
     WandSparkles,
+    MessageSquare,
 } from "lucide-react";
 import Navbar from "../../components/common/Navbar";
 import Footer from "../../components/common/Footer";
@@ -157,7 +158,7 @@ const CourseDetailsPage = ({ course, instructor }) => {
                                                 : "text-secondary-700 hover:text-primary"
                                         }`}
                                     >
-                                        Sections Overview
+                                       Q&A Sections 
                                     </button>
                                 </div>
 
@@ -604,7 +605,7 @@ const CourseDetailsPage = ({ course, instructor }) => {
                                     {/* Q&A section */}
                                     {activeTab === "section" && (
                                         <div>
-                                            <h2 className="text-xl font-bold mb-4">💬 Questions & Answers</h2>
+                                            <h2 className="text-xl font-bold mb-4 text-primary gap-3 flex align-middle text-center"><MessageSquare className="h- w- text-center"/> Questions & Answers</h2>
 
                                             {/* Input box */}
                                             <div className="bg-card p-4 rounded-lg mb-6 shadow-sm">

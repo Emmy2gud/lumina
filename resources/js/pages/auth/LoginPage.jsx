@@ -29,7 +29,7 @@ const LoginPage = () => {
         e.preventDefault()
         post('/login')
 
-        setIsSubmitting(true);
+
         setTimeout(() => {
             setIsSubmitting(false);
         }, 1000)

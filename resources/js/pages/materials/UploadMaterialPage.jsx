@@ -52,19 +52,20 @@ const { data, setData, post, processing, errors } = useForm({
 
       <div className="pt-16 md:pt-0 flex">
 
-        <div className="flex-1 p-4 md:p-8 ml-0 md:ml-20 lg:ml-64">
-          <div className="max-w-3xl mx-auto">
-            <div className="mb-8">
-              <h1 className="text-2xl md:text-3xl font-bold text-text-primary">Upload Teaching Material</h1>
-              <p className="text-text-secondary">
-                Share resources and materials with your students
+        <div className="flex-1 p-4 md:p-8 eb">
+          <div className="max-w-6xl mx-auto">
+                                     <div className="mb-8">
+              <h1 className="text-2xl md:text-3xl font-bold text-primary ">Upload Teaching Material</h1>
+              <p className="text-secondary">
+                 Share resources and materials with your students
               </p>
             </div>
+
 
             <div className="bg-surface-primary p-6 rounded-lg shadow-sm">
             <form onSubmit={submit} className="space-y-6" encType='multipart/form-data'>
                 <div className="space-y-2">
-                  <Label htmlFor="title">Material Title</Label>
+                  <Label htmlFor="title" className="text-primary-500">Material Title</Label>
 
                   <Input
                     id="title"
@@ -80,7 +81,7 @@ const { data, setData, post, processing, errors } = useForm({
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="description">Description</Label>
+                  <Label htmlFor="description" className="text-primary-500">Description</Label>
                   <Textarea
                     id="description"
                     value={data.description}
@@ -100,15 +101,15 @@ const { data, setData, post, processing, errors } = useForm({
 
 
              <div className="space-y-2">
-                  <Label htmlFor="relatedCourse">Category</Label>
+                  <Label htmlFor="relatedCourse" className="text-primary-500">Category</Label>
                   <Select
                     value={data.relatedCourse}
                     onValueChange={(value) => setData('relatedCourse', value)}
                   >
-                    <SelectTrigger className="border border-border-medium rounded-md shadow-sm focus:ring-primary focus:border-primary">
+                    <SelectTrigger className="border w-full border-border-medium rounded-md shadow-sm focus:ring-primary focus:border-primary">
                       <SelectValue placeholder="Select a category" />
                     </SelectTrigger>
-                    <SelectContent className="bg-soft-purple border-border-medium rounded-md shadow-sm focus:ring-primary focus:border-primary">
+                    <SelectContent className="bg-white border-border-medium rounded-md shadow-sm focus:ring-primary focus:border-primary">
                       <SelectItem className='hover:bg-primary' value={course.title}>{course.title}</SelectItem>
 
                     </SelectContent>
@@ -186,7 +187,7 @@ const { data, setData, post, processing, errors } = useForm({
 
     {/* div for file type and size input*/}
     <div className="space-y-2">
-                    <Label htmlFor="fileType">File Type</Label>
+                    <Label htmlFor="fileType" className="text-primary-500">File Type</Label>
                     <Input
                       id="fileType"
                       value={data.file_type}
@@ -200,7 +201,7 @@ const { data, setData, post, processing, errors } = useForm({
 
                 </div>
                 <div className="space-y-2">
-                    <Label htmlFor="fileSize">File Size</Label>
+                    <Label htmlFor="fileSize" className="text-primary-500">File Size</Label>
                     <Input
                       id="fileSize"
                       value={data.file_size}
