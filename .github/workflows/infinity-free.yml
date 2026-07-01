@@ -11,7 +11,7 @@ jobs:
   deploy:
     name: Deploy via FTP
     runs-on: ubuntu-latest
-
+    environment: Production   # <-- add this line
     steps:
       # Step 1: Clone the latest code from GitHub
       - name: Get latest code
@@ -24,6 +24,6 @@ jobs:
           server: ftpupload.net
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          server-dir: /yourdomain.com/htdocs/  # For addon domains
+          server-dir: /luminastud.great-site.net/htdocs/  # For addon domains
           timeout: 86400000
           log-level: standard
